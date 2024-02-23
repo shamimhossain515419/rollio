@@ -11,26 +11,36 @@ import ProductsSlider from "@/components/shared/ProductsSlider/ProductsSlider";
 import ceoImage from "@/assets/image/ceo.webp";
 import Marquee from "react-fast-marquee";
 import Button from "@/components/utilityComponent/button/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "@/redux/features/cart/CartSlice";
 
 const ProductDetailPage = ({ product }: any) => {
   const dispatch = useDispatch();
-  const [activeColor, setActiveColor] = useState(0);
+  const [activeColor, setActiveColor] = useState();
   const [activeSize, setActiveSize] = useState(product.sizes[0]);
   const [sizeGuideModal, setSizeGuideModal] = useState(false);
 
-  const productInfo = product.product;
-  const colors = product.colors;
-  const photos = product.photos;
-  const sizes = product.sizes;
+  const { product: productInfo, colors, photos, sizes } = product;
 
+  const { cartItems } = useSelector((state: any) => state.Cart);
   const addToCartHandle = (product: any) => {
-    // const values ={
-    //   id:
-    // }
-    dispatch(addItem(product));
+    if (!activeColor) {
+      alert("Select Color");
+      return;
+    }
+
+    const values: any = {
+      id: productInfo.id,
+      name: productInfo.name,
+      sale_price: parseFloat(productInfo.sale_price),
+      discount: productInfo.discount,
+      discount_type: productInfo.discount_type,
+      color: activeColor,
+      photos: photos,
+    };
+    dispatch(addItem(values));
   };
+
   //
 
   return (
@@ -66,11 +76,10 @@ const ProductDetailPage = ({ product }: any) => {
             </h1>
             <h2 className="text-2xl mb-10">TK {productInfo.sale_price}</h2>
             <p className="text-xl">
-              <span className="bg-red-500"> fake data</span> <br /> Lorem ipsum
-              dolor sit amet consectetur adipisicing elit. Dolorem maiores vitae
-              aliquam ea quia adipisci ad reprehenderit laborum distinctio.
-              Neque asperiores quaerat distinctio voluptas voluptates ab ullam,
-              vero non voluptate.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
+              maiores vitae aliquam ea quia adipisci ad reprehenderit laborum
+              distinctio. Neque asperiores quaerat distinctio voluptas
+              voluptates ab ullam, vero non voluptate.
             </p>
             {/* colors */}
             <div className="py-10">

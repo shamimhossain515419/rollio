@@ -1,24 +1,52 @@
 "use client";
 
 import Button from "@/components/utilityComponent/button/Button";
+import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
 import Select from "react-select";
 
 const ShippingAddress = () => {
+  const router = useRouter();
   const options = [
     { value: "option1", label: "Option 1" },
     { value: "option2", label: "Option 2" },
     { value: "option3", label: "Option 3" },
   ];
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState<any>(null);
 
-  const handleSelectChange = () => {
+  const handleSelectChange = (selectedOption: any) => {
     setSelectedOption(selectedOption);
+  };
+  console.log(selectedOption);
+  const SaveShippingHandler = (e: any) => {
+    e.preventDefault();
+
+    const form: any = e.target;
+    const First_Name = form?.First_Name.value;
+    const last_Name = form?.last_Name.value;
+    const Company = form?.Company.value;
+    const Address = form?.Address.value;
+    const Apartment = form?.Apartment.value;
+    const City = form?.City.value;
+    const Postal_code = form?.Postal_code.value;
+    const Phone = form?.Phone.value;
+
+    const data = {
+      First_Name,
+      last_Name,
+      Company,
+      Address,
+      Apartment,
+      City,
+      Postal_code,
+      Phone,
+    };
+    router.replace("/checkout/shipping");
   };
   return (
     <div className="">
       <h2 className="text-lg pt-5">Shipping address</h2>
-      <form>
+      <form onSubmit={SaveShippingHandler}>
         {/* country  */}
         <div className="">
           <label className="py-2 block" htmlFor="country">
@@ -29,6 +57,7 @@ const ShippingAddress = () => {
             value={selectedOption}
             options={options}
             placeholder="Select a country"
+            onChange={handleSelectChange}
           />
         </div>
 

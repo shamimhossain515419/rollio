@@ -17,7 +17,8 @@ const CartComponents = ({ product }: any) => {
             className=" rounded-xl w-[100px] "
             width={100}
             height={100}
-            src={product?.image1}
+            // src={product?.photos[0]}
+            src={`https://getmicrojobs.com/images/${product?.photos[0]?.photo}`}
             alt="image"
           ></Image>
         </div>

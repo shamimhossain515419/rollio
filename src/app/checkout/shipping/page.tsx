@@ -3,18 +3,27 @@
 import Button from "@/components/utilityComponent/button/Button";
 import Link from "next/link";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 
 const Page = () => {
-  const [payActive, setPayActive] = useState(false)
+  const [payActive, setPayActive] = useState(false);
+
+  const orderHandler = () => {
+    if (payActive) {
+      toast.success("Order successfully");
+    }
+  };
+
   return (
     <div>
       <div className="flex text-sm  items-center text-stone-500">
-        <Link href={'/cart'}>Cart</Link> <IoIosArrowForward />
-        <Link href={'/checkout/information'}>Information</Link> <IoIosArrowForward />
-        <Link href={'/checkout/shipping'}>Shipping</Link> <IoIosArrowForward />
-        <Link href={'/checkout/payment'}>Payment</Link>
+        <Link href={"/cart"}>Cart</Link> <IoIosArrowForward />
+        <Link href={"/checkout/information"}>Information</Link>{" "}
+        <IoIosArrowForward />
+        <Link href={"/checkout/shipping"}>Shipping</Link> <IoIosArrowForward />
+        <Link href={"/checkout/payment"}>Payment</Link>
       </div>
       {/* user address  */}
       <div className=" my-10 px-3 py-2  rounded-[4px] sm:mr-5 border  border-[#3333331f]">
@@ -83,36 +92,44 @@ const Page = () => {
       </div>
       {/* pay new  */}
       <div className="sm:mr-5">
-        <h1 className=" text-[17px]  text-[#333333]   font-extralight py-3">   Duties and taxes </h1>
+        <h1 className=" text-[17px]  text-[#333333]   font-extralight py-3">
+          {" "}
+          Duties and taxes{" "}
+        </h1>
         <div className="border  border-[#3333331f] rounded-[4px]   ">
           <div className="  px-3 py-3  text-[#333333] flex justify-between items-start gap-2  sm:mr-5 ">
             <div className=" flex items-start gap-3">
               <div>
-                <div onClick={() => setPayActive(false)} className={` flex justify-center items-center ${payActive ? "border border-[#3333337b]" : " bg-[#3333337b]"}  w-[20px] h-[20px] cursor-pointer rounded-full`}>
+                <div
+                  onClick={() => setPayActive(false)}
+                  className={` flex justify-center items-center ${
+                    payActive ? "border border-[#3333337b]" : " bg-[#3333337b]"
+                  }  w-[20px] h-[20px] cursor-pointer rounded-full`}
+                >
                   <p className=" w-[5px] h-[5px] bg-white rounded-full"></p>
                 </div>
               </div>
               <div>
-                <h2 className="text-[10px]   md:text-[14px] ">
-                  Pay now
-                </h2>
+                <h2 className="text-[10px]   md:text-[14px] ">Pay now</h2>
                 <p className="text-[10px]  md:text-[12px] ">
                   No additional fees on delivery
                 </p>
-
               </div>
             </div>
             <div>
-              <p className="text-[14px] font-normal">
-                ৳45,914.00
-              </p>
+              <p className="text-[14px] font-normal">৳45,914.00</p>
             </div>
           </div>
           <div className="border  border-[#3333331f] "></div>
           <div className="px-3 py-3  text-[#333333] flex justify-between items-start gap-2  sm:mr-5 ">
             <div className=" flex items-start gap-3">
               <div>
-                <div onClick={() => setPayActive(true)} className={` flex justify-center items-center ${payActive ? "bg-[#3333337b]" : " border border-[#3333337b]"}  w-[20px] h-[20px] cursor-pointer rounded-full`}>
+                <div
+                  onClick={() => setPayActive(true)}
+                  className={` flex justify-center items-center ${
+                    payActive ? "bg-[#3333337b]" : " border border-[#3333337b]"
+                  }  w-[20px] h-[20px] cursor-pointer rounded-full`}
+                >
                   <p className=" w-[5px] h-[5px] bg-white rounded-full"></p>
                 </div>
               </div>
@@ -123,22 +140,25 @@ const Page = () => {
                 <p className="text-[10px]  md:text-[12px] ">
                   Additional fees may apply
                 </p>
-
               </div>
             </div>
-            <div>
-
-            </div>
+            <div></div>
           </div>
-
         </div>
       </div>
       {/* shipping action  */}
       <div className=" flex justify-between items-center gap-2  my-6 sm:mr-5">
         <div>
-          <Link href={'/checkout/information'} className=" flex   items-center gap-[2px] text-[#333333]"> <MdKeyboardArrowLeft />   <p className="text-[12px] md:text-[13px]">Return to information</p></Link>
+          <Link
+            href={"/checkout/information"}
+            className=" flex   items-center gap-[2px] text-[#333333]"
+          >
+            {" "}
+            <MdKeyboardArrowLeft />{" "}
+            <p className="text-[12px] md:text-[13px]">Return to information</p>
+          </Link>
         </div>
-        <div className="flex justify-end mt-4">
+        <div onClick={() => orderHandler()} className="flex justify-end mt-4 ">
           <Button title="Continue to payment" />
         </div>
       </div>

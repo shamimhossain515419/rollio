@@ -20,7 +20,7 @@ const Card = ({ button, fav, product }: any) => {
       )}
 
       {/* image */}
-      <Link href={"/products/1"} className="">
+      <Link href={`/products/${product?.id}`} className="">
         <Image
           className="group-hover:hidden  max-h-[500px] "
           src={product?.image1}
