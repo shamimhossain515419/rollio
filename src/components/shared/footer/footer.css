@@ -1,0 +1,8 @@
+.footer {
+  background-image: url("../../../../public/images//Home//footer-bg.webp");
+  width: 100% !important;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-size: cover;
+}

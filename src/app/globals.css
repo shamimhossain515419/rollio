@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "BasisGrotesqueArabicPro";
+  src: url("../../public/font/BasisGrotesqueArabicPro-Medium.ttf")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  font-family: "BasisGrotesqueArabicPro", sans-serif !important;
+  background: radial-gradient(circle at 7.5% 24%, #dcc0d3, #a3b6d9);
+  /* background: radial-gradient(
+    circle at 7.5% 24%,
+    rgb(161, 237, 184) 0%,
+    rgb(199, 147, 142) 25.5%,
+    rgb(190, 228, 210) 62.3%,
+    rgb(215, 248, 247) 93.8%
+  ); */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.ReactCollapse--collapse {
+  transition: height 500ms;
+}
+.blurBackground {
+  background: rgba(255, 255, 255, 0.26);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.offerSliderItem {
+  background: rgba(255, 255, 255, 0.37);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.01);
+}
+
+.cartScroolbar::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Accordion    */
+
+animate-fadeInUp_accordion {
+  animation: fadeInUp_accordion 0.5s ease-in-out;
+}
+
+.animate-fadeOutDown_accordion {
+  animation: fadeOutDown_accordion 0.5s ease-in-out;
+}
+
+@keyframes fadeInUp_accordion {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+@keyframes fadeOutDown_accordion {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+/* bouncing-element   */
+@media screen and (max-width: 1100px) {
+  .bouncing-element {
+    transform: translateY(0px);
+    animation: bounceAnimation 6s linear infinite;
+  }
+
+  @keyframes bounceAnimation {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(40px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+}
+/* bouncing-element-viderSlider  */
+.bouncing-element-viderSlider {
+  transform: translateY(0px);
+  animation: bounceAnimation 6s linear infinite;
+}
+
+@keyframes bounceAnimation {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(40px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-fadeInUp_card_key {
+  animation: fadeInUp_card_key 0.5s ease-in-out;
+}
+
+.animate-fadeOutDown_card_key {
+  animation: fadeOutDown_card_key 0.5s ease-in-out;
+}
+
+@keyframes fadeInUp_card_key {
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOutDown_card_key {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+}
+
+/* animate-fadeOutDown_favorite  */
+.animate-fadeInUp_favorite {
+  animation: fadeInUp_favorite 0.5s ease-in-out;
+}
+
+.animate-fadeOutDown_favorite {
+  animation: fadeOutDown_favorite 0.5s ease-in-out;
+}
+
+@keyframes fadeInUp_favorite {
+  from {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOutDown_favorite {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-200px);
+  }
+}
