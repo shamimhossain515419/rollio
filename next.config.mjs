@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  env: {
+    BASE_URL: "https://getmicrojobs.com/api/",
+  },
   images: {
     domains: [
       "cdn.shopify.com",

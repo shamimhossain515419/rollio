@@ -12,7 +12,7 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { MenuToggle } from "@/redux/features/responsivemenutoggle/ResponsiveMenuToggleSlice";
 import { CartToggle } from "@/redux/features/cart/CartToggleSlice";
-import { FavoriteToggle } from "@/redux/features/favorites/FavoriteSlice";
+import { FavoriteToggle } from "@/redux/features/favoriteToggle/favoriteToggle";
 import { SiteModalToggle } from "@/redux/features/sitemodal/SiteModalSlice";
 import { accountToggle } from "@/redux/features/account/AccountSlice";
 
@@ -23,6 +23,7 @@ const Navbar = ({ topCategory, primaryCategories }: any) => {
   const [showdropdown, setShowdropdown] = useState(false);
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state: any) => state.Cart);
+  const { favItems } = useSelector((state: any) => state.favItems);
 
   const [country, setCountry] = useState({
     name: "BDT",
@@ -102,7 +103,7 @@ const Navbar = ({ topCategory, primaryCategories }: any) => {
         {/* others */}
         <div className="flex justify-evenly items-center gap-4">
           {/* curency */}
-          <div
+          {/* <div
             onClick={() => setActiveCountryList(!activeCountyList)}
             className="relative  xl:flex hidden items-center justify-center p-3 gap-2 rounded-2xl border  "
           >
@@ -110,7 +111,6 @@ const Navbar = ({ topCategory, primaryCategories }: any) => {
             <span>{country.sumsymbole}</span>
             <span>{country.name}</span>
 
-            {/* country list  */}
             <div className=" xl:flex hidden absolute top-12 -left-10 bg-white rounded-2xl text-black">
               <Collapse isOpened={activeCountyList}>
                 <ul className=" w-[200px] p-2 ">
@@ -144,7 +144,7 @@ const Navbar = ({ topCategory, primaryCategories }: any) => {
                 </ul>
               </Collapse>
             </div>
-          </div>
+          </div> */}
 
           {/* search  */}
 
@@ -168,13 +168,18 @@ const Navbar = ({ topCategory, primaryCategories }: any) => {
           </div>
           {/* fav icone */}
 
-          <GrFavorite
-            onClick={() => {
-              dispatch(SiteModalToggle()), dispatch(FavoriteToggle());
-            }}
-            size={25}
-            className="cursor-pointer"
-          />
+          <p className="relative">
+            <GrFavorite
+              onClick={() => {
+                dispatch(SiteModalToggle()), dispatch(FavoriteToggle());
+              }}
+              size={25}
+              className="cursor-pointer"
+            />
+            <span className="absolute -top-3 -right-2 text-sm">
+              {favItems.length}
+            </span>
+          </p>
 
           <div
             onMouseMoveCapture={() => setShowdropdown(true)}

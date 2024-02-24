@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 const ProductListPrice = () => {
   const { cartItems } = useSelector((state: any) => state.Cart);
-  console.log(cartItems);
+
   return (
     <div className=" border-l px-4">
       {/* products */}

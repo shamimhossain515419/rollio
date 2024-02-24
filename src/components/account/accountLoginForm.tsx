@@ -2,21 +2,32 @@
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import React, { useState } from "react";
+
+import { useRouter } from "next/navigation";
+
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
 const AccountLoginForm = () => {
+  const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async () => {
-    const res = await signIn("credentials", {
+    const res: any = await signIn("credentials", {
+      redirect: false,
       email,
       password,
     });
 
-    toast.success(`Login successful`);
+    if (!res.error) {
+      toast.success(`Login successful`);
+      window.location.reload();
+    } else {
+      toast.error(`Login Fail`);
+      console.error("Login failed:", res.error);
+    }
   };
 
   return (

@@ -47,8 +47,6 @@ const ProductDetailPage = ({ product }: any) => {
     dispatch(addItem(values));
   };
 
-  console.log(product);
-
   //
 
   return (
