@@ -16,7 +16,7 @@ const CartCard = () => {
 
   return (
     <div>
-      {cartItems.map((product: ProductInterface, index: number) => (
+      {cartItems.map((product: any, index: number) => (
         <div
           key={index}
           className="relative p-5 grid grid-cols-3 gap-1 md:gap-2 lg:gap-4 xl:gap-5 w-full items-center"
@@ -34,7 +34,8 @@ const CartCard = () => {
               width={100}
               height={100}
               layout="responsive"
-              src={product?.image1}
+              // src={product?.image1}
+              src={`https://getmicrojobs.com/images/${product?.photos[0]?.photo}`}
               alt="image"
             ></Image>
           </div>

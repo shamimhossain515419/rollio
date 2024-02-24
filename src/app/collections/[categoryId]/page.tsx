@@ -135,7 +135,7 @@ const Page = async ({ params }: any) => {
                 <Card
                   key={product.id}
                   product={product}
-                  button={true}
+                  button={false}
                   fav={true}
                 ></Card>
               ))}

@@ -1,55 +1,42 @@
+"use client";
 import Image from "next/image";
 import React from "react";
+import { useSelector } from "react-redux";
 
 const ProductListPrice = () => {
+  const { cartItems } = useSelector((state: any) => state.Cart);
+  console.log(cartItems);
   return (
     <div className=" border-l px-4">
       {/* products */}
       <div className="grid grid-cols-1 gap-3 border-b pb-4">
-        <div className="text-sm flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <div className="relative">
-              <div className="absolute top-0 right-0 w-5 h-5 bg-slate-300 rounded-full flex items-center justify-center">
-                <span>5</span>
+        {cartItems?.map((product: any) => (
+          <div
+            key={product.id}
+            className="text-sm flex justify-between items-center"
+          >
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <div className="absolute top-0 right-0 w-5 h-5 bg-slate-300 rounded-full flex items-center justify-center">
+                  <span>{product?.quantity}</span>
+                </div>
+                <Image
+                  className="shadow-lg rounded-lg"
+                  src={`https://getmicrojobs.com/images/${product?.photos[0]?.photo}`}
+                  width={80}
+                  height={80}
+                  alt=""
+                />
               </div>
-              <Image
-                className="shadow-lg rounded-lg"
-                src="https://cdn.shopify.com/s/files/1/0146/8461/8806/files/WaveGreenWhite_37_H_small.jpg?v=1689656216"
-                width={80}
-                height={80}
-                alt=""
-              />
-            </div>
-            <div className="">
-              <h2>Wave Green/White</h2>
-              <p>Size EU 93</p>
-            </div>
-          </div>
-          {/* price */}
-          <h3>$ 12000</h3>
-        </div>
-        <div className="text-sm flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <div className="relative">
-              <div className="absolute top-0 right-0 w-5 h-5 bg-slate-300 rounded-full flex items-center justify-center">
-                <span>5</span>
+              <div className="">
+                <h2>{product?.name}</h2>
+                <p>Size EU 93</p>
               </div>
-              <Image
-                className="shadow-lg rounded-lg"
-                src="https://cdn.shopify.com/s/files/1/0146/8461/8806/files/WaveGreenWhite_37_H_small.jpg?v=1689656216"
-                width={80}
-                height={80}
-                alt=""
-              />
             </div>
-            <div className="">
-              <h2>Wave Green/White</h2>
-              <p>Size EU 93</p>
-            </div>
+            {/* price */}
+            <h3>$ 12000</h3>
           </div>
-          {/* price */}
-          <h3>$ 12000</h3>
-        </div>
+        ))}
       </div>
 
       {/* Discount code or gift card */}

@@ -2,6 +2,7 @@
 import CartCard from "@/components/cartPage/CartCard/CartCard";
 
 import Newfind from "@/components/yourcart/Newfind";
+import Link from "next/link";
 
 import { FaFirefox } from "react-icons/fa";
 import { useSelector } from "react-redux";
@@ -32,12 +33,14 @@ const CartPage = () => {
                   Free express shipping on orders over $60 in AU & NZ
                 </p>
                 <div className="w-full">
-                  <button
-                    className="bg-[#15151f] w-full hover:bg-[#383849] text-white rounded-full px-8 py-4 duration-300 ease-in"
-                    type="submit"
-                  >
-                    Checkout
-                  </button>
+                  <Link href={"/checkout/information"}>
+                    <button
+                      className="bg-[#15151f] w-full hover:bg-[#383849] text-white rounded-full px-8 py-4 duration-300 ease-in"
+                      type="submit"
+                    >
+                      Checkout
+                    </button>
+                  </Link>
                   <div className="flex items-center justify-center pt-5">
                     <p className="text-[#9D9DA1] ">
                       Get an instant refund with{" "}
