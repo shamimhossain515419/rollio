@@ -12,7 +12,7 @@ const AccountLoginForm = () => {
   const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [, setLoading] = useState<boolean>(false);
+  // const [, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async () => {
     const res: any = await signIn("credentials", {
@@ -26,7 +26,7 @@ const AccountLoginForm = () => {
       window.location.reload();
     } else {
       toast.error(`Login Fail`);
-      console.error("Login failed:", res.error);
+      // console.error("Login failed:", res.error);
     }
   };
 

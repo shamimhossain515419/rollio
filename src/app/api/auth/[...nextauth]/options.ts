@@ -56,20 +56,12 @@ const authOptions: any = {
             throw new Error("Invalid credentials");
           }
         } catch (error) {
-          // Handle errors, e.g., log them
           console.error("Authorization error:", error);
-          return null; // Return null to indicate failed authorization
+          return null;
         }
       },
     }),
   ],
-
-  redirects: {
-    login: "/", // Your custom login page
-    logout: "/", // Your custom logout page
-    callback: "/",
-    home: "/", // Home page
-  },
 };
 
 export default authOptions;
