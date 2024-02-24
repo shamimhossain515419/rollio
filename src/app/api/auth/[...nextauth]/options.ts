@@ -25,18 +25,6 @@ const authOptions: any = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // const res = await fetch(`https://getmicrojobs.com/api/login`, {
-        //   method: "POST",
-        //   body: JSON.stringify(credentials),
-        //   headers: { "Content-Type": "application/json" },
-        // });
-        // const user = await res.json();
-        // if (user.status == true) {
-        //   return user;
-        // }
-        // return null;
-        //  gpt
-
         try {
           const res = await fetch(`https://getmicrojobs.com/api/login`, {
             method: "POST",
@@ -62,6 +50,8 @@ const authOptions: any = {
       },
     }),
   ],
+
+  secret: "https://rollie-alpha.vercel.app/",
 };
 
 export default authOptions;
