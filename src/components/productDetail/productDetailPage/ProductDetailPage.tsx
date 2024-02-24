@@ -13,11 +13,12 @@ import Marquee from "react-fast-marquee";
 import Button from "@/components/utilityComponent/button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "@/redux/features/cart/CartSlice";
+import toast from "react-hot-toast";
 
 const ProductDetailPage = ({ product }: any) => {
   const dispatch = useDispatch();
   const [activeColor, setActiveColor] = useState();
-  const [activeSize, setActiveSize] = useState(product.sizes[0]);
+  const [activeSize, setActiveSize] = useState();
   const [sizeGuideModal, setSizeGuideModal] = useState(false);
 
   const { product: productInfo, colors, photos, sizes } = product;
@@ -25,7 +26,11 @@ const ProductDetailPage = ({ product }: any) => {
   const { cartItems } = useSelector((state: any) => state.Cart);
   const addToCartHandle = (product: any) => {
     if (!activeColor) {
-      alert("Select Color");
+      toast.error("Select Color");
+      return;
+    }
+    if (!activeSize) {
+      toast.error("Select Size");
       return;
     }
 
@@ -36,10 +41,13 @@ const ProductDetailPage = ({ product }: any) => {
       discount: productInfo.discount,
       discount_type: productInfo.discount_type,
       color: activeColor,
+      size: activeSize,
       photos: photos,
     };
     dispatch(addItem(values));
   };
+
+  console.log(product);
 
   //
 
@@ -108,10 +116,12 @@ const ProductDetailPage = ({ product }: any) => {
                     key={color?.id}
                     onClick={() => setActiveColor(color?.id)}
                     className={`${
-                      activeColor == color?.id && "p-2 border bg-red-500"
-                    } rounded-2xl overflow-hidden w-[100px] h-[100px] felx justify-center items-center`}
+                      activeColor == color?.id && "p-2 border"
+                    } rounded-2xl overflow-hidden w-[60px] h-[60px] flex justify-center items-center`}
                   >
-                    <div className="rounded-2xl">{color?.name}</div>
+                    <div className="rounded-2xl ">
+                      <p>{color?.name}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -120,17 +130,17 @@ const ProductDetailPage = ({ product }: any) => {
             <div className="">
               <h1 className="text-xl pb-4">4 US in stock 3 left</h1>
               <div className="grid grid-cols-3 gap-4">
-                {/* {product.sizes.map((size, i: number) => (
+                {product.sizes.map((size: any, i: number) => (
                   <div
-                    onClick={() => setActiveSize(size)}
+                    onClick={() => setActiveSize(size.id)}
                     key={i}
                     className={`${
-                      activeSize.id == size.id && "text-black bg-white"
+                      activeSize == size.id && "text-black bg-white"
                     } flex justify-center border rounded-xl p-2 cursor-pointer `}
                   >
                     <p>{size.name}</p>
                   </div>
-                ))} */}
+                ))}
               </div>
             </div>
             {/* Sizing Guide */}
