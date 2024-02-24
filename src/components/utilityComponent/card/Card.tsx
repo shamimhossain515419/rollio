@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../button/Button";
 import { GrFavorite } from "react-icons/gr";
 import Link from "next/link";
@@ -9,6 +9,12 @@ import { addItem } from "@/redux/features/cart/CartSlice";
 
 const Card = ({ button, fav, product }: any) => {
   const dispatch = useDispatch();
+
+  const [photos, setPhotos] = useState([]);
+
+  // useEffect(()=>{
+
+  // })
 
   return (
     <div className="relative group max-w-[590px] block  bg-white rounded-3xl overflow-hidden">
