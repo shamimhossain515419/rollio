@@ -17,7 +17,7 @@ const ShippingAddress = () => {
   const handleSelectChange = (selectedOption: any) => {
     setSelectedOption(selectedOption);
   };
-  console.log(selectedOption);
+
   const SaveShippingHandler = (e: any) => {
     e.preventDefault();
 

@@ -11,7 +11,6 @@ async function getData(id: string) {
 
     return { product };
   } catch (error) {
-    console.log(error);
     return [];
   }
 }

@@ -16,12 +16,13 @@ const RegisterForm = ({ setActive }: any) => {
     const confirmpassword = form?.confirmpassword.value;
     const data = { name, email, password };
     if (password === confirmpassword) {
-      const res = await fetch(`${process.env.BASE_URL}register`, {
+      const res = await fetch(process.env.BASE_URL + `register`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" },
       });
       const user = await res.json();
+
       if (user?.status) {
         setActive("for you");
         toast.success(`${user.message}`);
