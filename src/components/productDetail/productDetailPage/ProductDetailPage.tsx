@@ -46,9 +46,7 @@ const ProductDetailPage = ({ product }: any) => {
     };
     dispatch(addItem(values));
   };
-
   //
-
   return (
     <>
       <div className="container mx-auto md:py-48 py-10">
@@ -63,7 +61,7 @@ const ProductDetailPage = ({ product }: any) => {
               {photos.map((photo: any, i: number) => (
                 <div key={i} className=" rounded-3xl  overflow-hidden">
                   <Image
-                    src={`https://getmicrojobs.com/images/${photo?.photo}`}
+                    src={`${process.env.BASE_URL}/images/${photo?.photo}`}
                     width={500}
                     height={500}
                     layout="responsive"
@@ -111,10 +109,10 @@ const ProductDetailPage = ({ product }: any) => {
 
                 {colors.map((color: any) => (
                   <div
-                    key={color?.id}
-                    onClick={() => setActiveColor(color?.id)}
+                    key={color?.color_id}
+                    onClick={() => setActiveColor(color?.color_id)}
                     className={`${
-                      activeColor == color?.id && "p-2 border"
+                      activeColor == color?.color_id && "p-2 border "
                     } rounded-2xl overflow-hidden w-[60px] h-[60px] flex justify-center items-center`}
                   >
                     <div className="rounded-2xl ">
@@ -130,10 +128,10 @@ const ProductDetailPage = ({ product }: any) => {
               <div className="grid grid-cols-3 gap-4">
                 {product.sizes.map((size: any, i: number) => (
                   <div
-                    onClick={() => setActiveSize(size.id)}
+                    onClick={() => setActiveSize(size.size_id)}
                     key={i}
                     className={`${
-                      activeSize == size.id && "text-black bg-white"
+                      activeSize == size.size_id && "text-black bg-white"
                     } flex justify-center border rounded-xl p-2 cursor-pointer `}
                   >
                     <p>{size.name}</p>
@@ -161,7 +159,7 @@ const ProductDetailPage = ({ product }: any) => {
               <div className=" flex  gap-5">
                 <Image
                   className="rounded-2xl"
-                  src={`https://getmicrojobs.com/images/${photos[0]?.photo}`}
+                  src={`${process.env.BASE_URL}/images/${photos[0]?.photo}`}
                   width={100}
                   height={100}
                   alt=""
