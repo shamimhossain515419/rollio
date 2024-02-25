@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/components/utilityComponent/button/Button";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
@@ -10,11 +11,50 @@ import { useSelector } from "react-redux";
 
 const Page = () => {
   const [payActive, setPayActive] = useState(false);
-  const { cartItems } = useSelector((state: any) => state.Cart);
+  const { cartItems, totalAmount, totalQuantity }: any = useSelector(
+    (state: any) => state.Cart
+  );
+  console.log(cartItems);
 
-  const orderHandler = () => {
-    if (payActive) {
+  const group_id = process.env.GROUP_ID;
+  const { data: session } = useSession();
+  // console.log(session?.user);
+
+  const orderHandler = async () => {
+    const value = {
+      group_id: group_id,
+      customer_id: 1,
+      total_amount: totalAmount,
+      total_quantity: totalQuantity,
+      address_id: 1,
+      items: cartItems,
+    };
+
+    if (!payActive) {
       toast.success("Order successfully");
+    }
+
+    try {
+      const res = await fetch(
+        `https://getmicrojobs.com/api/order/place-order`,
+        {
+          method: "POST",
+          body: JSON.stringify(value),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error("Failed to login");
+      }
+
+      const data: any = await res.json();
+      if (data.success == "success") {
+        toast.success(data.message);
+      }
+    } catch (error) {
+      console.error("Authorization error:", error);
+      toast.error("problem");
     }
   };
 
