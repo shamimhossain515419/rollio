@@ -4,14 +4,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import "./navbarModal.css";
 import { useEffect, useState } from "react";
 
-const behindCategory: String[] = [
-  "About Us",
-  "Design Process",
-  "Edits",
-  " Desserto Cactus Leather",
-  " Rollie x Barbie",
-  " Eco",
-];
+const behindCategory: String[] = ["About Us"];
 
 const NavbarModal = ({
   activeModal,

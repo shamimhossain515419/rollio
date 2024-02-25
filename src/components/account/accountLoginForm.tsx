@@ -40,6 +40,7 @@ const AccountLoginForm = () => {
       </h1>
       <div className=" w-full  py-3">
         <input
+          required
           onChange={(e) => setEmail(e.target?.value)}
           className=" w-full border rounded-md border-[#000000c9] outline-0  py-3 px-3"
           placeholder="E Email"
@@ -48,6 +49,7 @@ const AccountLoginForm = () => {
           id=""
         />
         <input
+          required
           onChange={(e) => setPassword(e.target?.value)}
           className=" w-full border rounded-md border-[#000000c9] outline-0   mt-2 py-3 px-3"
           placeholder=""

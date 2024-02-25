@@ -8,22 +8,27 @@ import { signOut, useSession } from "next-auth/react";
 import { FaUser } from "react-icons/fa";
 import { toast } from "react-toastify";
 
-const Profile = () => {
+const Profile = ({ setActive }: any) => {
   const { data: sesstion } = useSession();
 
   const handleSignOut = async () => {
     await signOut();
-    toast.success("User signed out")
+    toast.success("User signed out");
     window.location.reload();
-
   };
-
 
   return (
     <div>
-      {
-        !sesstion?.user && <AccountLoginForm></AccountLoginForm>
-      }
+      {!sesstion?.user && <AccountLoginForm></AccountLoginForm>}
+
+      <button
+        onClick={() => setActive("register")}
+        className={`  bg-black py-2 text-center  w-full  px-3 opacity-75 hover:opacity-100 duration-200 mb-4 rounded-[40px] block `}
+      >
+        <span className="text-white text-[15px] lg:text-[18px] font-medium">
+          Register
+        </span>
+      </button>
 
       <div className=" ">
         {/* recently  viewed product  */}
@@ -44,7 +49,10 @@ const Profile = () => {
             </div>
             <div>
               <p className="p-0 text-[13px]  font-medium">My information</p>
-              <p className="p-0 text-[12px]  font-normal leading-3"> {sesstion?.user?.email} </p>
+              <p className="p-0 text-[12px]  font-normal leading-3">
+                {" "}
+                {sesstion?.user?.email}{" "}
+              </p>
             </div>
           </div>
           <div className=" flex   items-center justify-start gap-2  py-4   ">
@@ -155,14 +163,13 @@ const Profile = () => {
         </div>
         {/* sign out button  */}
 
-        {
-          sesstion?.user && <div onClick={handleSignOut} className="pt-5">
+        {sesstion?.user && (
+          <div onClick={handleSignOut} className="pt-5">
             <div className=" border border-[#00000059] rounded-3xl cursor-pointer  text-center py-3 px-1">
               <p>Sign out</p>
             </div>
           </div>
-        }
-
+        )}
       </div>
     </div>
   );
