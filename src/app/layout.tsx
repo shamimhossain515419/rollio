@@ -24,17 +24,22 @@ export const metadata: Metadata = {
 };
 
 // data fetching
-
 async function getData() {
   let topCategory = await (
-    await fetch(`${process.env.BASE_URL}category/top-category/1/`, {
-      next: { revalidate: 300 },
-    })
+    await fetch(
+      `${process.env.BASE_URL}/api/category/top-category/${process.env.GROUP_ID}`,
+      {
+        next: { revalidate: 300 },
+      }
+    )
   ).json();
   let PrimaryCategory = await (
-    await fetch(`${process.env.BASE_URL}category/get-all-primary-category/1`, {
-      next: { revalidate: 300 },
-    })
+    await fetch(
+      `${process.env.BASE_URL}/api/category/get-all-primary-category/${process.env.GROUP_ID}`,
+      {
+        next: { revalidate: 300 },
+      }
+    )
   ).json();
   return { topCategory, PrimaryCategory };
 }

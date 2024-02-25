@@ -2,11 +2,8 @@
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import React, { useState } from "react";
-
 import { useRouter } from "next/navigation";
-
 import toast from "react-hot-toast";
-import { FcGoogle } from "react-icons/fc";
 
 const AccountLoginForm = () => {
   const router = useRouter();

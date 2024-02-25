@@ -4,7 +4,7 @@ import React from "react";
 async function getData(id: string) {
   try {
     let product = await (
-      await fetch(`${process.env.BASE_URL}product/get-product/${id}`, {
+      await fetch(`${process.env.BASE_URL}/api/product/get-product/${id}`, {
         next: { revalidate: 300 },
       })
     ).json();
@@ -17,6 +17,7 @@ async function getData(id: string) {
 
 const page = async ({ params }: any) => {
   const { product }: any = await getData(params.productId);
+
 
   return (
     <div className="">

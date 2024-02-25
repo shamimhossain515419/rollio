@@ -5,7 +5,8 @@ import Link from "next/link";
 
 const FetchData = async (id: string) => {
   const res = await fetch(
-    process.env.BASE_URL + `product/get-product-by-category/${id}`,
+    process.env.BASE_URL +
+      `/api/product/get-product-by-category/${process.env.GROUP_ID}/${id}`,
     {
       next: { revalidate: 300 },
     }

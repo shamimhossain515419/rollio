@@ -6,9 +6,11 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdKeyboardArrowLeft } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 const Page = () => {
   const [payActive, setPayActive] = useState(false);
+  const { cartItems } = useSelector((state: any) => state.Cart);
 
   const orderHandler = () => {
     if (payActive) {
