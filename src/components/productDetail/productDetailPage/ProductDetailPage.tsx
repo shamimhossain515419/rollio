@@ -24,12 +24,14 @@ const ProductDetailPage = ({ product }: any) => {
   const { product: productInfo, colors, photos, sizes } = product;
 
   const { cartItems } = useSelector((state: any) => state.Cart);
+
+  console.log(colors.length);
   const addToCartHandle = (product: any) => {
-    if (!activeColor) {
+    if (!activeColor && colors.length) {
       toast.error("Select Color");
       return;
     }
-    if (!activeSize) {
+    if (!activeSize && sizes.length) {
       toast.error("Select Size");
       return;
     }

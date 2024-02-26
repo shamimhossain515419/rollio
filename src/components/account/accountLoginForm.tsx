@@ -40,7 +40,7 @@ const AccountLoginForm = () => {
           required
           onChange={(e) => setEmail(e.target?.value)}
           className=" w-full border rounded-md border-[#000000c9] outline-0  py-3 px-3"
-          placeholder="E Email"
+          placeholder="Email"
           type="email"
           name=""
           id=""

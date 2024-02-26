@@ -14,11 +14,10 @@ const Page = () => {
   const { cartItems, totalAmount, totalQuantity }: any = useSelector(
     (state: any) => state.Cart
   );
-  console.log(cartItems);
 
   const group_id = process.env.GROUP_ID;
   const { data: session } = useSession();
-  console.log(session?.user);
+  const { value: address_id } = useSelector((state: any) => state.addressSlice);
 
   const orderHandler = async () => {
     const value = {
@@ -26,12 +25,13 @@ const Page = () => {
       customer_id: 1,
       total_amount: totalAmount,
       total_quantity: totalQuantity,
-      address_id: 1,
+      address_id: address_id,
       items: cartItems,
     };
 
     if (!payActive) {
-      toast.success("Order successfully");
+      toast.error("Please Select Pay on delivery");
+      return;
     }
 
     try {
@@ -46,12 +46,14 @@ const Page = () => {
       }
 
       const data: any = await res.json();
-      if (data.success == "success") {
+
+      if (data.status == "success") {
         toast.success(data.message);
       }
     } catch (error) {
       console.error("Authorization error:", error);
       toast.error("problem");
+      console.log(error);
     }
   };
 

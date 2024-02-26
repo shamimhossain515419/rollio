@@ -8,10 +8,11 @@ const page = () => {
   return (
     <div className=" text-sm ">
       <div className="flex items-center text-stone-500">
-        <Link href={'/cart'}>Cart</Link> <IoIosArrowForward />
-        <Link href={'/checkout/information'}>Information</Link> <IoIosArrowForward />
-        <Link href={'/checkout/shipping'}>Shipping</Link> <IoIosArrowForward />
-        <Link href={'/checkout/payment'}>Payment</Link>
+        <Link href={"/cart"}>Cart</Link> <IoIosArrowForward />
+        <Link href={"/checkout/information"}>Information</Link>{" "}
+        <IoIosArrowForward />
+        <Link href={"/checkout/shipping"}>Shipping</Link> <IoIosArrowForward />
+        <Link href={"/checkout/payment"}>Payment</Link>
       </div>
       {/* contact */}
       <div className="my-5">

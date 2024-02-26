@@ -8,8 +8,10 @@ import CartSlice from "./features/cart/CartSlice";
 import favoriteSlice from "./features/favorite/favoriteSlice";
 import authSlice from "./features/auth/authSlice";
 import { apiSlice } from "./features/api/apiSlice";
+import addressSlice from "./features/address/addressSlice";
 export const store = configureStore({
   reducer: {
+    addressSlice: addressSlice,
     favItems: favoriteSlice,
     menu: ResponsiveMenuToggleSlice,
     cart: CartToggleSlice,
