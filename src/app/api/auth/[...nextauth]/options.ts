@@ -1,7 +1,4 @@
-import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
-import toast from "react-hot-toast";
 const authOptions: any = {
   callbacks: {
     async signIn({ user, account }: any) {
