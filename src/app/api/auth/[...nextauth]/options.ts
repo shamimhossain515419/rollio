@@ -1,6 +1,8 @@
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import { cookies } from "next/headers";
+
 const authOptions: any = {
   callbacks: {
     async signIn({ user, account }: any) {
@@ -38,7 +40,9 @@ const authOptions: any = {
           const user = await res.json();
 
           if (user.status === true) {
+            cookies().set("token", user?.token);
             return user;
+            // parseSetCookie("cartItems", item);
           } else {
             throw new Error("Invalid credentials");
           }
