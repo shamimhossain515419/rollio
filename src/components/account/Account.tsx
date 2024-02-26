@@ -24,7 +24,7 @@ const accountItem = [
 ];
 const Account = () => {
   const dispatch = useDispatch();
-  const [active, setActive] = useState("for you");
+  const [active, setActive] = useState("profile");
   return (
     <div className=" relative  overflow-hidden ">
       <div className=" md:py-6 overflow-hidden relative">

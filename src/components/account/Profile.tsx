@@ -20,15 +20,16 @@ const Profile = ({ setActive }: any) => {
   return (
     <div>
       {!sesstion?.user && <AccountLoginForm></AccountLoginForm>}
-
-      <button
-        onClick={() => setActive("register")}
-        className={`  bg-black py-2 text-center  w-full  px-3 opacity-75 hover:opacity-100 duration-200 mb-4 rounded-[40px] block `}
-      >
-        <span className="text-white text-[15px] lg:text-[18px] font-medium">
-          Register
-        </span>
-      </button>
+      {!sesstion?.user && (
+        <button
+          onClick={() => setActive("register")}
+          className={`  bg-black py-2 text-center  w-full  px-3 opacity-75 hover:opacity-100 duration-200 mb-4 rounded-[40px] block `}
+        >
+          <span className="text-white text-[15px] lg:text-[18px] font-medium">
+            Register
+          </span>
+        </button>
+      )}
 
       <div className=" ">
         {/* recently  viewed product  */}

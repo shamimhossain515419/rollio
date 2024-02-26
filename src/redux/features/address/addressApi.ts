@@ -16,7 +16,7 @@ export const addressApi = apiSlice.injectEndpoints({
       }),
     }),
     fetchAddress: builder.query({
-      query: () => "address/get-address-by-user",
+      query: (data) => "address/get-address-by-user",
     }),
   }),
 });

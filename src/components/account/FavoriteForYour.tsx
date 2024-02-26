@@ -11,10 +11,7 @@ const FavoriteForYour = () => {
     <div>
       <div>
         {/* account login from  */}
-        {
-          !sesstion?.user && <AccountLoginForm></AccountLoginForm>
-        }
-
+        {!sesstion?.user && <AccountLoginForm></AccountLoginForm>}
 
         {/* recently  viewed product  */}
         <div className=" py-2">
