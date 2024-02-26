@@ -1,6 +1,5 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 
-import GoogleProvider from "next-auth/providers/google";
 import { cookies } from "next/headers";
 
 const authOptions: any = {
@@ -40,7 +39,7 @@ const authOptions: any = {
           const user = await res.json();
 
           if (user.status === true) {
-            cookies().set("token", user?.token);
+            cookies().set("access-token", user?.token);
             return user;
             // parseSetCookie("cartItems", item);
           } else {
