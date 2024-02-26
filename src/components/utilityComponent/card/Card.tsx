@@ -15,6 +15,12 @@ const Card = ({ button, fav, product }: any) => {
 
   const alreadyFav = favItems.find((fav: any) => fav?.id === product?.id);
 
+  let photos = [];
+
+  if (product?.photos) {
+    photos.push(...product.photos.split(","));
+  }
+
   return (
     <div className="relative group max-w-[590px] block  bg-white rounded-3xl overflow-hidden">
       {/* fav icon */}
@@ -33,7 +39,7 @@ const Card = ({ button, fav, product }: any) => {
       <Link href={`/products/${product?.id}`} className="">
         <Image
           className="group-hover:hidden  max-h-[500px] "
-          src={product?.image1}
+          src={process.env.BASE_URL + "/images/" + photos[0]}
           width={500}
           height={500}
           layout="responsive"
@@ -42,7 +48,7 @@ const Card = ({ button, fav, product }: any) => {
         />
         <Image
           className="group-hover:block hidden duration-200 max-h-[500px]"
-          src={product?.image2}
+          src={process.env.BASE_URL + "/images/" + photos[1]}
           width={500}
           height={500}
           layout="responsive"

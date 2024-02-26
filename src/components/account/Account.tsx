@@ -21,10 +21,6 @@ const accountItem = [
     id: 3,
     name: "profile",
   },
-  {
-    id: 4,
-    name: "register",
-  },
 ];
 const Account = () => {
   const dispatch = useDispatch();
@@ -50,7 +46,7 @@ const Account = () => {
         <div className=" pt-6  max-h-[80vh] overflow-y-auto cartScroolbar">
           {active === "for you" && <FavoriteForYour />}
           {active === "orders" && <Orders />}
-          {active === "profile" && <Profile />}
+          {active === "profile" && <Profile setActive={setActive} />}
           {active === "register" && <RegisterForm setActive={setActive} />}
         </div>
       </div>
@@ -58,10 +54,11 @@ const Account = () => {
         <div className="      h-full border-t-[1.5px] border-[#0000005e]  flex items-start justify-between gap-3 text-black  bg-white  overflow-hidden">
           {accountItem?.map((item: any, index: number) => (
             <div
-              className={` ${active == item?.name
-                ? " border-t-[2px] border-[#3357fa]  z-40 opacity-100 "
-                : " opacity-70   "
-                } text-center pt-2  w-full`}
+              className={` ${
+                active == item?.name
+                  ? " border-t-[2px] border-[#3357fa]  z-40 opacity-100 "
+                  : " opacity-70   "
+              } text-center pt-2  w-full`}
               onClick={() => setActive(item?.name)}
               key={index}
             >

@@ -2,19 +2,17 @@
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import React, { useState } from "react";
-
 import { useRouter } from "next/navigation";
-
 import toast from "react-hot-toast";
-import { FcGoogle } from "react-icons/fc";
 
 const AccountLoginForm = () => {
   const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  // const [, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async () => {
+    setLoading(true);
     const res: any = await signIn("credentials", {
       redirect: false,
       email,
@@ -28,6 +26,8 @@ const AccountLoginForm = () => {
       toast.error(`Login Fail`);
       // console.error("Login failed:", res.error);
     }
+
+    setLoading(false);
   };
 
   return (
@@ -37,6 +37,7 @@ const AccountLoginForm = () => {
       </h1>
       <div className=" w-full  py-3">
         <input
+          required
           onChange={(e) => setEmail(e.target?.value)}
           className=" w-full border rounded-md border-[#000000c9] outline-0  py-3 px-3"
           placeholder="E Email"
@@ -45,6 +46,7 @@ const AccountLoginForm = () => {
           id=""
         />
         <input
+          required
           onChange={(e) => setPassword(e.target?.value)}
           className=" w-full border rounded-md border-[#000000c9] outline-0   mt-2 py-3 px-3"
           placeholder=""
@@ -54,25 +56,27 @@ const AccountLoginForm = () => {
         />
         <div>
           {/* login code  */}
-          <div
+          <button
+            disabled={loading}
             onClick={handleSubmit}
-            className="bg-black py-2 text-center  w-full  px-3 opacity-75 hover:opacity-100 duration-200 my-4 rounded-[40px] "
+            className={`${
+              loading && "cursor-wait"
+            }  bg-black py-2 text-center  w-full  px-3 opacity-75 hover:opacity-100 duration-200 my-4 rounded-[40px] block `}
           >
-            <button className="text-white text-[15px] lg:text-[18px] font-medium">
-              {" "}
-              Get Login Code{" "}
-            </button>
-          </div>
-          <div className="text-[19px] font-semibold text-gray-800 text-center">
+            <span className="text-white text-[15px] lg:text-[18px] font-medium">
+              {loading ? <span>Loading .....</span> : <span>Get Login</span>}
+            </span>
+          </button>
+          {/* <div className="text-[19px] font-semibold text-gray-800 text-center">
             OR
-          </div>
-          <div className="flex justify-center items-center border border-[#0000009d]  gap-4 py-2 text-center  w-full  px-3  duration-200 my-4 rounded-[40px] ">
+          </div> */}
+          {/* <div className="flex justify-center items-center border border-[#0000009d]  gap-4 py-2 text-center  w-full  px-3  duration-200 my-4 rounded-[40px] ">
             <FcGoogle size={24}></FcGoogle>{" "}
             <button className="text-[15px]  font-medium">
               {" "}
               Get Login Code{" "}
             </button>
-          </div>
+          </div> */}
         </div>
         <div>
           <p className="text-centertext-gray-700">

@@ -1,4 +1,9 @@
 import CredentialsProvider from "next-auth/providers/credentials";
+
+import GoogleProvider from "next-auth/providers/google";
+import { cookies } from "next/headers";
+
+
 const authOptions: any = {
   callbacks: {
     async signIn({ user, account }: any) {
@@ -6,15 +11,15 @@ const authOptions: any = {
     },
   },
   providers: [
-    // GitHubProvider({
-    //   clientId: "Iv1.fa75aff34d44c845",
-    //   clientSecret: "5345e79a0928b7316c0b76ebce029c46e6ee99df",
-    // }),
-    // GoogleProvider({
-    //   clientId:
-    //     "691368152129-94ti7ndijjmgb67jra885q3ncts385jg.apps.googleusercontent.com",
-    //   clientSecret: "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",
-    // }),
+    GitHubProvider({
+      clientId: "Iv1.fa75aff34d44c845",
+      clientSecret: "5345e79a0928b7316c0b76ebce029c46e6ee99df",
+    }),
+    GoogleProvider({
+      clientId:
+        "691368152129-94ti7ndijjmgb67jra885q3ncts385jg.apps.googleusercontent.com",
+      clientSecret: "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",
+    }),
     CredentialsProvider({
       name: "Credentials",
       credentials: {
@@ -36,7 +41,9 @@ const authOptions: any = {
           const user = await res.json();
 
           if (user.status === true) {
+            cookies().set("token", user?.token);
             return user;
+            // parseSetCookie("cartItems", item);
           } else {
             throw new Error("Invalid credentials");
           }
