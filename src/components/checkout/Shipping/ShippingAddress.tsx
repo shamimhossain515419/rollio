@@ -1,11 +1,10 @@
 "use client";
-
-import Button from "@/components/utilityComponent/button/Button";
-import { redirect, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Select from "react-select";
-
+import Cookies from 'js-cookie'
+import { useCreateAddressMutation } from "@/redux/features/address/addressApi";
 const ShippingAddress = () => {
   const router = useRouter();
   const options = [
@@ -14,11 +13,11 @@ const ShippingAddress = () => {
     { value: "option3", label: "Option 3" },
   ];
   const [selectedOption, setSelectedOption] = useState<any>(null);
-
+  const [createAddress, { data: createResult, isLoading, error, isSuccess }] =
+    useCreateAddressMutation();
   const handleSelectChange = (selectedOption: any) => {
     setSelectedOption(selectedOption);
   };
-
   const SaveShippingHandler = async (e: any) => {
     e.preventDefault();
     const form: any = e.target;
@@ -44,37 +43,17 @@ const ShippingAddress = () => {
       state: "dadfad",
     };
 
+    createAddress(data)
+  };
 
+  console.log(createResult, error);
 
-    try {
-      const URL = `https://getmicrojobs.com/api/address/create`; // Assuming BASE_URL contains the base URL
-      const res = await fetch(URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      console.log(res);
-
-      if (!res.ok) {
-        throw new Error(`Failed to fetch: ${res.status} ${res.statusText}`);
-      }
-
-      const result = await res.json();
-      console.log(result);
-
-      if (result) {
-        toast.success(`${result.message}`);
-        router.replace("/checkout/shipping");
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      // Handle the error, show a message to the user, etc.
+  useEffect(() => {
+    if (createResult && isSuccess) {
+      alert("success!");
     }
 
-
-
-  };
+  }, [createResult, isSuccess])
   return (
     <div className="">
       <h2 className="text-lg pt-5">Shipping address</h2>

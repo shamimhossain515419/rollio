@@ -17,6 +17,7 @@ import NextTopLoader from "nextjs-toploader";
 import SiteModal from "@/components/siteModal/SiteModal";
 import AuthProvider from "@/components/AuthProvider/AuthProvider";
 import { Toaster } from "react-hot-toast";
+import TokenProvider from "@/components/AuthProvider/TokenProvider";
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Rollie",
@@ -57,19 +58,23 @@ export default async function RootLayout({
       <body className={inter.className}>
         <NextTopLoader />
         <AuthProvider>
+
           <ReduxProvider>
-            <OfferSlider />
-            <Navbar
-              topCategory={topCategory.topCategories}
-              primaryCategories={PrimaryCategory.primaryCategories}
-            />
-            {children}
-            <Footer />
-            <ResponsiveMenu></ResponsiveMenu>
-            <YourCart></YourCart>
-            <SiteModal></SiteModal>
+            <TokenProvider>
+              <OfferSlider />
+              <Navbar
+                topCategory={topCategory.topCategories}
+                primaryCategories={PrimaryCategory.primaryCategories}
+              />
+              {children}
+              <Footer />
+              <ResponsiveMenu></ResponsiveMenu>
+              <YourCart></YourCart>
+              <SiteModal></SiteModal>
+            </TokenProvider>
           </ReduxProvider>
           <Toaster position="top-center" reverseOrder={false} />
+
         </AuthProvider>
       </body>
     </html>
