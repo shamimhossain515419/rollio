@@ -9,7 +9,6 @@ const TokenProvider = ({ children }: any) => {
     const dispatch = useDispatch();
     dispatch(userLoggedIn({
         accessToken: data,
-
     }))
     return (
         <div>
