@@ -1,3 +1,4 @@
+import Filter from "@/components/filter/Filter";
 import Card from "@/components/utilityComponent/card/Card";
 import { ProductInterface } from "@/utility/productInterface";
 import Image from "next/image";
@@ -127,7 +128,7 @@ const Page = async ({ params }: any) => {
 
           <div className=" py-5  ">
             {/* filter section  */}
-            {/* <Filter></Filter> */}
+            <Filter></Filter>
           </div>
 
           <div className="  w-full">

@@ -1,3 +1,5 @@
+"use client"
+
 import { filterItem, sortbyProduct } from "@/utility/filterItem";
 import { useState } from "react";
 import { RiArrowDropDownLine } from "react-icons/ri";

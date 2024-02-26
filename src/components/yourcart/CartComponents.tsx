@@ -18,7 +18,8 @@ const CartComponents = ({ product }: any) => {
             width={100}
             height={100}
             // src={product?.photos[0]}
-            src={`https://getmicrojobs.com/images/${product?.photos[0]?.photo}`}
+            // https://getmicrojobs.com/images/${product?.photos[0]?.photo} 
+            src={``}
             alt="image"
           ></Image>
         </div>

@@ -22,7 +22,7 @@ const ProductListPrice = () => {
                 </div>
                 <Image
                   className="shadow-lg rounded-lg"
-                  src={`https://getmicrojobs.com/images/${product?.photos[0]?.photo}`}
+                  src={`https://getmicrojobs.com/images/${product?.photos?.[0]?.photo}`}
                   width={80}
                   height={80}
                   alt=""

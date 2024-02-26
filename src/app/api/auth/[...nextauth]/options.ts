@@ -1,7 +1,8 @@
-import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
+
 import GoogleProvider from "next-auth/providers/google";
 import { cookies } from "next/headers";
+
 
 const authOptions: any = {
   callbacks: {

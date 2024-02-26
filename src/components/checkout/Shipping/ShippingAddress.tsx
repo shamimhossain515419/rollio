@@ -3,6 +3,7 @@
 import Button from "@/components/utilityComponent/button/Button";
 import { redirect, useRouter } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import Select from "react-select";
 
 const ShippingAddress = () => {
@@ -18,30 +19,61 @@ const ShippingAddress = () => {
     setSelectedOption(selectedOption);
   };
 
-  const SaveShippingHandler = (e: any) => {
+  const SaveShippingHandler = async (e: any) => {
     e.preventDefault();
-
     const form: any = e.target;
-    const First_Name = form?.First_Name.value;
+    const first_name = form?.first_name.value;
     const last_Name = form?.last_Name.value;
-    const Company = form?.Company.value;
-    const Address = form?.Address.value;
-    const Apartment = form?.Apartment.value;
-    const City = form?.City.value;
-    const Postal_code = form?.Postal_code.value;
-    const Phone = form?.Phone.value;
-
+    const company = form?.Company.value;
+    const address = form?.Address.value;
+    const apartment = form?.Apartment.value;
+    const city = form?.City.value;
+    const zip_code = form?.Postal_code.value;
+    const mobile = form?.Phone.value;
+    const country = selectedOption?.value;
     const data = {
-      First_Name,
+      first_name,
+      preferred: "0",
+      country,
+      country_code: 3434,
       last_Name,
-      Company,
-      Address,
-      Apartment,
-      City,
-      Postal_code,
-      Phone,
+      city: "Dhaka",
+      address,
+      mobile,
+      zip_code,
+      state: "dadfad",
     };
-    router.replace("/checkout/shipping");
+
+
+
+    try {
+      const URL = `https://getmicrojobs.com/api/address/create`; // Assuming BASE_URL contains the base URL
+      const res = await fetch(URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      console.log(res);
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch: ${res.status} ${res.statusText}`);
+      }
+
+      const result = await res.json();
+      console.log(result);
+
+      if (result) {
+        toast.success(`${result.message}`);
+        router.replace("/checkout/shipping");
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      // Handle the error, show a message to the user, etc.
+    }
+
+
+
   };
   return (
     <div className="">
@@ -67,7 +99,7 @@ const ShippingAddress = () => {
             First Name
           </label>
           <input
-            name="First_Name"
+            name="first_name"
             className="border-2 p-1 w-full focus:outline-none focus:border-black ease-in duration-300"
             type="text"
             id="First Name"
