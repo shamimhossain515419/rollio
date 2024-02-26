@@ -18,7 +18,7 @@ const Page = () => {
 
   const group_id = process.env.GROUP_ID;
   const { data: session } = useSession();
-  // console.log(session?.user);
+  console.log(session?.user);
 
   const orderHandler = async () => {
     const value = {
@@ -35,14 +35,11 @@ const Page = () => {
     }
 
     try {
-      const res = await fetch(
-        `https://getmicrojobs.com/api/order/place-order`,
-        {
-          method: "POST",
-          body: JSON.stringify(value),
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      const res = await fetch(`${process.env.BASE_URL}/api/order/place-order`, {
+        method: "POST",
+        body: JSON.stringify(value),
+        headers: { "Content-Type": "application/json" },
+      });
 
       if (!res.ok) {
         throw new Error("Failed to login");
