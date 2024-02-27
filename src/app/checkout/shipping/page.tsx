@@ -28,7 +28,6 @@ const Page = () => {
       address_id: address_id,
       items: cartItems,
     };
-
     if (!payActive) {
       toast.error("Please Select Pay on delivery");
       return;
@@ -40,6 +39,7 @@ const Page = () => {
         body: JSON.stringify(value),
         headers: { "Content-Type": "application/json" },
       });
+      console.log(res);
 
       if (!res.ok) {
         throw new Error("Failed to login");
@@ -53,7 +53,6 @@ const Page = () => {
     } catch (error) {
       console.error("Authorization error:", error);
       toast.error("problem");
-      console.log(error);
     }
   };
 
@@ -143,9 +142,8 @@ const Page = () => {
               <div>
                 <div
                   onClick={() => setPayActive(false)}
-                  className={` flex justify-center items-center ${
-                    payActive ? "border border-[#3333337b]" : " bg-[#3333337b]"
-                  }  w-[20px] h-[20px] cursor-pointer rounded-full`}
+                  className={` flex justify-center items-center ${payActive ? "border border-[#3333337b]" : " bg-[#3333337b]"
+                    }  w-[20px] h-[20px] cursor-pointer rounded-full`}
                 >
                   <p className=" w-[5px] h-[5px] bg-white rounded-full"></p>
                 </div>
@@ -167,9 +165,8 @@ const Page = () => {
               <div>
                 <div
                   onClick={() => setPayActive(true)}
-                  className={` flex justify-center items-center ${
-                    payActive ? "bg-[#3333337b]" : " border border-[#3333337b]"
-                  }  w-[20px] h-[20px] cursor-pointer rounded-full`}
+                  className={` flex justify-center items-center ${payActive ? "bg-[#3333337b]" : " border border-[#3333337b]"
+                    }  w-[20px] h-[20px] cursor-pointer rounded-full`}
                 >
                   <p className=" w-[5px] h-[5px] bg-white rounded-full"></p>
                 </div>

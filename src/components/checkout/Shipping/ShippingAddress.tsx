@@ -3,6 +3,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Select from "react-select";
 import { useCreateAddressMutation } from "@/redux/features/address/addressApi";
+import toast from "react-hot-toast";
+import AddressBook from "./AddressBook";
 const ShippingAddress = () => {
   const router = useRouter();
   const options = [
@@ -48,13 +50,15 @@ const ShippingAddress = () => {
 
   useEffect(() => {
     if (createResult && isSuccess) {
-      alert("success!");
+      toast.success("success!");
     }
 
   }, [createResult, isSuccess])
   return (
     <div className="">
       <h2 className="text-lg pt-5">Shipping address</h2>
+
+      <AddressBook></AddressBook>
       <form onSubmit={SaveShippingHandler}>
         {/* country  */}
         <div className="">
