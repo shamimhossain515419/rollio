@@ -24,8 +24,6 @@ const ProductDetailPage = ({ product }: any) => {
   const { product: productInfo, colors, photos, sizes } = product;
 
   const { cartItems } = useSelector((state: any) => state.Cart);
-
-  console.log(colors.length);
   const addToCartHandle = (product: any) => {
     if (!activeColor && colors.length) {
       toast.error("Select Color");
@@ -113,9 +111,8 @@ const ProductDetailPage = ({ product }: any) => {
                   <div
                     key={color?.color_id}
                     onClick={() => setActiveColor(color?.color_id)}
-                    className={`${
-                      activeColor == color?.color_id && "p-2 border "
-                    } rounded-2xl overflow-hidden w-[60px] h-[60px] flex justify-center items-center`}
+                    className={`${activeColor == color?.color_id && "p-2 border "
+                      } rounded-2xl overflow-hidden w-[60px] h-[60px] flex justify-center items-center`}
                   >
                     <div className="rounded-2xl ">
                       <p>{color?.name}</p>
@@ -132,9 +129,8 @@ const ProductDetailPage = ({ product }: any) => {
                   <div
                     onClick={() => setActiveSize(size.size_id)}
                     key={i}
-                    className={`${
-                      activeSize == size.size_id && "text-black bg-white"
-                    } flex justify-center border rounded-xl p-2 cursor-pointer `}
+                    className={`${activeSize == size.size_id && "text-black bg-white"
+                      } flex justify-center border rounded-xl p-2 cursor-pointer `}
                   >
                     <p>{size.name}</p>
                   </div>

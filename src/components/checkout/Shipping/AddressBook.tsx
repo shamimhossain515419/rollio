@@ -6,6 +6,8 @@ import { SingleAddress } from "./SignleAddrss";
 const AddressBook = () => {
   const { data, isLoading } = useFetchAddressQuery("as");
 
+  console.log(data);
+
   return (
     <div>
       {data?.map((address: any, i: number) => (
