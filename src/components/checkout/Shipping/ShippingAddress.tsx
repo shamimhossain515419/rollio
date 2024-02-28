@@ -158,19 +158,7 @@ const ShippingAddress = () => {
               placeholder="Address"
             />
           </div>
-          {/* Apartment  */}
-          <div className="pt-2">
-            <label className="py-2 block" htmlFor="Apartment">
-              Apartment, suite, etc. (optional)
-            </label>
-            <input
-              name="Apartment"
-              className="border-2 p-1 w-full focus:outline-none focus:border-black ease-in duration-300"
-              type="text"
-              id="Apartment"
-              placeholder="Apartment"
-            />
-          </div>
+
           {/* Apartment  */}
           <div className="pt-2">
             <label className="py-2 block" htmlFor="Apartment">
