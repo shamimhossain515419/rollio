@@ -7,12 +7,13 @@ import { IoIosArrowRoundForward } from "react-icons/io";
 import { signOut, useSession } from "next-auth/react";
 import { FaUser } from "react-icons/fa";
 import { toast } from "react-toastify";
-
+import Cookies from "js-cookie";
 const Profile = ({ setActive }: any) => {
   const { data: sesstion } = useSession();
 
   const handleSignOut = async () => {
     await signOut();
+    Cookies.remove('access-token')
     toast.success("User signed out");
     window.location.reload();
   };
