@@ -5,7 +5,6 @@ import { IoStarHalf } from "react-icons/io5";
 
 const ShowReviewCard = ({ review }: any) => {
   const isDecimal = Number.isInteger(parseFloat(review.rating));
-  console.log(isDecimal);
 
   var integerPart = Math.floor(parseFloat(review.rating));
 
