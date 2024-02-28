@@ -22,7 +22,6 @@ const RegisterForm = ({ setActive }: any) => {
         headers: { "Content-Type": "application/json" },
       });
       const user = await res.json();
-      console.log(user);
 
       if (user?.status) {
         setActive("for you");
