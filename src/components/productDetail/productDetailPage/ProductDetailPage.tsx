@@ -17,8 +17,8 @@ import toast from "react-hot-toast";
 
 const ProductDetailPage = ({ product }: any) => {
   const dispatch = useDispatch();
-  const [activeColor, setActiveColor] = useState();
-  const [activeSize, setActiveSize] = useState();
+  const [activeColor, setActiveColor] = useState("");
+  const [activeSize, setActiveSize] = useState("");
   const [sizeGuideModal, setSizeGuideModal] = useState(false);
 
   const { product: productInfo, colors, photos, sizes } = product;

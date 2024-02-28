@@ -1,12 +1,10 @@
 "use client";
 
-import { useFetchAddressQuery } from "@/redux/features/address/addressApi";
+
 import { SingleAddress } from "./SignleAddrss";
 
-const AddressBook = () => {
-  const { data, isLoading } = useFetchAddressQuery("as");
+const AddressBook = ({ data }: any) => {
 
-  console.log(data);
 
   return (
     <div>

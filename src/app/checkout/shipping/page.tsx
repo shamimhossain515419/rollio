@@ -1,9 +1,10 @@
 "use client";
 
 import Button from "@/components/utilityComponent/button/Button";
+import { useOrderProductMutation } from "@/redux/features/orders/ordersApi";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdKeyboardArrowLeft } from "react-icons/md";
@@ -14,7 +15,7 @@ const Page = () => {
   const { cartItems, totalAmount, totalQuantity }: any = useSelector(
     (state: any) => state.Cart
   );
-
+  const [orderProduct, { data: orderResult, isLoading, isSuccess, error }] = useOrderProductMutation()
   const group_id = process.env.GROUP_ID;
   const { data: session } = useSession();
   const { value: address_id } = useSelector((state: any) => state.addressSlice);
@@ -28,33 +29,16 @@ const Page = () => {
       address_id: address_id,
       items: cartItems,
     };
-    if (!payActive) {
-      toast.error("Please Select Pay on delivery");
-      return;
-    }
-
-    try {
-      const res = await fetch(`${process.env.BASE_URL}/api/order/place-order`, {
-        method: "POST",
-        body: JSON.stringify(value),
-        headers: { "Content-Type": "application/json" },
-      });
-      console.log(res);
-
-      if (!res.ok) {
-        throw new Error("Failed to login");
-      }
-
-      const data: any = await res.json();
-
-      if (data.status == "success") {
-        toast.success(data.message);
-      }
-    } catch (error) {
-      console.error("Authorization error:", error);
-      toast.error("problem");
-    }
+    orderProduct(value)
   };
+  useEffect(() => {
+    if (isSuccess && orderResult) {
+      toast.success(orderResult?.message);
+    }
+  }, [orderResult, isSuccess]);
+
+  console.log(orderResult);
+  console.log(error);
 
   return (
     <div>
