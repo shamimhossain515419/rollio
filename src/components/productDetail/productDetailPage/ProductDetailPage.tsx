@@ -14,6 +14,7 @@ import Button from "@/components/utilityComponent/button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "@/redux/features/cart/CartSlice";
 import toast from "react-hot-toast";
+import AddReview from "../ProductReviews/AddReview";
 
 const ProductDetailPage = ({ product }: any) => {
   const dispatch = useDispatch();
@@ -111,8 +112,9 @@ const ProductDetailPage = ({ product }: any) => {
                   <div
                     key={color?.color_id}
                     onClick={() => setActiveColor(color?.color_id)}
-                    className={`${activeColor == color?.color_id && "p-2 border "
-                      } rounded-2xl overflow-hidden w-[60px] h-[60px] flex justify-center items-center`}
+                    className={`${
+                      activeColor == color?.color_id && "p-2 border "
+                    } rounded-2xl overflow-hidden w-[60px] h-[60px] flex justify-center items-center`}
                   >
                     <div className="rounded-2xl ">
                       <p>{color?.name}</p>
@@ -129,8 +131,9 @@ const ProductDetailPage = ({ product }: any) => {
                   <div
                     onClick={() => setActiveSize(size.size_id)}
                     key={i}
-                    className={`${activeSize == size.size_id && "text-black bg-white"
-                      } flex justify-center border rounded-xl p-2 cursor-pointer `}
+                    className={`${
+                      activeSize == size.size_id && "text-black bg-white"
+                    } flex justify-center border rounded-xl p-2 cursor-pointer `}
                   >
                     <p>{size.name}</p>
                   </div>
@@ -182,7 +185,9 @@ const ProductDetailPage = ({ product }: any) => {
         </div>
 
         {/* Reviews */}
-        <ProductReviews />
+        <ProductReviews product_id={product.product.id} />
+        <AddReview product_id={product.product.id} />
+
         {/* You Recently Viewed */}
         <ProductsSlider title="You Recently Viewed" />
         {/* You might also like */}
