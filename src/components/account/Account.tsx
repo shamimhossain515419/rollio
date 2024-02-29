@@ -8,6 +8,7 @@ import Orders from "./Orders";
 import Profile from "./Profile";
 import { accountToggle } from "@/redux/features/account/AccountSlice";
 import RegisterForm from "./RegisterForm";
+import EditProfile from "./EditProfile/EditProfile";
 const accountItem = [
   {
     id: 1,
@@ -48,6 +49,7 @@ const Account = () => {
           {active === "orders" && <Orders />}
           {active === "profile" && <Profile setActive={setActive} />}
           {active === "register" && <RegisterForm setActive={setActive} />}
+          {active === "edit-profile" && <EditProfile />}
         </div>
       </div>
       <div className=" fixed  left-2 bottom-[30px]  max-w-[400px] h-[70px] w-full bg-white  md:w-[400px] rounded-[10px] overflow-hidden">

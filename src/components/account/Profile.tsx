@@ -13,7 +13,7 @@ const Profile = ({ setActive }: any) => {
 
   const handleSignOut = async () => {
     await signOut();
-    Cookies.remove('access-token')
+    Cookies.remove("access-token");
     toast.success("User signed out");
     window.location.reload();
   };
@@ -50,7 +50,12 @@ const Profile = ({ setActive }: any) => {
               <FaUser className=" text-[15px]" />
             </div>
             <div>
-              <p className="p-0 text-[13px]  font-medium">My information</p>
+              <p
+                onClick={() => setActive("edit-profile")}
+                className="p-0 text-[13px]  font-medium"
+              >
+                My information
+              </p>
               <p className="p-0 text-[12px]  font-normal leading-3">
                 {" "}
                 {sesstion?.user?.email}{" "}

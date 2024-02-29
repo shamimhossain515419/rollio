@@ -14,7 +14,7 @@ import { SiteModalToggle } from "@/redux/features/sitemodal/SiteModalSlice";
 import { accountToggle } from "@/redux/features/account/AccountSlice";
 import { useDispatch } from "react-redux";
 
-const Footer = () => {
+const Footer = ({ websiteInfo }: any) => {
   const [help, setHelp] = useState(false);
   const [contact, setContact] = useState(false);
   const [shop, setShop] = useState(false);
@@ -40,15 +40,18 @@ const Footer = () => {
                 />
                 <div className="  hover:bg-[#ffffffda] duration-300 bg-white flex justify-center items-center   right-0  md:max-w-[200px]   absolute  text-[#020202e1]   text-[14px] cursor-pointer  md:text-[20px]  px-5  py-2 xl:py-5 rounded-[50px]">
                   Join{" "}
-                  <span className=" hidden md:block pl-1"> Rollie Nation</span>
+                  <span className=" hidden md:block pl-1">
+                    {" "}
+                    {websiteInfo?.name}
+                  </span>
                 </div>
               </div>
             </div>
             <div className=" hidden md:block">
               <div className="  max-w-[500px]   -rotate-12 flex  flex-col justify-center items-start py-4">
                 <div className="flex  flex-col justify-center items-star">
-                  <h1 className="text-[80px]  md:text-[120px] lg:text-[170px]   py-0   leading-[180px]   text-white font-extrabold">
-                    rollie
+                  <h1 className="text-[80px]  md:text-[100px]   py-0   leading-[180px]   text-white font-extrabold">
+                    {websiteInfo?.name}
                   </h1>
                   <div className=" group flex items-center  justify-center gap-4 text-white md:gap-10">
                     <Link
@@ -269,7 +272,7 @@ const Footer = () => {
                       Bangladesh
                     </p>
                     <h1 className="md: text-[18px] lx:text-[22px] font-bold ">
-                      1800 ROLLIE
+                      1800 {websiteInfo?.name}
                     </h1>
                   </div>
                   <div>
@@ -314,12 +317,12 @@ const Footer = () => {
             <div className=" pt-3 space-y-1 py-1">
               <h1 className="text-[16px] font-medium flex items-center gap-2 ">
                 {" "}
-                1800 ROLLIE / 1800 765 543
+                1800 {websiteInfo?.name} / 1800 765 543
               </h1>
               <h1 className="text-[16px] font-medium  flex items-center gap-2 ">
                 {" "}
                 <FaWhatsapp className="  text-[18px] lx:text-[22px]  text-white" />{" "}
-                <span>1800 ROLLIE</span>
+                <span>1800 {websiteInfo?.name}</span>
               </h1>
 
               <h1 className="text-[16px] font-medium flex items-center gap-2 ">
@@ -371,7 +374,10 @@ const Footer = () => {
                 </li>
                 <li className="">
                   <Link href={"/"} className="">
-                    <span className="text-[15px]"> Rollie Rewards</span>
+                    <span className="text-[15px]">
+                      {" "}
+                      {websiteInfo?.name} Rewards
+                    </span>
                   </Link>
                 </li>
                 <li className="">
@@ -434,7 +440,7 @@ const Footer = () => {
       <div className="   py-2 md:hidden">
         <div className="  max-w-[500px]   -rotate-12 flex  flex-col justify-center items-center py-4">
           <h1 className="text-[80px]  md:text-[120px] lg:text-[170px]   py-0   leading-[100px] md:leading-[180px]   text-white font-extrabold">
-            rollie
+            {websiteInfo?.name}
           </h1>
           <div className=" group flex items-center  justify-center gap-4 text-white md:gap-10">
             <Link href={"/"} className=" group-hover:opacity-100 opacity-90">
@@ -457,7 +463,7 @@ const Footer = () => {
         </div>
       </div>
       <p className=" pt-10 md:pt-3 text-[13px] text-white md:text-[17px]">
-        2024 Rollie Nation
+        2024 {websiteInfo?.name}
       </p>
     </div>
   );
