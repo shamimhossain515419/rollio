@@ -22,7 +22,7 @@ export const filterItem: FilterItem[] = [
 export const Colors: ColorInterface[] = [
   {
     id: 1,
-    color_code: "bg-[#000000]",
+    color_code: "bg-black",
     name: "Black",
   },
   {
@@ -42,13 +42,18 @@ export const Colors: ColorInterface[] = [
   },
   {
     id: 5,
-    color_code: "#000000",
-    name: "Black",
+    color_code: "bg-[#FF0000]",
+    name: "Red",
   },
   {
     id: 6,
-    color_code: "#000000",
-    name: "Black",
+    color_code: "bg-[#C0C0C0]",
+    name: "Silva",
+  },
+  {
+    id: 7,
+    color_code: "bg-[#FFFFFF]",
+    name: "White",
   },
 ];
 

@@ -11,16 +11,9 @@ const ColorsSlice = createSlice({
     ColorSelected: ({ state, action }: any) => {
       state.Colors.push(action.payload);
     },
-    // ColorRemoved: ({ state, action }: any) => {
-    //   const indexToRemove = state.Colors.indexOf(action.payload);
-
-    //   if (indexToRemove !== -1) {
-    //     state.Colors.splice(indexToRemove, 1);
-    //   }
-    // },
   },
 });
 
-export const { ColorSelected, ColorRemoved } = ColorsSlice.actions;
+export const { ColorSelected } = ColorsSlice.actions;
 
 export default ColorsSlice.reducer;
