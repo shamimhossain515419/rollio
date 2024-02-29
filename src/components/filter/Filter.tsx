@@ -65,11 +65,7 @@ const Filter = () => {
                         </div>
                         <div className=" py-4">
                             {activeModal == "colors" && <ColorsComponents></ColorsComponents>}
-                            {activeModal == "types" && <TypeComponents></TypeComponents>}
                             {activeModal == "size" && <SizesComponents></SizesComponents>}
-                            {activeModal == "style" && <StyleComponents></StyleComponents>}
-
-
 
                         </div>
                     </div>

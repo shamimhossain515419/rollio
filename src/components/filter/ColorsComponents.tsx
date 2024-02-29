@@ -1,17 +1,23 @@
+import { ColorInterface, Colors } from "@/utility/filterItem";
 
 
 const ColorsComponents = () => {
     return (
         <div>
             <div className="flex items-center flex-wrap gap-7 ">
-                <div className=" group">
-                    <div className="group-hover:border  w-[70px]  flex justify-center items-center   h-[70px]  border-[#000000e4] rounded-xl ">
-                        <div className=" w-[70px] group-hover:h-[60px]  group-hover:w-[60px] duration-300  h-[70px] bg-black rounded-xl cursor-pointer transform   ">
+                {
+                    Colors?.map((color: ColorInterface, i: number) => {
+                        return <div key={i} className=" group">
+                            <div className="group-hover:border  w-[70px]  flex justify-center items-center   h-[70px]  border-[#000000e4] rounded-xl ">
+                                <div className={` w-[70px] group-hover:h-[60px]  group-hover:w-[60px] duration-300  h-[70px] ${color?.color_code} rounded-xl cursor-pointer transform `}>
 
+                                </div>
+                            </div>
+                            <h1 className="text-center text-[18px] py-1">Black</h1>
                         </div>
-                    </div>
-                    <h1 className="text-center text-[18px] py-1">Black</h1>
-                </div>
+                    })
+                }
+
                 <div className=" group">
                     <div className="group-hover:border  w-[70px]  flex justify-center items-center   h-[70px]  border-[#000000e4] rounded-xl ">
                         <div className=" w-[70px] group-hover:h-[60px]  group-hover:w-[60px] duration-300  h-[70px] bg-[#FFD700] rounded-xl cursor-pointer transform   ">
