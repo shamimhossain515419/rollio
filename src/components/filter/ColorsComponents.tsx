@@ -1,8 +1,8 @@
 import { AddColor } from "@/redux/features/colorsSlice/ColorsSlice";
-import { ColorInterface, Colors } from "@/utility/filterItem";
+import { ColorInterface } from "@/utility/filterItem";
 import { useDispatch, useSelector } from "react-redux";
 
-const ColorsComponents = () => {
+const ColorsComponents = ({ colorsData }: any) => {
   const dispatch = useDispatch();
 
   const { colors } = useSelector((state: any) => state.Colors);
@@ -10,7 +10,7 @@ const ColorsComponents = () => {
   return (
     <div>
       <div className="flex items-center flex-wrap gap-7 ">
-        {Colors?.map((color: ColorInterface, i: number) => {
+        {colorsData?.map((color: ColorInterface, i: number) => {
           const isColor = colors.find((item: number) => item == color.id);
 
           return (
