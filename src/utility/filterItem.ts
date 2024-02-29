@@ -27,32 +27,32 @@ export const Colors: ColorInterface[] = [
   },
   {
     id: 2,
-    color_code: "bg-[#FFD700]",
+    color_code: "#FFD700",
     name: "Gold",
   },
   {
     id: 3,
-    color_code: "bg-[#E399A8]",
+    color_code: "#E399A8",
     name: "Milti",
   },
   {
     id: 4,
-    color_code: "bg-[#FFC0CB]",
+    color_code: "#FFC0CB",
     name: "Pink",
   },
   {
     id: 5,
-    color_code: "bg-[#FF0000]",
+    color_code: "#FF0000",
     name: "Red",
   },
   {
     id: 6,
-    color_code: "bg-[#C0C0C0]",
+    color_code: "#C0C0C0",
     name: "Silva",
   },
   {
     id: 7,
-    color_code: "bg-[#FFFFFF]",
+    color_code: "#FFFFFF",
     name: "White",
   },
 ];

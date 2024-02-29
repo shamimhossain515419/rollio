@@ -10,10 +10,12 @@ import { apiSlice } from "./features/api/apiSlice";
 import addressSlice from "./features/address/addressSlice";
 import favoriteSlice from "./features/favorite/favoriteSlice";
 import ColorsSlice from "./features/colorsSlice/ColorsSlice";
+import sizeSlice from "./features/sizeSlice/sizeSlice";
 
 export const store = configureStore({
   reducer: {
     Colors: ColorsSlice,
+    Sizes: sizeSlice,
     addressSlice: addressSlice,
     favItems: favoriteSlice,
     menu: ResponsiveMenuToggleSlice,
