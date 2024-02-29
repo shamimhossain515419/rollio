@@ -13,8 +13,8 @@ import ColorsSlice from "./features/colorsSlice/ColorsSlice";
 
 export const store = configureStore({
   reducer: {
+    Colors: ColorsSlice,
     addressSlice: addressSlice,
-    colors: ColorsSlice,
     favItems: favoriteSlice,
     menu: ResponsiveMenuToggleSlice,
     cart: CartToggleSlice,
