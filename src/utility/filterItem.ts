@@ -2,6 +2,11 @@ interface FilterItem {
   id: number;
   name: string;
 }
+export interface ColorInterface {
+  id: number;
+  name: string;
+  color_code: string;
+}
 
 export const filterItem: FilterItem[] = [
   {
@@ -9,16 +14,41 @@ export const filterItem: FilterItem[] = [
     name: "colors",
   },
   {
+    id: 4,
+    name: "size",
+  },
+];
+
+export const Colors: ColorInterface[] = [
+  {
+    id: 1,
+    color_code: "bg-[#000000]",
+    name: "Black",
+  },
+  {
     id: 2,
-    name: "types",
+    color_code: "bg-[#FFD700]",
+    name: "Gold",
   },
   {
     id: 3,
-    name: "style",
+    color_code: "bg-[#E399A8]",
+    name: "Milti",
   },
   {
     id: 4,
-    name: "size",
+    color_code: "bg-[#FFC0CB]",
+    name: "Pink",
+  },
+  {
+    id: 5,
+    color_code: "#000000",
+    name: "Black",
+  },
+  {
+    id: 6,
+    color_code: "#000000",
+    name: "Black",
   },
 ];
 

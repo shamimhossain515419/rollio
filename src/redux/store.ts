@@ -5,13 +5,16 @@ import FavoriteSlice from "./features/favoriteToggle/favoriteToggle";
 import SiteModalSlice from "./features/sitemodal/SiteModalSlice";
 import AccountSlice from "./features/account/AccountSlice";
 import CartSlice from "./features/cart/CartSlice";
-import favoriteSlice from "./features/favorite/favoriteSlice";
 import authSlice from "./features/auth/authSlice";
 import { apiSlice } from "./features/api/apiSlice";
 import addressSlice from "./features/address/addressSlice";
+import favoriteSlice from "./features/favorite/favoriteSlice";
+import ColorsSlice from "./features/colorsSlice/ColorsSlice";
+
 export const store = configureStore({
   reducer: {
     addressSlice: addressSlice,
+    colors: ColorsSlice,
     favItems: favoriteSlice,
     menu: ResponsiveMenuToggleSlice,
     cart: CartToggleSlice,

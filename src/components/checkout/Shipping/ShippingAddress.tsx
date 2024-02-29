@@ -26,8 +26,11 @@ const ShippingAddress = () => {
   const [addAddress, setAddAddress] = useState(false);
   const dispatch = useDispatch();
   const { value } = useSelector((state: any) => state.addressSlice);
+  const { cartItems } = useSelector((state: any) => state.Cart);
+  console.log(cartItems?.length);
 
   const route = useRouter();
+
   const SaveShippingHandler = async (e: any) => {
     e.preventDefault();
     const form: any = e.target;
@@ -65,12 +68,16 @@ const ShippingAddress = () => {
   }, [createResult, isSuccess, refetch]);
 
   const NavigateHandler = () => {
-    if (value) {
-      route.push("/checkout/shipping");
-    } else {
+    if (!cartItems?.length) {
+      toast.error("Please Add to Cart");
+    } else if (!value) {
       toast.error("Select Address");
     }
+    else {
+      route.push("/checkout/shipping");
+    }
   };
+
   return (
     <div className="">
       <div className="flex justify-between">
