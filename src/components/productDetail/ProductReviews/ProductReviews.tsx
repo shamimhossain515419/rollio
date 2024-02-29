@@ -9,7 +9,7 @@ const ProductReviews = ({ product_id }: any) => {
 
   return (
     <div className="container mx-auto max-w-[1140px] md:mt-48 mt-10">
-      <div className="grid md:grid-cols-3 gap-5 bg-white p-4 rounded-3xl">
+      {/* <div className="grid md:grid-cols-3 gap-5 bg-white p-4 rounded-3xl">
         <div className="border-r flex items-center gap-3">
           <div className="">
             <h2 className="text-[40px] font-bold">5.0</h2>
@@ -27,7 +27,7 @@ const ProductReviews = ({ product_id }: any) => {
             </p>
           </div>
         </div>
-        {/* Quality */}
+    
         <div className="flex flex-col justify-between">
           <h2 className="text-lg font-semibold">Quality</h2>
           <div className="">
@@ -38,7 +38,7 @@ const ProductReviews = ({ product_id }: any) => {
             </div>
           </div>
         </div>
-        {/* Fit */}
+   
         <div className="flex flex-col justify-between">
           <h2 className="text-lg font-semibold">Quality</h2>
           <div className="">
@@ -54,7 +54,7 @@ const ProductReviews = ({ product_id }: any) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* review Card */}
       {reviews?.data?.map((review: any) => (

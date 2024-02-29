@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import ReactStars from "react-rating-stars-component";
+// import ReactStars from "react-rating-stars-component";
 
 // import Button from "../button/Button";
 import { useSession } from "next-auth/react";
@@ -52,7 +52,7 @@ const AddReview = ({ product_id }: any) => {
         <form action="" onSubmit={handleReview} className=" py-5 ">
           {/* Your rating  */}
           <p className="font-normal">Your rating</p>
-          <ReactStars
+          {/* <ReactStars
             className={" text-wrap"}
             count={5}
             onChange={(e: any) => setTating(e)}
@@ -62,7 +62,7 @@ const AddReview = ({ product_id }: any) => {
             halfIcon={<i className="fa fa-star-half-alt"></i>}
             fullIcon={<i className="fa fa-star"></i>}
             activeColor="#ffc53e"
-          />
+          /> */}
           <div className=" py-2">
             {/* your review  */}
             <textarea
