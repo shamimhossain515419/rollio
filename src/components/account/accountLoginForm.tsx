@@ -24,7 +24,6 @@ const AccountLoginForm = () => {
       window.location.reload();
     } else {
       toast.error(`Login Fail`);
-      // console.error("Login failed:", res.error);
     }
 
     setLoading(false);
