@@ -21,8 +21,6 @@ const Orders = () => {
 
       {/* order card */}
       <OrderCard />
-      <OrderCard />
-      <OrderCard />
     </div>
   );
 };
