@@ -1,9 +1,17 @@
+"use client";
+import { accountToggle } from "@/redux/features/account/AccountSlice";
+import { SiteModalToggle } from "@/redux/features/sitemodal/SiteModalSlice";
 import Image from "next/image";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
 
 const OrderCard = () => {
+  const dispatch = useDispatch();
   return (
     <Link
+      onClick={() => {
+        dispatch(SiteModalToggle()), dispatch(accountToggle());
+      }}
       href={"/account/order/1"}
       className="border p-2 flex justify-between items-center text-[14px] rounded my-2"
     >
@@ -31,4 +39,3 @@ const OrderCard = () => {
 };
 
 export default OrderCard;
-1;
