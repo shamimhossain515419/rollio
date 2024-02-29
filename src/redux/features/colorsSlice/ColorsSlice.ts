@@ -1,19 +1,32 @@
-const { createSlice } = require("@reduxjs/toolkit");
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  Colors: [],
+interface InitialState {
+  colors: number[];
+}
+
+const initialState: InitialState = {
+  colors: [],
 };
 
-const ColorsSlice = createSlice({
-  name: "colors",
+const colorSlice = createSlice({
   initialState,
+  name: "colors",
   reducers: {
-    ColorSelected: ({ state, action }: any) => {
-      state.Colors.push(action.payload);
+    AddColor: (state, action: PayloadAction<number>) => {
+      const isExiting = state.colors.find(
+        (item: number) => item === action.payload
+      );
+      if (isExiting) {
+        const newArray = (state.colors = state.colors.filter(
+          (item: number) => item !== action.payload
+        ));
+        state.colors = newArray;
+      } else {
+        state.colors.push(action.payload);
+      }
     },
   },
 });
 
-export const { ColorSelected } = ColorsSlice.actions;
-
-export default ColorsSlice.reducer;
+export const { AddColor } = colorSlice.actions;
+export default colorSlice.reducer;
