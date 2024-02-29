@@ -30,11 +30,11 @@ const ProductListPrice = () => {
               </div>
               <div className="">
                 <h2>{product?.name}</h2>
-                <p>Size EU 93</p>
+                <p>{product?.name}</p>
               </div>
             </div>
             {/* price */}
-            <h3>$ 12000</h3>
+            <h3>{product?.totalPrice}</h3>
           </div>
         ))}
       </div>

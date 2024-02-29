@@ -12,12 +12,21 @@ const FetchData = async (id: string) => {
       next: { revalidate: 300 },
     }
   );
-  const data = await res.json();
-  return data;
+  const products = await res.json();
+
+  const sizeColorRes = await fetch(
+    process.env.BASE_URL + `/api/product/get-color-and-sizes`,
+    {
+      next: { revalidate: 300 },
+    }
+  );
+  const sizeColorData = await sizeColorRes.json();
+
+  return { products, sizeColorData };
 };
 
 const Page = async ({ params }: any) => {
-  const { data: products } = await FetchData(params.categoryId);
+  const { products, sizeColorData } = await FetchData(params.categoryId);
 
   return (
     <div className="px-4 max-w-[1700px] mx-auto ">
@@ -128,12 +137,12 @@ const Page = async ({ params }: any) => {
 
           <div className=" py-5  ">
             {/* filter section  */}
-            <Filter></Filter>
+            <Filter sizeColorData={sizeColorData}></Filter>
           </div>
 
           <div className="  w-full">
             <div className=" grid  sm:grid-cols-2  lg:grid-cols-3  gap-4 md:gap-7">
-              {products.map((product: ProductInterface) => (
+              {products?.data?.map((product: ProductInterface) => (
                 <Card
                   key={product.id}
                   product={product}
