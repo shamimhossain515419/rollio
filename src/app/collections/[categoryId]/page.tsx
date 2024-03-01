@@ -1,8 +1,10 @@
+import ShowProductByCategory from "@/components/categoryPage/ShowProductByCategory";
 import Filter from "@/components/filter/Filter";
 import Card from "@/components/utilityComponent/card/Card";
 import { ProductInterface } from "@/utility/productInterface";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const FetchData = async (id: string) => {
   const res = await fetch(
@@ -141,16 +143,8 @@ const Page = async ({ params }: any) => {
           </div>
 
           <div className="  w-full">
-            <div className=" grid  sm:grid-cols-2  lg:grid-cols-3  gap-4 md:gap-7">
-              {products?.data?.map((product: ProductInterface) => (
-                <Card
-                  key={product.id}
-                  product={product}
-                  button={false}
-                  fav={true}
-                ></Card>
-              ))}
-            </div>
+            {/* show Product */}
+            <ShowProductByCategory products={products} />
           </div>
         </div>
       </div>

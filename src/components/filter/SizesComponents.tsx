@@ -12,9 +12,7 @@ const SizesComponents = ({ sizesData }: any) => {
     <div>
       <div className=" flex flex-wrap items-center gap-3">
         {sizesData?.map((item: any, index: number) => {
-          const isSelect = sizes.find(
-            (color_id: number) => color_id === item.id
-          );
+          const isSelect = sizes.find((size_id: number) => size_id === item.id);
           return (
             <div
               onClick={() => dispatch(AddSize(item.id))}
@@ -25,7 +23,7 @@ const SizesComponents = ({ sizesData }: any) => {
               } border border-[#0000003a] cursor-pointer  text-center overflow-hidden py-2 rounded-lg text-[17px] font-medium `}
               key={index}
             >
-              {item?.name} EU
+              {item?.name}
             </div>
           );
         })}
