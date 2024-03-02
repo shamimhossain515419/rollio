@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 
 // import Button from "../button/Button";
 import { useSession } from "next-auth/react";
+import { Rating } from "@smastrom/react-rating";
+import "@smastrom/react-rating/style.css";
+
 import Cookies from "js-cookie";
 // import { useCreateReviewMutation } from "@/redux/features/review/ReviewApi";
 import toast from "react-hot-toast";
@@ -12,11 +15,13 @@ import Button from "@/components/utilityComponent/button/Button";
 import { useCreateReviewMutation } from "@/redux/features/api/review/ReviewApi";
 import { useSelector } from "react-redux";
 const AddReview = ({ product_id }: any) => {
-  const [rating, setTating] = useState(1);
+  const [ratings, setRating] = useState(1);
   const { data: section } = useSession();
   const [createReview, { data: createReviewResult, error, isSuccess }] =
     useCreateReviewMutation();
   const { user } = useSelector((state: any) => state?.auth);
+
+  console.log(product_id);
 
   const handleReview = (e: any) => {
     e.preventDefault();
@@ -24,7 +29,7 @@ const AddReview = ({ product_id }: any) => {
     const comment = form?.comment?.value;
     const data = {
       comment,
-      rating,
+      rating: ratings,
       group_id: process.env.GROUP_ID,
       product_id: product_id,
       customer_id: user?.id,
@@ -55,7 +60,7 @@ const AddReview = ({ product_id }: any) => {
           {/* <ReactStars
             className={" text-wrap"}
             count={5}
-            onChange={(e: any) => setTating(e)}
+            onChange={(e: any) => setRating(e)}
             size={30}
             isHalf={true}
             emptyIcon={<i className="far fa-star"></i>}
@@ -63,6 +68,11 @@ const AddReview = ({ product_id }: any) => {
             fullIcon={<i className="fa fa-star"></i>}
             activeColor="#ffc53e"
           /> */}
+          <Rating
+            style={{ maxWidth: 180 }}
+            value={ratings}
+            onChange={setRating}
+          />
           <div className=" py-2">
             {/* your review  */}
             <textarea
