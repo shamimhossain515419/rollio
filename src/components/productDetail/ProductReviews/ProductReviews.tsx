@@ -6,7 +6,6 @@ import ShowReviewCard from "./ShowReviewCard";
 
 const ProductReviews = ({ product_id }: any) => {
   const { data: reviews } = useGetReviewQuery(product_id);
-  console.log(reviews);
 
   return (
     <div className="container mx-auto max-w-[1140px] md:mt-48 mt-10">

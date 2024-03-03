@@ -21,8 +21,6 @@ const AddReview = ({ product_id }: any) => {
     useCreateReviewMutation();
   const { user } = useSelector((state: any) => state?.auth);
 
-  console.log(product_id);
-
   const handleReview = (e: any) => {
     e.preventDefault();
     const form = e.target;
@@ -37,6 +35,7 @@ const AddReview = ({ product_id }: any) => {
     };
     if (data) {
       createReview(data);
+      form.reset();
     }
   };
   useEffect(() => {

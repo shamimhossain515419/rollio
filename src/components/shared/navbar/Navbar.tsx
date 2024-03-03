@@ -76,15 +76,15 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
               </li>
             ))}
 
-            <li className="text-xl">
-              <Link
-                href={"/collections/sale"}
-                className="flex items-center gap-1"
-              >
-                <CiUnlock />
-                <span> Access Sale</span>
-              </Link>
-            </li>
+            {/* <li className="text-xl">
+                  <Link
+                    href={"/collections/sale"}
+                    className="flex items-center gap-1"
+                  >
+                    <CiUnlock />
+                    <span> Access Sale</span>
+                  </Link>
+                </li> */}
           </ul>
         </div>
 

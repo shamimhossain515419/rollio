@@ -5,7 +5,7 @@ import { SiteModalToggle } from "@/redux/features/sitemodal/SiteModalSlice";
 import { accountToggle } from "@/redux/features/account/AccountSlice";
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
-  const { data: session, }: any = useSession();
+  const { data: session }: any = useSession();
   const dispatch = useDispatch();
   if (!session?.user) {
     return (
