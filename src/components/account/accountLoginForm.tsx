@@ -4,29 +4,48 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import createAndSetCookie from "@/hooks/createAndSetCookie ";
 
 const AccountLoginForm = () => {
   const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-
+  const [error, setError] = useState("");
   const handleSubmit = async () => {
-    setLoading(true);
-    const res: any = await signIn("credentials", {
-      redirect: false,
-      email,
-      password,
-    });
+    setLoading(true)
+    console.log(email, password);
 
-    if (!res.error) {
-      toast.success(`Login successful`);
-      window.location.reload();
-    } else {
-      toast.error(`Login Fail`);
-    }
+    try {
+      const response = await fetch("https://getmicrojobs.com/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json", // Adjust the content type as
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const result = await response.json();
+      console.log(result);
 
-    setLoading(false);
+      if (result?.token) {
+        const success = await createAndSetCookie(result?.token);
+        if (success?.massage === "success") {
+          const res = await signIn("credentials", {
+            password,
+            email,
+            name: result?.name,
+            redirect: false,
+          });
+          if (res?.ok) {
+            setLoading(false)
+            toast.success(result?.message)
+            location.reload();
+          }
+        }
+      } else {
+        setError(result?.massage);
+      }
+    } catch (error) { }
   };
 
   return (
@@ -58,9 +77,8 @@ const AccountLoginForm = () => {
           <button
             disabled={loading}
             onClick={handleSubmit}
-            className={`${
-              loading && "cursor-wait"
-            }  bg-black py-2 text-center  w-full  px-3 opacity-75 hover:opacity-100 duration-200 my-4 rounded-[40px] block `}
+            className={`${loading && "cursor-wait"
+              }  bg-black py-2 text-center  w-full  px-3 opacity-75 hover:opacity-100 duration-200 my-4 rounded-[40px] block `}
           >
             <span className="text-white text-[15px] lg:text-[18px] font-medium">
               {loading ? <span>Loading .....</span> : <span>Get Login</span>}
