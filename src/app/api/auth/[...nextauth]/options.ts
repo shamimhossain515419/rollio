@@ -8,6 +8,9 @@ const authOptions: any = {
       return { user, account };
     },
   },
+  session: {
+    maxAge: 24 * 60 * 60,
+  },
   providers: [
     // GitHubProvider({
     //   clientId: "Iv1.fa75aff34d44c845",

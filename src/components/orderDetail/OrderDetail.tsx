@@ -1,6 +1,7 @@
 import { useGetOrderDetailQuery } from "@/redux/features/orders/ordersApi";
 import Image from "next/image";
 import React from "react";
+import OrderProductCard from "./OrderProductCard";
 
 const OrderDetail = ({ order_id }: any) => {
   const { data } = useGetOrderDetailQuery(order_id);
@@ -46,27 +47,15 @@ const OrderDetail = ({ order_id }: any) => {
       {/* products */}
 
       <div className="">
-        {data?.data?.map((product: any, i: number) => (
-          <div
-            key={i}
-            className="text-sm p-2 flex justify-between items-center shadow-sm"
-          >
-            <div className="">{product?.product_name}</div>
-            <div className="">
-              <Image
-                className="rounded-full border"
-                src={
-                  "https://www.rollienation.com/cdn/shop/files/PS00022_PaceCrystal_H_1200x.jpg?v=1707821120"
-                }
-                width={50}
-                height={50}
-                alt=""
-              />
-            </div>
-            <div className="">Qty: {product?.quantity}</div>
-            <div className="">Price: {product?.unit_price}</div>
-          </div>
-        ))}
+        {data?.data?.map((product: any, i: number) => {
+          return (
+            <OrderProductCard
+              key={i}
+              product={product}
+              order_info={data?.order_info}
+            />
+          );
+        })}
       </div>
     </div>
   );
