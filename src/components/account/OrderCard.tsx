@@ -1,21 +1,23 @@
 "use client";
 import { accountToggle } from "@/redux/features/account/AccountSlice";
+import { useGetOrdersQuery } from "@/redux/features/orders/ordersApi";
 import { SiteModalToggle } from "@/redux/features/sitemodal/SiteModalSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 
-const OrderCard = () => {
+const OrderCard = ({ order }: any) => {
   const dispatch = useDispatch();
+
   return (
     <Link
       onClick={() => {
         dispatch(SiteModalToggle()), dispatch(accountToggle());
       }}
-      href={"/account/order/1"}
+      href={`/account/order/${order?.order_primary_id}`}
       className="border p-2 flex justify-between items-center text-[14px] rounded my-2"
     >
-      <p># 1420</p>
+      <p># {order?.order_invoice}</p>
       <div>
         <Image
           className="rounded-full border"
@@ -29,10 +31,16 @@ const OrderCard = () => {
       </div>
       <p>
         <span className="text-slate-500">Qty:</span>
-        <span> 5</span>
+        <span> {order?.total_quantity}</span>
       </p>
-      <p className="bg-red-200 px-2 rounded-lg">
-        <span className="">Pending</span>
+      <p className="">
+        <span
+          className={`${
+            order?.status ? "bg-green-500" : "bg-red-500"
+          } text-white px-1 rounded-md`}
+        >
+          {order?.status ? "approved" : "Pending"}
+        </span>
       </p>
     </Link>
   );

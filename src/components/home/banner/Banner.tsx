@@ -8,7 +8,7 @@ const Banner = ({ websiteInfo }: any) => {
         <Image
           // hidden md:block
           className="   object-cover bg-cover bg-center bg-no-repeat   object-center  relative h-full w-full"
-          src="https://www.rollienation.com/cdn/shop/files/HP-General-D_2000x.jpg?v=1706488195"
+          src={websiteInfo?.banner}
           width={1000}
           height={1000}
           alt=""

@@ -4,7 +4,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const ProductListPrice = () => {
-  const { cartItems } = useSelector((state: any) => state.Cart);
+  const { cartItems, totalAmount, totalQuantity }: any = useSelector(
+    (state: any) => state.Cart
+  );
+  console.log(cartItems);
 
   return (
     <div className=" border-l px-4">
@@ -30,11 +33,11 @@ const ProductListPrice = () => {
               </div>
               <div className="">
                 <h2>{product?.name}</h2>
-                <p>{product?.name}</p>
+                <p>৳ {product?.sale_price}</p>
               </div>
             </div>
             {/* price */}
-            <h3>{product?.totalPrice}</h3>
+            <h3> ৳ {product?.totalPrice}</h3>
           </div>
         ))}
       </div>
@@ -59,7 +62,7 @@ const ProductListPrice = () => {
         {/* Subtotal */}
         <div className="flex justify-between py-1">
           <p>Subtotal</p>
-          <p className="font-semibold text-black">৳92,400.00</p>
+          <p className="font-semibold text-black">৳ {totalAmount}</p>
         </div>
         {/* Subtotal */}
         <div className="flex justify-between py-1">

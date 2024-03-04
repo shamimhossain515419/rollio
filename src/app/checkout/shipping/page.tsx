@@ -1,26 +1,39 @@
 "use client";
-
 import Button from "@/components/utilityComponent/button/Button";
+import { clearCart } from "@/redux/features/cart/CartSlice";
 import { useOrderProductMutation } from "@/redux/features/orders/ordersApi";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdKeyboardArrowLeft } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Page = () => {
+  const router = useRouter();
   const [payActive, setPayActive] = useState(false);
   const { cartItems, totalAmount, totalQuantity }: any = useSelector(
     (state: any) => state.Cart
   );
-  const [orderProduct, { data: orderResult, isLoading, isSuccess, error }] = useOrderProductMutation()
+  const [orderProduct, { data: orderResult, isLoading, isSuccess, error }] =
+    useOrderProductMutation();
   const group_id = process.env.GROUP_ID;
   const { data: session } = useSession();
   const { value: address_id } = useSelector((state: any) => state.addressSlice);
 
-  const orderHandler = async () => {
+  const dispatch = useDispatch();
+
+  const OrderHandler = async () => {
+    if (!cartItems.length) {
+      toast.error("Cart is empty");
+      return;
+    }
+    if (!payActive) {
+      router.push("/checkout/payment");
+      return;
+    }
     const value = {
       group_id: group_id,
       customer_id: 1,
@@ -29,16 +42,15 @@ const Page = () => {
       address_id: address_id,
       items: cartItems,
     };
-    orderProduct(value)
+
+    orderProduct(value);
   };
   useEffect(() => {
     if (isSuccess && orderResult) {
       toast.success(orderResult?.message);
+      dispatch(clearCart());
     }
   }, [orderResult, isSuccess]);
-
-  console.log(orderResult);
-  console.log(error);
 
   return (
     <div>
@@ -126,8 +138,9 @@ const Page = () => {
               <div>
                 <div
                   onClick={() => setPayActive(false)}
-                  className={` flex justify-center items-center ${payActive ? "border border-[#3333337b]" : " bg-[#3333337b]"
-                    }  w-[20px] h-[20px] cursor-pointer rounded-full`}
+                  className={` flex justify-center items-center ${
+                    payActive ? "border border-[#3333337b]" : " bg-[#3333337b]"
+                  }  w-[20px] h-[20px] cursor-pointer rounded-full`}
                 >
                   <p className=" w-[5px] h-[5px] bg-white rounded-full"></p>
                 </div>
@@ -140,7 +153,7 @@ const Page = () => {
               </div>
             </div>
             <div>
-              <p className="text-[14px] font-normal">৳45,914.00</p>
+              <p className="text-[14px] font-normal">৳ {totalAmount}</p>
             </div>
           </div>
           <div className="border  border-[#3333331f] "></div>
@@ -149,8 +162,9 @@ const Page = () => {
               <div>
                 <div
                   onClick={() => setPayActive(true)}
-                  className={` flex justify-center items-center ${payActive ? "bg-[#3333337b]" : " border border-[#3333337b]"
-                    }  w-[20px] h-[20px] cursor-pointer rounded-full`}
+                  className={` flex justify-center items-center ${
+                    payActive ? "bg-[#3333337b]" : " border border-[#3333337b]"
+                  }  w-[20px] h-[20px] cursor-pointer rounded-full`}
                 >
                   <p className=" w-[5px] h-[5px] bg-white rounded-full"></p>
                 </div>
@@ -180,7 +194,7 @@ const Page = () => {
             <p className="text-[12px] md:text-[13px]">Return to information</p>
           </Link>
         </div>
-        <div onClick={() => orderHandler()} className="flex justify-end mt-4 ">
+        <div onClick={() => OrderHandler()} className="flex justify-end mt-4 ">
           <Button title="Continue to payment" />
         </div>
       </div>
