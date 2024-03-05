@@ -57,7 +57,7 @@ const FavoriteCart = () => {
 
                   <div>
                     {favItems?.map((item: any) => (
-                      <FavortesCart key={item.id} product={item} />
+                      <FavortesCart key={item?.id} product={item} />
                     ))}
                   </div>
                 </div>

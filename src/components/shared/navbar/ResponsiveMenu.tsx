@@ -10,11 +10,12 @@ import Image from "next/image";
 import { IoIosArrowDown } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { MenuToggle } from "@/redux/features/responsivemenutoggle/ResponsiveMenuToggleSlice";
+import { SiteModalToggle } from "@/redux/features/sitemodal/SiteModalSlice";
 
 const ResponsiveMenu = () => {
     const [activeSearchBtn, setActiveSearchBtn] = useState(false);
     const { value } = useSelector((state: any) => state.menu);
-    const diapatch = useDispatch();
+    const dispatch = useDispatch();
     const [activeCountyList, setActiveCountryList] = useState(false);
     const [country, setCountry] = useState({
         name: "BDT",
@@ -43,7 +44,7 @@ const ResponsiveMenu = () => {
                                     </g>
                                 </svg>
                             </Link>
-                            <div onClick={() => diapatch(MenuToggle())} className=" flex justify-end items-center gap-2">
+                            <div onClick={() => dispatch(MenuToggle())} className=" flex justify-end items-center gap-2">
                                 <IoIosClose size={28} />
                             </div>
                         </div>
@@ -194,12 +195,12 @@ const ResponsiveMenu = () => {
                         </div>
                         <div className=" py-1">
                             {/* =account and suppot link  */}
-                            <Link
-                                href={"/"}
+                            <button
+                                onClick={() => dispatch(SiteModalToggle())}
                                 className="  block pb-2  capitalize text-[16px]  text-gray-800  font-medium"
                             >
                                 Account{" "}
-                            </Link>
+                            </button>
                             <Link
                                 href={"/"}
                                 className="  capitalize py-2 text-[16px]  text-gray-800  font-medium"
@@ -210,7 +211,7 @@ const ResponsiveMenu = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
