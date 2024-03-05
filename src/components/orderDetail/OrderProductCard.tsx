@@ -17,8 +17,8 @@ const OrderProductCard = ({ product, order_info }: any) => {
   const returnHandler = () => {
     const formData = new FormData();
     formData.append("group_id", `${process.env.GROUP_ID}`);
-    formData.append("invoice", order_info?.order_primary_id);
-    formData.append("order_log_id", "2");
+    formData.append("invoice", `${order_info?.order_invoice}`);
+    formData.append("order_log_id", `${product?.id}`);
     formData.append("notes", note);
     formData.append("return_quantity", Quantity);
     formData.append("photo", photo);
@@ -26,7 +26,6 @@ const OrderProductCard = ({ product, order_info }: any) => {
     createReturn(formData);
     if (data?.status == "success") {
       toast.success(data.message);
-
       setQuantity("");
       setNote("");
     }
