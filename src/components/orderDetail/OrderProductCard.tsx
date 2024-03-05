@@ -17,7 +17,7 @@ const OrderProductCard = ({ product, order_info }: any) => {
   const returnHandler = () => {
     const formData = new FormData();
     formData.append("group_id", `${process.env.GROUP_ID}`);
-    formData.append("invoice", "2");
+    formData.append("invoice", order_info?.order_primary_id);
     formData.append("order_log_id", "2");
     formData.append("notes", note);
     formData.append("return_quantity", Quantity);
