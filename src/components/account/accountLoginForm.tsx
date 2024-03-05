@@ -13,8 +13,7 @@ const AccountLoginForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState("");
   const handleSubmit = async () => {
-    setLoading(true)
-    console.log(email, password);
+    setLoading(true);
 
     try {
       const response = await fetch("https://getmicrojobs.com/api/login", {
@@ -25,7 +24,6 @@ const AccountLoginForm = () => {
         body: JSON.stringify({ email, password }),
       });
       const result = await response.json();
-      console.log(result);
 
       if (result?.token) {
         const success = await createAndSetCookie(result?.token);
@@ -37,15 +35,17 @@ const AccountLoginForm = () => {
             redirect: false,
           });
           if (res?.ok) {
-            setLoading(false)
-            toast.success(result?.message)
+            setLoading(false);
+            toast.success(result?.message);
             location.reload();
           }
         }
       } else {
         setError(result?.massage);
+        setLoading(false);
+        toast.error(result?.message);
       }
-    } catch (error) { }
+    } catch (error) {}
   };
 
   return (
@@ -77,8 +77,9 @@ const AccountLoginForm = () => {
           <button
             disabled={loading}
             onClick={handleSubmit}
-            className={`${loading && "cursor-wait"
-              }  bg-black py-2 text-center  w-full  px-3 opacity-75 hover:opacity-100 duration-200 my-4 rounded-[40px] block `}
+            className={`${
+              loading && "cursor-wait"
+            }  bg-black py-2 text-center  w-full  px-3 opacity-75 hover:opacity-100 duration-200 my-4 rounded-[40px] block `}
           >
             <span className="text-white text-[15px] lg:text-[18px] font-medium">
               {loading ? <span>Loading .....</span> : <span>Get Login</span>}

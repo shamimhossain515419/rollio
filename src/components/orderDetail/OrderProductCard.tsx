@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
-import Button from "../utilityComponent/button/Button";
+import { useState } from "react";
 import { Collapse } from "react-collapse";
 
 const OrderProductCard = ({ product, order_info }: any) => {
