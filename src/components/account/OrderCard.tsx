@@ -1,12 +1,12 @@
 "use client";
 import { accountToggle } from "@/redux/features/account/AccountSlice";
-import { useGetOrdersQuery } from "@/redux/features/orders/ordersApi";
 import { SiteModalToggle } from "@/redux/features/sitemodal/SiteModalSlice";
+import { OrderDetailsInterface } from "@/types/OrderDetailsInterface";
 import Image from "next/image";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 
-const OrderCard = ({ order }: any) => {
+const OrderCard = ({ order }: { order: OrderDetailsInterface }) => {
   const dispatch = useDispatch();
 
   return (
@@ -35,9 +35,8 @@ const OrderCard = ({ order }: any) => {
       </p>
       <p className="">
         <span
-          className={`${
-            order?.status ? "bg-green-500" : "bg-red-500"
-          } text-white px-1 rounded-md`}
+          className={`${order?.status ? "bg-green-500" : "bg-red-500"
+            } text-white px-1 rounded-md`}
         >
           {order?.status ? "approved" : "Pending"}
         </span>

@@ -27,8 +27,6 @@ const ShippingAddress = () => {
   const dispatch = useDispatch();
   const { value } = useSelector((state: any) => state.addressSlice);
   const { cartItems } = useSelector((state: any) => state.Cart);
-  console.log(cartItems?.length);
-
   const route = useRouter();
 
   const SaveShippingHandler = async (e: any) => {

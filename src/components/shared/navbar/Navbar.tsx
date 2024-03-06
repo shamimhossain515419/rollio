@@ -14,8 +14,10 @@ import { CartToggle } from "@/redux/features/cart/CartToggleSlice";
 import { FavoriteToggle } from "@/redux/features/favoriteToggle/favoriteToggle";
 import { SiteModalToggle } from "@/redux/features/sitemodal/SiteModalSlice";
 import { accountToggle } from "@/redux/features/account/AccountSlice";
+import { NavbarInterface } from "@/types/NavbarInterface";
+import { topCategoryInterface } from "@/types/CategoryInterface";
 
-const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
+const Navbar = ({ topCategory, primaryCategories, websiteInfo }: NavbarInterface) => {
   const [activeSearchBtn, setActiveSearchBtn] = useState(false);
   const [activeModal, setActiveModal] = useState<Number>();
   const [showdropdown, setShowdropdown] = useState(false);
@@ -23,11 +25,11 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
   const { cartItems } = useSelector((state: any) => state.Cart);
   const { favItems } = useSelector((state: any) => state.favItems);
 
-  const [country, setCountry] = useState({
-    name: "BDT",
-    sumsymbole: "৳",
-    image: "https://flagcdn.com/h40/bd.png",
-  });
+  // const [country, setCountry] = useState({
+  //   name: "BDT",
+  //   sumsymbole: "৳",
+  //   image: "https://flagcdn.com/h40/bd.png",
+  // });
 
   // scrool
   const [scrolled, setScrolled] = useState(false);
@@ -63,11 +65,11 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
           </div>
           {/*  responsive bar end */}
           <ul className="xl:flex hidden  items-center gap-10">
-            {topCategory.map((item: menuInterface) => (
+            {topCategory?.map((item: topCategoryInterface) => (
               <li
                 onClick={() => setActiveModal(item?.id)}
                 key={item.id}
-                className="text-xl  cursor-pointer"
+                className="text-xl capitalize  cursor-pointer"
               >
                 {item.name}
               </li>
@@ -193,7 +195,7 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
             <div>
               <button
                 onClick={() => {
-                  dispatch(SiteModalToggle()), dispatch(accountToggle());
+                  dispatch(SiteModalToggle()), dispatch(accountToggle())
                 }}
                 className="text-[22px] font-medium "
               >

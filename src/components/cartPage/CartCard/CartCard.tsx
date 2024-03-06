@@ -4,7 +4,7 @@ import {
   deleteItem,
   removeItem,
 } from "@/redux/features/cart/CartSlice";
-import { ProductInterface } from "@/utility/productInterface";
+import { ProductInterface } from "@/types/Productinterface";
 import Image from "next/image";
 import React from "react";
 import { IoClose } from "react-icons/io5";

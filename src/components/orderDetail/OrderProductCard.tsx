@@ -22,7 +22,6 @@ const OrderProductCard = ({ product, order_info }: any) => {
     formData.append("notes", note);
     formData.append("return_quantity", Quantity);
     formData.append("photo", photo);
-
     createReturn(formData);
     if (data?.status == "success") {
       toast.success(data.message);

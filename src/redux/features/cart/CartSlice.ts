@@ -1,5 +1,6 @@
 "use client";
-import { ProductInterface } from "@/utility/productInterface";
+import { CartInitialStateInterface } from "@/types/CartInitialStateInterface";
+import { ProductInterface } from "@/types/Productinterface";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 
@@ -13,12 +14,6 @@ const setCookie = (key: string, value: any) => {
 };
 
 //
-
-interface InitialState {
-  cartItems: ProductInterface[];
-  totalQuantity: number;
-  totalAmount: number;
-}
 
 const items: ProductInterface[] =
   getCookie("cartItems", []) !== null ? getCookie("cartItems", [])! : [];
@@ -39,7 +34,7 @@ const setItemFunc = (
   setCookie("totalQuantity", totalQuantity);
 };
 
-const initialState: InitialState = {
+const initialState: CartInitialStateInterface = {
   cartItems: items,
   totalQuantity: totalQuantity,
   totalAmount: totalAmount,

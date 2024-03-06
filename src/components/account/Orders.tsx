@@ -3,9 +3,11 @@ import { useSession } from "next-auth/react";
 import AccountLoginForm from "./accountLoginForm";
 import OrderCard from "./OrderCard";
 import { useGetOrdersQuery } from "@/redux/features/orders/ordersApi";
+import { OrderDetailsInterface } from "@/types/OrderDetailsInterface";
 const Orders = () => {
   const { data: sesstion } = useSession();
   const { data } = useGetOrdersQuery("");
+  console.log(data);
 
   //
   return (
@@ -29,7 +31,7 @@ const Orders = () => {
 
       {/* order card */}
 
-      {data?.data?.map((order: any) => (
+      {data?.data?.map((order: OrderDetailsInterface) => (
         <OrderCard key={order.order_primary_id} order={order} />
       ))}
     </div>

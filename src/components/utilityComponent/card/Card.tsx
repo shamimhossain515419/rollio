@@ -7,13 +7,14 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "@/redux/features/cart/CartSlice";
 import { addFavItem } from "@/redux/features/favorite/favoriteSlice";
+import { ProductInterface } from "@/types/Productinterface";
 
 const Card = ({ button, fav, product }: any) => {
   const dispatch = useDispatch();
 
   const { favItems } = useSelector((state: any) => state.favItems);
 
-  const alreadyFav = favItems.find((fav: any) => fav?.id === product?.id);
+  const alreadyFav = favItems.find((fav: ProductInterface) => fav?.id === product?.id);
 
   let photos = [];
 
@@ -27,9 +28,8 @@ const Card = ({ button, fav, product }: any) => {
       {fav && (
         <div
           onClick={() => dispatch(addFavItem(product))}
-          className={` ${
-            alreadyFav?.id ? "bg-black text-white" : "bg-white "
-          } absolute top-5 left-5 w-10 h-10 border  flex items-center justify-center rounded-full cursor-pointer hover:text-white hover:bg-black duration-300 ease-in`}
+          className={` ${alreadyFav?.id ? "bg-black text-white" : "bg-white "
+            } absolute top-5 left-5 w-10 h-10 border  flex items-center justify-center rounded-full cursor-pointer hover:text-white hover:bg-black duration-300 ease-in`}
         >
           <GrFavorite size={18} />
         </div>

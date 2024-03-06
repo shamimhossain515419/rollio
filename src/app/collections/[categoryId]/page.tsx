@@ -1,15 +1,12 @@
 import ShowProductByCategory from "@/components/categoryPage/ShowProductByCategory";
 import Filter from "@/components/filter/Filter";
-import Card from "@/components/utilityComponent/card/Card";
-import { ProductInterface } from "@/utility/productInterface";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
 const FetchData = async (id: string) => {
   const res = await fetch(
     process.env.BASE_URL +
-      `/api/product/get-product-by-category/${process.env.GROUP_ID}/${id}`,
+    `/api/product/get-product-by-category/${process.env.GROUP_ID}/${id}`,
     {
       next: { revalidate: 300 },
     }

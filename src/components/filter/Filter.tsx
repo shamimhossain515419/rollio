@@ -6,11 +6,9 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 
 import { IoCloseOutline } from "react-icons/io5";
 import ColorsComponents from "./ColorsComponents";
-import TypeComponents from "./TypeComponents";
-import StyleComponents from "./StyleComponents";
 import SizesComponents from "./SizesComponents";
-
-const Filter = ({ sizeColorData }: any) => {
+import { ColorSizeInterface } from "@/types/ColorAndSizeInterface";
+const Filter = ({ sizeColorData }: { sizeColorData: ColorSizeInterface }) => {
   const [sort, setSort] = useState({ id: 2, name: "Featured" });
   const [activeSort, setActiveSort] = useState(false);
   const [activeModal, setActiveModal] = useState("");
@@ -45,9 +43,8 @@ const Filter = ({ sizeColorData }: any) => {
             <RiArrowDropDownLine size={18} />
           </div>
           <div
-            className={` ${
-              activeSort ? "  block" : " hidden"
-            } bg-white  lg:min-w-[250px] top-16 absolute z-50 text-black py-4 px-8 rounded-2xl shadow-2xl`}
+            className={` ${activeSort ? "  block" : " hidden"
+              } bg-white  lg:min-w-[250px] top-16 absolute z-50 text-black py-4 px-8 rounded-2xl shadow-2xl`}
           >
             {/* sort options list  */}
             <div>
@@ -60,9 +57,8 @@ const Filter = ({ sizeColorData }: any) => {
                   className={` text-[18px] font-medium md:text-[20px] cursor-pointer  py-1 group  `}
                 >
                   <span
-                    className={` ${
-                      sort?.name == item?.name ? "border-b-2" : ""
-                    } group-hover:border-b-2 border-black p pb-1  w-full`}
+                    className={` ${sort?.name == item?.name ? "border-b-2" : ""
+                      } group-hover:border-b-2 border-black p pb-1  w-full`}
                   >
                     {item?.name}
                   </span>
@@ -75,18 +71,16 @@ const Filter = ({ sizeColorData }: any) => {
       {/* filter  modal  */}
       <div className=" ">
         <div
-          className={` ${
-            activeModal ? " block" : " hidden"
-          } fixed    w-full h-screen top-0 left-0   blurBackground z-50  p-10`}
+          className={` ${activeModal ? " block" : " hidden"
+            } fixed    w-full h-screen top-0 left-0   blurBackground z-50  p-10`}
         >
           <div className="    w-[550px] bg-white relative rounded-3xl p-8 ">
             <div className=" flex flex-row items-center gap-6 ">
               {filterItem?.map((item) => (
                 <div
                   onClick={() => setActiveModal(item?.name)}
-                  className={` ${
-                    activeModal == item?.name ? "opacity-100" : " opacity-60"
-                  }  flex  items-center  cursor-pointer  py-3 rounded-[45px]   text-black`}
+                  className={` ${activeModal == item?.name ? "opacity-100" : " opacity-60"
+                    }  flex  items-center  cursor-pointer  py-3 rounded-[45px]   text-black`}
                   key={item?.id}
                 >
                   <h1 className="text-[25px] capitalize font-medium">

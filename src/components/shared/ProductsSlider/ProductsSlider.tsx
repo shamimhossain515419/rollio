@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { FaArrowLeftLong, FaArrowRight } from "react-icons/fa6";
 import Card from "@/components/utilityComponent/card/Card";
-import { ProductInterface } from "@/utility/productInterface";
+import { ProductInterface } from "@/types/Productinterface";
 import { useSession } from "next-auth/react";
 
 const ProductsSlider = ({ title, products }: any) => {

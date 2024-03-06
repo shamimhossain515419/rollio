@@ -1,9 +1,9 @@
 "use client";
-import { ProductInterface } from "@/utility/productInterface";
 import Card from "../utilityComponent/card/Card";
 import { useEffect, useState } from "react";
 import { useGetProductByFilterMutation } from "@/redux/features/api/filtterProduct/filttterSlice";
 import { useSelector } from "react-redux";
+import { ProductInterface } from "@/types/Productinterface";
 
 const ShowProductByCategory = ({ products }: any) => {
   const [filterProduct, setFilterProduct] = useState([]);
@@ -27,7 +27,7 @@ const ShowProductByCategory = ({ products }: any) => {
     } else {
       setFilterProduct(products?.data);
     }
-  }, [colors, sizes, getProductByFilter]);
+  }, [colors, sizes, getProductByFilter, products]);
 
   if (isLoading) {
     return <div>Loading........</div>;

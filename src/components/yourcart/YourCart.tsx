@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CartComponents from "./CartComponents";
 import CheckoutCart from "./CheckoutCart";
 import Newfind from "./Newfind";
-import { ProductInterface } from "@/utility/productInterface";
+import { ProductInterface } from "@/types/Productinterface";
 
 const YourCart = () => {
   const { value } = useSelector((state: any) => state.cart);
@@ -18,11 +18,10 @@ const YourCart = () => {
 
   return (
     <div
-      className={` ${
-        value
-          ? " block animate-fadeInUp_card_key "
-          : " hidden animate-fadeOutDown_card_key"
-      }      fixed top-0 left-0 right-0 blurBackground w-full h-screen  z-50   md:px-10 `}
+      className={` ${value
+        ? " block animate-fadeInUp_card_key "
+        : " hidden animate-fadeOutDown_card_key"
+        }      fixed top-0 left-0 right-0 blurBackground w-full h-screen  z-50   md:px-10 `}
     >
       <div className=" flex    justify-center md:justify-end  items-center  md:items-start w-full">
         <div>

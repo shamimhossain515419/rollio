@@ -1,5 +1,5 @@
 "use client";
-import { ProductInterface } from "@/utility/productInterface";
+import { ProductInterface } from "@/types/Productinterface";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 

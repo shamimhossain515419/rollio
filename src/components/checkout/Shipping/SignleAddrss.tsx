@@ -3,11 +3,12 @@ import {
   useRemoveAddressMutation,
 } from "@/redux/features/address/addressApi";
 import { addressToggle } from "@/redux/features/address/addressSlice";
+import { AddressInterface } from "@/types/AddressInterface";
 import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 
-export const SingleAddress = ({ address }: any) => {
+export const SingleAddress = ({ address }: { address: AddressInterface }) => {
   const [RemoveAddress, { data: removeResult, error }] =
     useRemoveAddressMutation();
   const { refetch, isLoading } = useFetchAddressQuery("");
@@ -26,15 +27,14 @@ export const SingleAddress = ({ address }: any) => {
 
   const dispatch = useDispatch();
   const { value } = useSelector((state: any) => state.addressSlice);
-  console.log(value);
+
   return (
     <div onClick={() => dispatch(addressToggle(address.id))} className=" py-2">
       <div>
         <div>
           <div
-            className={` ${
-              value == address?.id && "bg-stone-200"
-            } border border-[#2e2e2eaf] flex justify-between items-center gap-2 p-4 rounded-[5px]`}
+            className={` ${value == address?.id && "bg-stone-200"
+              } border border-[#2e2e2eaf] flex justify-between items-center gap-2 p-4 rounded-[5px]`}
           >
             <div className=" flex  items-center gap-4 md:gap-10 ">
               <div>

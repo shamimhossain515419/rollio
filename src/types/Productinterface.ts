@@ -11,11 +11,7 @@ export interface ProductInterface {
   secondary_category_id: number;
   tertiary_category_id: number;
   group_id: number;
-  image1: string;
-  image2: string;
-  image3: string;
-  image4: string;
-  image5: string;
+  photos: string[] | any;
   totalPrice: number;
   extraIngredients?: any;
   quantity: number;
