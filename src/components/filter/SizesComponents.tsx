@@ -3,14 +3,14 @@ import { AddSize } from "@/redux/features/sizeSlice/sizeSlice";
 import { SizeInterface } from "@/types/ColorAndSizeInterface";
 import { useDispatch, useSelector } from "react-redux";
 
-const SizesComponents = ({ sizesData }: { sizesData: SizeInterface }) => {
+const SizesComponents = ({ sizesData }: any) => {
   const dispatch = useDispatch();
   const { sizes } = useSelector((state: any) => state.Sizes);
 
   return (
     <div>
       <div className=" flex flex-wrap items-center gap-3">
-        {sizesData?.map((item: any, index: number) => {
+        {sizesData?.map((item: SizeInterface, index: number) => {
           const isSelect: any = sizes.find(
             (size_id: number) => size_id === item.id
           );

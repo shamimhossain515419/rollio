@@ -1,5 +1,4 @@
 "use client";
-import { menuInterface } from "@/assets/damiData/damiData";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { GrFavorite } from "react-icons/gr";
@@ -14,10 +13,9 @@ import { CartToggle } from "@/redux/features/cart/CartToggleSlice";
 import { FavoriteToggle } from "@/redux/features/favoriteToggle/favoriteToggle";
 import { SiteModalToggle } from "@/redux/features/sitemodal/SiteModalSlice";
 import { accountToggle } from "@/redux/features/account/AccountSlice";
-import { NavbarInterface } from "@/types/NavbarInterface";
 import { topCategoryInterface } from "@/types/CategoryInterface";
 
-const Navbar = ({ topCategory, primaryCategories, websiteInfo }: NavbarInterface) => {
+const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
   const [activeSearchBtn, setActiveSearchBtn] = useState(false);
   const [activeModal, setActiveModal] = useState<Number>();
   const [showdropdown, setShowdropdown] = useState(false);
