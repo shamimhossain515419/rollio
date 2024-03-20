@@ -72,7 +72,7 @@ export default async function RootLayout({
             <TokenProvider>
               <OfferSlider />
               <Navbar
-                websiteInfo={websiteInfo.data}
+                websiteInfo={websiteInfo}
                 topCategory={topCategory.topCategories}
                 primaryCategories={PrimaryCategory.primaryCategories}
               />

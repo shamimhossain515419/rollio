@@ -7,8 +7,8 @@ import {
   viderSliderInterface,
 } from "@/assets/damiData/damiData";
 
-const VideoSlider = () => {
-  const [activeSlider, setActiveSlider] = useState(videoSliderData[0]);
+const VideoSlider = ({ featuredVideo }: any) => {
+  const [activeSlider, setActiveSlider] = useState(featuredVideo[0]);
 
   const videoEl: any = useRef(null);
 
@@ -30,21 +30,19 @@ const VideoSlider = () => {
               MEET THE ENEMIES OF GRAVITY
             </p>
             <h2 className="lg:text-[100px] font-bold text-[50px] leading-none">
-              A colour for <br /> every foot
+              {activeSlider?.title}
             </h2>
 
             <div className="flex justify-center mt-10">
               <div className="w-[450px] max-w-full">
                 <p className="text-[20px] font-bold">
-                  Our community makes us unique. They have an energy that
-                  reverberates around them. Their mission in life is to ensure
-                  the wonder in the world is not overlooked.
+                  {activeSlider?.sub_title}
                 </p>
 
                 <div className="  videSliderImage w-[450px] h-[500px] mt-10 max-w-full max-h-full rounded-3xl flex justify-center items-center">
                   <Image
                     className="bouncing-element-viderSlider"
-                    src={activeSlider.image2}
+                    src={`${process.env.BASE_URL}/images/${activeSlider.photo}`}
                     width={400}
                     height={400}
                     alt=""
@@ -68,26 +66,29 @@ const VideoSlider = () => {
                 playsInline
                 loop
                 muted
-                src={activeSlider.video}
+                src={activeSlider?.video_url}
                 ref={videoEl}
               />
             </div>
             <div className="flex flex-row lg:flex-col justify-center order-first lg:order-last gap-5 pl-4 my-2">
-              {videoSliderData?.map((slider: viderSliderInterface) => (
-                <div key={slider.id}>
-                  <Image
-                    onClick={() => setActiveSlider(slider)}
-                    className={`${
-                      activeSlider.id == slider.id &&
-                      " border-[#EDDCEC] border-[5px]"
-                    } rounded-full  cursor-pointer`}
-                    src={slider.image}
-                    width={100}
-                    height={100}
-                    alt=""
-                  />
-                </div>
-              ))}
+              {featuredVideo?.map((slider: any) => {
+                console.log(slider);
+                return (
+                  <div key={slider.id}>
+                    <Image
+                      onClick={() => setActiveSlider(slider)}
+                      className={`${
+                        activeSlider.id == slider.id &&
+                        " border-[#EDDCEC] border-[5px]"
+                      } rounded-full  cursor-pointer`}
+                      src={`${process.env.BASE_URL}/images/${slider?.avatar}`}
+                      width={100}
+                      height={100}
+                      alt=""
+                    />
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

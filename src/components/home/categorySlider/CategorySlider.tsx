@@ -11,7 +11,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 
-const CategorySlider = () => {
+const CategorySlider = ({ PrimaryCategory }: any) => {
   const [derby, setDerby] = useState(false);
   const [Sneakers, setSneakers] = useState(false);
   const [Icons, setIcons] = useState(false);
@@ -70,153 +70,32 @@ const CategorySlider = () => {
           modules={[Pagination, Navigation]}
           className="CategorySlider "
         >
-          <SwiperSlide>
-            <div className=" max-h-full max-w-full overflow-hidden rounded-3xl relative">
-              <div className="">
-                <Image
-                  className="hover:scale-110 duration-300"
-                  src="https://www.rollienation.com/cdn/shop/files/weekedner-mobile_550x.jpg?v=1655780930"
-                  width={500}
-                  height={500}
-                  layout="responsive"
-                  alt=""
-                />
-              </div>
-              <div className="absolute bottom-10 left-10 ">
-                <Link href={'/collections/womens'} className=" bg-white p-5 px-7 rounded-full hover:opacity-90 text-[20px] leading-none">
-                  Womens
-                </Link>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className=" max-h-full max-w-full overflow-hidden rounded-3xl relative">
-              <div className="">
-                <Image
-                  className="hover:scale-110 duration-300"
-                  src="https://www.rollienation.com/cdn/shop/files/Men_78afae33-0da4-4908-910b-d6177235d722_550x.jpg?v=1655780752"
-                  width={500}
-                  height={500}
-                  layout="responsive"
-                  alt=""
-                />
-              </div>
-              <div className="absolute bottom-10 left-10 ">
-                <Link href={'/collections/mens'} className=" bg-white p-5 px-7 rounded-full hover:opacity-90 text-[20px] leading-none">
-                  Men
-                </Link>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div
-              onClick={() => setDerby(!derby)}
-              className=" max-h-full max-w-full overflow-hidden rounded-3xl relative cursor-pointer"
-            >
-              <div className="">
-                <Image
-                  className="hover:scale-110 duration-300"
-                  src="https://www.rollienation.com/cdn/shop/files/derby-mobile_8d34df91-19ca-487f-a37a-ecd34bd9a150_550x.jpg?v=1655780629"
-                  width={500}
-                  height={500}
-                  layout="responsive"
-                  alt=""
-                />
-              </div>
-              <div className="absolute bottom-10 left-10 ">
-                {derby && (
-                  <div className="flex flex-col gap-4">
-                    <button className=" bg-white p-5 px-7 rounded-full hover:opacity-90 text-[20px] leading-none">
-                      Men
-                    </button>
-                    <button className=" bg-white p-5 px-7 rounded-full hover:opacity-90 text-[20px] leading-none">
-                      Women
-                    </button>
+          {PrimaryCategory?.primaryCategories.map((category: any) => {
+            return (
+              <SwiperSlide key={category?.id}>
+                <div className=" max-h-full max-w-full overflow-hidden rounded-3xl relative">
+                  <div className="">
+                    <Image
+                      className="hover:scale-110 duration-300"
+                      src={`${process.env.BASE_URL}/images/${category?.photo}`}
+                      width={500}
+                      height={500}
+                      layout="responsive"
+                      alt=""
+                    />
                   </div>
-                )}
-
-                {!derby && (
-                  <button className=" bg-white p-5 px-7 rounded-full hover:opacity-90 text-[20px] leading-none">
-                    Derby
-                  </button>
-                )}
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div
-              onClick={() => setSneakers(!Sneakers)}
-              className=" max-h-full max-w-full overflow-hidden rounded-3xl relative cursor-pointer"
-            >
-              <div className="">
-                <Image
-                  className="hover:scale-110 duration-300"
-                  src="https://www.rollienation.com/cdn/shop/files/sneakers-mobile_35358729-b1b5-4f1d-bee4-44473aeb9674_550x.jpg?v=1655780830"
-                  width={500}
-                  height={500}
-                  layout="responsive"
-                  alt=""
-                />
-              </div>
-
-              {/*  */}
-              <div className="absolute bottom-10 left-10 ">
-                {Sneakers && (
-                  <div className="flex flex-col gap-4">
-                    <button className=" bg-white p-5 px-7 rounded-full hover:opacity-90 text-[20px] leading-none">
-                      Men
-                    </button>
-                    <button className=" bg-white p-5 px-7 rounded-full hover:opacity-90 text-[20px] leading-none">
-                      Women
-                    </button>
+                  <div className="absolute bottom-10 left-10 ">
+                    <Link
+                      href={"/collections/womens"}
+                      className=" bg-white p-5 px-7 rounded-full hover:opacity-90 text-[20px] leading-none"
+                    >
+                      {category?.primary_category_name}
+                    </Link>
                   </div>
-                )}
-
-                {!Sneakers && (
-                  <button className=" bg-white p-5 px-7 rounded-full hover:opacity-90 text-[20px] leading-none">
-                    Sneakers
-                  </button>
-                )}
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div
-              onClick={() => setIcons(!Icons)}
-              className=" max-h-full max-w-full overflow-hidden rounded-3xl relative cursor-pointer"
-            >
-              <div className="">
-                <Image
-                  className="hover:scale-110 duration-300"
-                  src="https://www.rollienation.com/cdn/shop/files/weekedner-mobile_550x.jpg?v=1655780930"
-                  width={500}
-                  height={500}
-                  layout="responsive"
-                  alt=""
-                />
-              </div>
-
-              {/*  */}
-              <div className="absolute bottom-10 left-10 ">
-                {Icons && (
-                  <div className="flex flex-col gap-4">
-                    <button className=" bg-white p-5 px-7 rounded-full hover:opacity-90 text-[20px] leading-none">
-                      Men
-                    </button>
-                    <button className=" bg-white p-5 px-7 rounded-full hover:opacity-90 text-[20px] leading-none">
-                      Women
-                    </button>
-                  </div>
-                )}
-
-                {!Icons && (
-                  <button className=" bg-white p-5 px-7 rounded-full hover:opacity-90 text-[20px] leading-none">
-                    The Icons
-                  </button>
-                )}
-              </div>
-            </div>
-          </SwiperSlide>
+                </div>
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
 
         {/* Custom navigation buttons */}

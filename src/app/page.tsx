@@ -16,17 +16,35 @@ async function getData() {
     )
   ).json();
 
-  return { websiteInfo };
+  let PrimaryCategory = await (
+    await fetch(
+      `${process.env.BASE_URL}/api/category/get-all-primary-category/${process.env.GROUP_ID}`,
+      {
+        next: { revalidate: 300 },
+      }
+    )
+  ).json();
+
+  let featuredVideos = await (
+    await fetch(
+      `${process.env.BASE_URL}/api/featured-video/${process.env.GROUP_ID}`,
+      {
+        next: { revalidate: 300 },
+      }
+    )
+  ).json();
+
+  return { websiteInfo, PrimaryCategory, featuredVideos };
 }
 const page = async () => {
-  const { websiteInfo } = await getData();
+  const { websiteInfo, PrimaryCategory, featuredVideos } = await getData();
 
   return (
     <div className="">
-      <Banner websiteInfo={websiteInfo?.data} />
+      <Banner websiteInfo={websiteInfo} />
       <BestSellers />
-      <CategorySlider />
-      <VideoSlider />
+      <CategorySlider PrimaryCategory={PrimaryCategory} />
+      <VideoSlider featuredVideo={featuredVideos?.featured_video} />
       <KindaClassic />
       <Handpicked />
       <Stayintouch></Stayintouch>

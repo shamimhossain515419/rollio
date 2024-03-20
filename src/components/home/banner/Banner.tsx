@@ -8,7 +8,7 @@ const Banner = ({ websiteInfo }: any) => {
         <Image
           // hidden md:block
           className="   object-cover bg-cover bg-center bg-no-repeat   object-center  relative h-full w-full"
-          src={websiteInfo?.banner}
+          src={`${process.env.BASE_URL}/images/${websiteInfo?.banner}`}
           width={1000}
           height={1000}
           alt=""
