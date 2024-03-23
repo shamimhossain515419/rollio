@@ -22,13 +22,6 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state: any) => state.Cart);
   const { favItems } = useSelector((state: any) => state.favItems);
-
-  // const [country, setCountry] = useState({
-  //   name: "BDT",
-  //   sumsymbole: "৳",
-  //   image: "https://flagcdn.com/h40/bd.png",
-  // });
-
   // scrool
   const [scrolled, setScrolled] = useState(false);
 
@@ -44,6 +37,11 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+
+
+  console.log(websiteInfo);
+
   return (
     <div
       className={`xl:mx-20 rounded-full px-8 py-2 z-50 sticky top-5 transition-all  ${scrolled ? "bg-white text-black" : "text-white"
@@ -87,14 +85,15 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
 
         {/* logo  */}
         <Link href={"/"} className="flex justify-center">
-          <Image
+          {/* <Image
             className="max-w-[150px]"
             src={websiteInfo?.logo}
             width={100}
             height={100}
             layout="responsive"
             alt=""
-          />
+          /> */}
+          <h1> {websiteInfo?.group_name} </h1>
         </Link>
         {/* others */}
         <div className="flex justify-evenly items-center gap-4">

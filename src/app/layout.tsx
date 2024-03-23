@@ -63,6 +63,7 @@ export default async function RootLayout({
   // topCategory
   const { topCategory, PrimaryCategory, websiteInfo }: any = await getData();
 
+
   return (
     <html className="scroll-smooth" lang="en">
       <body className={inter.className}>
@@ -72,7 +73,7 @@ export default async function RootLayout({
             <TokenProvider>
               <OfferSlider />
               <Navbar
-                websiteInfo={websiteInfo.data}
+                websiteInfo={websiteInfo}
                 topCategory={topCategory.topCategories}
                 primaryCategories={PrimaryCategory.primaryCategories}
               />

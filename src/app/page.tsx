@@ -15,11 +15,22 @@ async function getData() {
       }
     )
   ).json();
-
-  return { websiteInfo };
+  let HandpickedInfo = await (
+    await fetch(
+      `${process.env.BASE_URL}/api/featured-product/${process.env.GROUP_ID}/3`,
+      {
+        next: { revalidate: 300 },
+      }
+    )
+  ).json();
+  let res = await fetch(`${process.env.BASE_URL}/api/featured-product/${process.env.GROUP_ID}/2`, {
+    next: { revalidate: 300 },
+  });
+  const products = await res.json();
+  return { websiteInfo, products, HandpickedInfo };
 }
 const page = async () => {
-  const { websiteInfo } = await getData();
+  const { websiteInfo, products, HandpickedInfo } = await getData();
 
   return (
     <div className="">
@@ -27,8 +38,8 @@ const page = async () => {
       <BestSellers />
       <CategorySlider />
       <VideoSlider />
-      <KindaClassic />
-      <Handpicked />
+      <KindaClassic productInfo={products} />
+      <Handpicked HandpickedInfo={HandpickedInfo} />
       <Stayintouch></Stayintouch>
     </div>
   );
