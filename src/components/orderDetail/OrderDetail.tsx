@@ -1,10 +1,11 @@
 import { useGetOrderDetailQuery } from "@/redux/features/orders/ordersApi";
-import Image from "next/image";
 import React from "react";
 import OrderProductCard from "./OrderProductCard";
+import { SingleOrderInterface } from "@/types/OrderInterface";
 
 const OrderDetail = ({ order_id }: any) => {
   const { data } = useGetOrderDetailQuery(order_id);
+ 
 
   return (
     <div className="max-w-[1000px] mx-auto bg-white bg-opacity-50  my-5 rounded-xl h-screen min-h-full ">
@@ -18,9 +19,8 @@ const OrderDetail = ({ order_id }: any) => {
           <h1>
             Status:{" "}
             <span
-              className={`${
-                data?.order_info?.status ? "bg-green-500" : "bg-red-500"
-              } text-white px-1 rounded-md`}
+              className={`${data?.order_info?.status ? "bg-green-500" : "bg-red-500"
+                } text-white px-1 rounded-md`}
             >
               {data?.order_info?.status ? "approved" : "Pending"}
             </span>
@@ -47,7 +47,7 @@ const OrderDetail = ({ order_id }: any) => {
       {/* products */}
 
       <div className="">
-        {data?.data?.map((product: any, i: number) => {
+        {data?.data?.map((product: SingleOrderInterface, i: number) => {
           return (
             <OrderProductCard
               key={i}

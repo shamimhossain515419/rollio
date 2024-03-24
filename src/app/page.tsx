@@ -15,17 +15,7 @@ async function getData() {
       }
     )
   ).json();
-
-  let PrimaryCategory = await (
-    await fetch(
-      `${process.env.BASE_URL}/api/category/get-all-primary-category/${process.env.GROUP_ID}`,
-      {
-        next: { revalidate: 300 },
-      }
-    )
-  ).json();
-
-  let featuredVideos = await (
+  let VideoFeatured = await (
     await fetch(
       `${process.env.BASE_URL}/api/featured-video/${process.env.GROUP_ID}`,
       {
@@ -33,20 +23,31 @@ async function getData() {
       }
     )
   ).json();
-
-  return { websiteInfo, PrimaryCategory, featuredVideos };
+  let HandpickedInfo = await (
+    await fetch(
+      `${process.env.BASE_URL}/api/featured-product/${process.env.GROUP_ID}/4`,
+      {
+        next: { revalidate: 300 },
+      }
+    )
+  ).json();
+  let res = await fetch(`${process.env.BASE_URL}/api/featured-product/${process.env.GROUP_ID}/3`, {
+    next: { revalidate: 300 },
+  });
+  const products = await res.json();
+  return { websiteInfo, products, VideoFeatured, HandpickedInfo };
 }
 const page = async () => {
-  const { websiteInfo, PrimaryCategory, featuredVideos } = await getData();
+  const { websiteInfo, VideoFeatured, products, HandpickedInfo } = await getData();
 
   return (
     <div className="">
       <Banner websiteInfo={websiteInfo} />
       <BestSellers />
-      <CategorySlider PrimaryCategory={PrimaryCategory} />
-      <VideoSlider featuredVideo={featuredVideos?.featured_video} />
-      <KindaClassic />
-      <Handpicked />
+      <CategorySlider />
+      <VideoSlider VideoFeatured={VideoFeatured} />
+      <KindaClassic productInfo={products} />
+      <Handpicked HandpickedInfo={HandpickedInfo} />
       <Stayintouch></Stayintouch>
     </div>
   );

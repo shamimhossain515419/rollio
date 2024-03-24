@@ -8,7 +8,7 @@ import { IoClose } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 
 const CartComponents = ({ product }: any) => {
-  const disparch = useDispatch();
+  const dispatch = useDispatch();
   return (
     <div className=" py-2">
       <div className="  flex gap-1 md:gap-2 lg:gap-4 xl:gap-5 w-full">
@@ -17,9 +17,8 @@ const CartComponents = ({ product }: any) => {
             className=" rounded-xl w-[100px] "
             width={100}
             height={100}
-            // src={product?.photos[0]}
-            // https://getmicrojobs.com/images/${product?.photos[0]?.photo} 
-            src={``}
+            src={`${process.env.BASE_URL}/images/${product?.photos?.[0]?.photo}`}
+
             alt="image"
           ></Image>
         </div>
@@ -36,7 +35,7 @@ const CartComponents = ({ product }: any) => {
           <div className=" border-b  border-black inline-block   pt-2">
             <div className=" flex items-center gap-3 md:gap-8">
               <button
-                onClick={() => disparch(removeItem(product?.id))}
+                onClick={() => dispatch(removeItem(product?.id))}
                 className="text-[16px]  md:text-[20px] font-bold "
               >
                 -
@@ -45,7 +44,7 @@ const CartComponents = ({ product }: any) => {
                 {product.quantity}
               </p>
               <button
-                onClick={() => disparch(addItem(product))}
+                onClick={() => dispatch(addItem(product))}
                 className="text-[16px]  md:text-[20px] font-bold "
               >
                 +
@@ -56,7 +55,12 @@ const CartComponents = ({ product }: any) => {
         <div className=" flex flex-col justify-between">
           <div className="  flex justify-end w-full  opacity-70  cursor-pointer">
             <IoClose
-              onClick={() => disparch(deleteItem(product.id))}
+              onClick={() => dispatch(
+                deleteItem({
+                  id: product?.id,
+                  extraIngredients: product?.extraIngredients,
+                })
+              )}
               size={16}
             />
           </div>

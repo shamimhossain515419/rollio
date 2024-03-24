@@ -3,7 +3,6 @@ import CartCard from "@/components/cartPage/CartCard/CartCard";
 
 import Newfind from "@/components/yourcart/Newfind";
 import Link from "next/link";
-
 import { FaFirefox } from "react-icons/fa";
 import { useSelector } from "react-redux";
 

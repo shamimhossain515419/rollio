@@ -62,7 +62,6 @@ export default async function RootLayout({
 }>) {
   // topCategory
   const { topCategory, PrimaryCategory, websiteInfo }: any = await getData();
-
   return (
     <html className="scroll-smooth" lang="en">
       <body className={inter.className}>

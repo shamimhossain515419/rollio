@@ -5,9 +5,10 @@ import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { FaArrowLeftLong, FaArrowRight } from "react-icons/fa6";
-import Card from "@/components/utilityComponent/card/Card";
+import HomeCart from "@/components/utilityComponent/card/HomeCart";
 
-const Handpicked = () => {
+const Handpicked = ({ HandpickedInfo }: any) => {
+  const { products, title } = HandpickedInfo || {}
   const customPrevButton = (
     <div className="custom-swiper-button-prev">
       <span className=" ">
@@ -28,7 +29,7 @@ const Handpicked = () => {
     <div className="m-5">
       <div className="container mx-auto">
         <h1 className="xl:text-[77px] text-[20px] text-white">
-          Handpicked for You
+          {title}
         </h1>
       </div>
       <div className="relative py-10">
@@ -61,45 +62,14 @@ const Handpicked = () => {
           modules={[Pagination, Navigation]}
           className="bestSeller "
         >
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Card />
-          </SwiperSlide>
+          {
+            products?.map((product: any) => (
+              <SwiperSlide key={product?.id}>
+                <HomeCart product={product} />
+              </SwiperSlide>
+            ))
+          }
+
         </Swiper>
 
         {/* Custom navigation buttons */}

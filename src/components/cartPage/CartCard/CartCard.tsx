@@ -4,7 +4,7 @@ import {
   deleteItem,
   removeItem,
 } from "@/redux/features/cart/CartSlice";
-import { ProductInterface } from "@/utility/productInterface";
+import { ProductInterface } from "@/types/Productinterface";
 import Image from "next/image";
 import React from "react";
 import { IoClose } from "react-icons/io5";
@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const CartCard = () => {
   const { cartItems } = useSelector((state: any) => state.Cart);
-  const disparch = useDispatch();
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -24,7 +24,14 @@ const CartCard = () => {
           {/* remove icon */}
           <div className=" absolute right-5 top-5">
             <IoClose
-              onClick={() => disparch(deleteItem(product?.id))}
+              onClick={() =>
+                dispatch(
+                  deleteItem({
+                    id: product?.id,
+                    extraIngredients: product?.extraIngredients,
+                  })
+                )
+              }
               className="cursor-pointer text-[20px]"
             />
           </div>
@@ -53,7 +60,7 @@ const CartCard = () => {
             <div className=" border-b  border-black inline-block   pt-2">
               <div className=" flex items-center gap-3 md:gap-8">
                 <button
-                  onClick={() => disparch(removeItem(product?.id))}
+                  onClick={() => dispatch(removeItem(product?.id))}
                   className="text-[16px]  md:text-[20px] font-bold "
                 >
                   -
@@ -62,7 +69,7 @@ const CartCard = () => {
                   {product?.quantity}
                 </p>
                 <button
-                  onClick={() => disparch(addItem(product))}
+                  onClick={() => dispatch(addItem(product))}
                   className="text-[16px]  md:text-[20px] font-bold "
                 >
                   +

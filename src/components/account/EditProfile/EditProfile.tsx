@@ -1,6 +1,7 @@
 import React from "react";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
-const EditProfile = () => {
+const EditProfile = ({ setActive }: any) => {
   const UpdateProfileHandler = (e: any) => {
     e.preventDefault();
     const data = new FormData(e.target as HTMLFormElement);
@@ -13,10 +14,15 @@ const EditProfile = () => {
       email,
       password,
     };
-    console.log(value);
+
   };
   return (
     <div>
+      <div onClick={() => setActive("profile")} className="flex cursor-pointer items-center gap-2 pb-4">
+        <IoMdArrowRoundBack className="text-[18px]" />
+        <p className="text-[14px] font-normal">Back</p>
+      </div>
+
       <form onSubmit={UpdateProfileHandler} className=" w-full  py-3">
         <input
           required

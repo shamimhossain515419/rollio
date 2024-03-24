@@ -1,5 +1,6 @@
 "use client";
-import { ProductInterface } from "@/utility/productInterface";
+import { CartInitialStateInterface } from "@/types/CartInitialStateInterface";
+import { ProductInterface } from "@/types/Productinterface";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 
@@ -39,7 +40,7 @@ const setItemFunc = (
   setCookie("totalQuantity", totalQuantity);
 };
 
-const initialState: InitialState = {
+const initialState: CartInitialStateInterface = {
   cartItems: items,
   totalQuantity: totalQuantity,
   totalAmount: totalAmount,
@@ -53,63 +54,40 @@ const cartSlice = createSlice({
       const newItem = action.payload;
       const id = newItem.id;
       const extraIngredients = newItem.extraIngredients;
+
       const existingItemIndex = state.cartItems.findIndex(
-        (item) => item.id === id
+        (item) =>
+          item.id === id &&
+          JSON.stringify(item.extraIngredients) ===
+            JSON.stringify(extraIngredients)
       );
 
       if (existingItemIndex === -1) {
-        // If the item doesn't exist in the cart, add it with quantity 1 and calculate total price
         state.cartItems.push({
           ...newItem,
           quantity: 1,
           totalPrice: newItem.sale_price,
-          extraIngredients: extraIngredients, // Include extraIngredients in the new item
+          extraIngredients: extraIngredients,
         });
         state.totalQuantity++;
       } else {
         const existingItem = state.cartItems[existingItemIndex];
-        if (
-          JSON.stringify(existingItem.extraIngredients) ===
-          JSON.stringify(extraIngredients)
-        ) {
-          // If the existing item in the cart has the same extraIngredients, increase its quantity
-          existingItem.quantity++;
-          existingItem.totalPrice =
-            existingItem.sale_price * existingItem.quantity; // Update totalPrice
-          state.totalQuantity++;
-        } else {
-          // If extraIngredients differ, treat it as a new item and update existing item or create a new one
-          existingItem.quantity--;
-          if (existingItem.quantity === 0) {
-            state.cartItems.splice(existingItemIndex, 1);
-            state.totalQuantity--;
-          }
-
-          // Create a new item with updated extraIngredients
-          const newCartItem = {
-            ...newItem,
-            quantity: 1,
-            totalPrice: newItem.sale_price,
-            extraIngredients: extraIngredients,
-          };
-          state.cartItems.push(newCartItem);
-          state.totalQuantity++;
-        }
+        existingItem.quantity++;
+        existingItem.totalPrice += newItem.sale_price;
+        state.totalQuantity++;
       }
 
-      // Calculate total amount after adding the item
       state.totalAmount = state.cartItems.reduce(
-        (total, item) => total + Number(item.totalPrice), // Use totalPrice instead of sale_price * quantity
+        (total, item) => total + Number(item.totalPrice),
         0
       );
-
-      // Update storage or perform other side effects
       setItemFunc(
         state.cartItems.map((item) => item),
         state.totalAmount,
         state.totalQuantity
       );
     },
+
     removeItem(state, action: PayloadAction<string>) {
       const id = action.payload;
       const existingItemIndex = state.cartItems.findIndex(
@@ -118,7 +96,6 @@ const cartSlice = createSlice({
 
       if (existingItemIndex !== -1) {
         const existingItem = state.cartItems[existingItemIndex];
-
         state.totalQuantity--;
 
         if (existingItem.quantity === 1) {
@@ -141,13 +118,22 @@ const cartSlice = createSlice({
         state.totalQuantity
       );
     },
-    deleteItem(state, action: PayloadAction<string>) {
-      const id = action.payload;
-      const existingItem = state.cartItems.find((item) => item.id === id);
 
-      if (existingItem) {
-        state.cartItems = state.cartItems.filter((item) => item.id !== id);
-        state.totalQuantity -= existingItem.quantity;
+    deleteItem(state, action) {
+      const { id, extraIngredients } = action.payload;
+
+      // Find the index of the item to delete
+      const itemIndexToDelete = state.cartItems.findIndex(
+        (item) =>
+          item.id === id &&
+          JSON.stringify(item.extraIngredients) ===
+            JSON.stringify(extraIngredients)
+      );
+
+      if (itemIndexToDelete !== -1) {
+        const deletedItem = state.cartItems[itemIndexToDelete];
+        state.totalQuantity -= deletedItem.quantity;
+        state.cartItems.splice(itemIndexToDelete, 1);
       }
 
       state.totalAmount = state.cartItems.reduce(
@@ -174,6 +160,5 @@ const cartSlice = createSlice({
     },
   },
 });
-
-export const { addItem, deleteItem, removeItem, clearCart } = cartSlice.actions;
+export const { addItem, clearCart, deleteItem, removeItem } = cartSlice.actions;
 export default cartSlice.reducer;

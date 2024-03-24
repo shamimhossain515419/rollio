@@ -2,7 +2,8 @@
 import Button from "@/components/utilityComponent/button/Button";
 import { clearCart } from "@/redux/features/cart/CartSlice";
 import { useOrderProductMutation } from "@/redux/features/orders/ordersApi";
-import { useSession } from "next-auth/react";
+import { CartInitialStateInterface } from "@/types/CartInitialStateInterface";
+import { CreateOrderinterface } from "@/types/OrderInterface";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -14,17 +15,12 @@ import { useDispatch, useSelector } from "react-redux";
 const Page = () => {
   const router = useRouter();
   const [payActive, setPayActive] = useState(false);
-  const { cartItems, totalAmount, totalQuantity }: any = useSelector(
-    (state: any) => state.Cart
-  );
+  const { cartItems, totalAmount, totalQuantity }: CartInitialStateInterface =
+    useSelector((state: any) => state.Cart);
   const [orderProduct, { data: orderResult, isLoading, isSuccess, error }] =
     useOrderProductMutation();
-  const group_id = process.env.GROUP_ID;
-  const { data: session } = useSession();
   const { value: address_id } = useSelector((state: any) => state.addressSlice);
-
   const dispatch = useDispatch();
-
   const OrderHandler = async () => {
     if (!cartItems.length) {
       toast.error("Cart is empty");
@@ -34,8 +30,10 @@ const Page = () => {
       router.push("/checkout/payment");
       return;
     }
-    const value = {
-      group_id: group_id,
+    const value: CreateOrderinterface = {
+      group_id: process.env.GROUP_ID
+        ? parseInt(process.env.GROUP_ID)
+        : undefined,
       customer_id: 1,
       total_amount: totalAmount,
       total_quantity: totalQuantity,
@@ -49,8 +47,9 @@ const Page = () => {
     if (isSuccess && orderResult) {
       toast.success(orderResult?.message);
       dispatch(clearCart());
+      router.push("/");
     }
-  }, [orderResult, isSuccess]);
+  }, [orderResult, isSuccess, router, dispatch]);
 
   return (
     <div>
@@ -138,9 +137,8 @@ const Page = () => {
               <div>
                 <div
                   onClick={() => setPayActive(false)}
-                  className={` flex justify-center items-center ${
-                    payActive ? "border border-[#3333337b]" : " bg-[#3333337b]"
-                  }  w-[20px] h-[20px] cursor-pointer rounded-full`}
+                  className={` flex justify-center items-center ${payActive ? "border border-[#3333337b]" : " bg-[#3333337b]"
+                    }  w-[20px] h-[20px] cursor-pointer rounded-full`}
                 >
                   <p className=" w-[5px] h-[5px] bg-white rounded-full"></p>
                 </div>
@@ -162,9 +160,8 @@ const Page = () => {
               <div>
                 <div
                   onClick={() => setPayActive(true)}
-                  className={` flex justify-center items-center ${
-                    payActive ? "bg-[#3333337b]" : " border border-[#3333337b]"
-                  }  w-[20px] h-[20px] cursor-pointer rounded-full`}
+                  className={` flex justify-center items-center ${payActive ? "bg-[#3333337b]" : " border border-[#3333337b]"
+                    }  w-[20px] h-[20px] cursor-pointer rounded-full`}
                 >
                   <p className=" w-[5px] h-[5px] bg-white rounded-full"></p>
                 </div>

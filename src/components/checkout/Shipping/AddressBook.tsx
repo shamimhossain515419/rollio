@@ -1,14 +1,11 @@
 "use client";
-
-
+import { AddressInterface } from "@/types/AddressInterface";
 import { SingleAddress } from "./SignleAddrss";
 
-const AddressBook = ({ data }: any) => {
-
-
+const AddressBook = ({ data }: { data: AddressInterface[] }) => {
   return (
     <div>
-      {data?.map((address: any, i: number) => (
+      {data?.map((address: AddressInterface, i: number) => (
         <SingleAddress key={i} address={address} />
       ))}
     </div>

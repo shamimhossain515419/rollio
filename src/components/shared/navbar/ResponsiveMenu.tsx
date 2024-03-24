@@ -11,6 +11,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { MenuToggle } from "@/redux/features/responsivemenutoggle/ResponsiveMenuToggleSlice";
 import { SiteModalToggle } from "@/redux/features/sitemodal/SiteModalSlice";
+import { accountToggle } from "@/redux/features/account/AccountSlice";
 
 const ResponsiveMenu = () => {
     const [activeSearchBtn, setActiveSearchBtn] = useState(false);
@@ -44,7 +45,10 @@ const ResponsiveMenu = () => {
                                     </g>
                                 </svg>
                             </Link>
-                            <div onClick={() => dispatch(MenuToggle())} className=" flex justify-end items-center gap-2">
+                            <div
+                                onClick={() => dispatch(MenuToggle())}
+                                className=" flex justify-end items-center gap-2"
+                            >
                                 <IoIosClose size={28} />
                             </div>
                         </div>
@@ -83,7 +87,10 @@ const ResponsiveMenu = () => {
                                 <div>
                                     <IoLockClosedOutline size={16} />
                                 </div>
-                                <Link href={'/'} className="  capitalize text-[16px]  text-gray-800  font-medium">
+                                <Link
+                                    href={"/"}
+                                    className="  capitalize text-[16px]  text-gray-800  font-medium"
+                                >
                                     {" "}
                                     Access sale
                                 </Link>
@@ -196,7 +203,9 @@ const ResponsiveMenu = () => {
                         <div className=" py-1">
                             {/* =account and suppot link  */}
                             <button
-                                onClick={() => dispatch(SiteModalToggle())}
+                                onClick={() => {
+                                    dispatch(SiteModalToggle()), dispatch(accountToggle());
+                                }}
                                 className="  block pb-2  capitalize text-[16px]  text-gray-800  font-medium"
                             >
                                 Account{" "}
@@ -211,7 +220,7 @@ const ResponsiveMenu = () => {
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     );
 };
 

@@ -1,5 +1,4 @@
 "use client";
-import { menuInterface } from "@/assets/damiData/damiData";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { GrFavorite } from "react-icons/gr";
@@ -14,6 +13,7 @@ import { CartToggle } from "@/redux/features/cart/CartToggleSlice";
 import { FavoriteToggle } from "@/redux/features/favoriteToggle/favoriteToggle";
 import { SiteModalToggle } from "@/redux/features/sitemodal/SiteModalSlice";
 import { accountToggle } from "@/redux/features/account/AccountSlice";
+import { topCategoryInterface } from "@/types/CategoryInterface";
 
 const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
   const [activeSearchBtn, setActiveSearchBtn] = useState(false);
@@ -22,13 +22,6 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state: any) => state.Cart);
   const { favItems } = useSelector((state: any) => state.favItems);
-
-  const [country, setCountry] = useState({
-    name: "BDT",
-    sumsymbole: "৳",
-    image: "https://flagcdn.com/h40/bd.png",
-  });
-
   // scrool
   const [scrolled, setScrolled] = useState(false);
 
@@ -44,6 +37,7 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
     <div
       className={`xl:mx-20 rounded-full px-8 py-2 z-50 sticky top-5 transition-all  ${
@@ -64,11 +58,11 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
           </div>
           {/*  responsive bar end */}
           <ul className="xl:flex hidden  items-center gap-10">
-            {topCategory.map((item: menuInterface) => (
+            {topCategory?.map((item: topCategoryInterface) => (
               <li
                 onClick={() => setActiveModal(item?.id)}
                 key={item.id}
-                className="text-xl  cursor-pointer"
+                className="text-xl capitalize  cursor-pointer"
               >
                 {item.name}
               </li>
@@ -88,14 +82,15 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
 
         {/* logo  */}
         <Link href={"/"} className="flex justify-center">
-          <Image
+          {/* <Image
             className="max-w-[150px]"
             src={`${process.env.BASE_URL}/images/${websiteInfo?.logo}`}
             width={100}
             height={100}
             layout="responsive"
             alt=""
-          />
+          /> */}
+          <h1 className="text-[22px] uppercase  font-bold"> {websiteInfo?.group_name} </h1>
         </Link>
         {/* others */}
         <div className="flex justify-evenly items-center gap-4">
@@ -197,7 +192,7 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
             <div>
               <button
                 onClick={() => {
-                  dispatch(SiteModalToggle()), dispatch(accountToggle());
+                  dispatch(SiteModalToggle()), dispatch(accountToggle())
                 }}
                 className="text-[22px] font-medium "
               >

@@ -1,10 +1,9 @@
 import { AddColor } from "@/redux/features/colorsSlice/ColorsSlice";
-import { ColorInterface } from "@/utility/filterItem";
+import { ColorInterface } from "@/types/ColorAndSizeInterface";
 import { useDispatch, useSelector } from "react-redux";
 
-const ColorsComponents = ({ colorsData }: any) => {
+const ColorsComponents = ({ colorsData }: { colorsData: ColorInterface[] }) => {
     const dispatch = useDispatch();
-
     const { colors } = useSelector((state: any) => state.Colors);
 
     return (
@@ -25,7 +24,7 @@ const ColorsComponents = ({ colorsData }: any) => {
                             >
                                 <div
                                     style={{
-                                        backgroundColor: color?.color_code,
+                                        backgroundColor: color?.color_code ? color?.color_code : "",
                                     }}
                                     className={` ${isColor ? "w-[60px]  h-[60px]" : " w-[70px]  h-[70px] "
                                         } group-hover:h-[60px]  group-hover:w-[60px] duration-300 ${color?.color_code

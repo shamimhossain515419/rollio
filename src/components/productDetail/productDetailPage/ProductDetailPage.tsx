@@ -43,9 +43,15 @@ const ProductDetailPage = ({ product }: any) => {
       discount_type: productInfo.discount_type,
       color: activeColor,
       size: activeSize,
+      extraIngredients: {
+        size: activeSize,
+        color: activeColor
+      },
       photos: photos,
     };
     dispatch(addItem(values));
+    setActiveSize("")
+    setActiveColor("")
   };
   //
   return (
@@ -112,9 +118,8 @@ const ProductDetailPage = ({ product }: any) => {
                   <div
                     key={color?.color_id}
                     onClick={() => setActiveColor(color?.color_id)}
-                    className={`${
-                      activeColor == color?.color_id && "p-2 border "
-                    } rounded-2xl overflow-hidden w-[60px] h-[60px] flex justify-center items-center`}
+                    className={`${activeColor == color?.color_id && "p-2 border "
+                      } rounded-2xl overflow-hidden w-[60px] h-[60px] flex justify-center items-center`}
                   >
                     <div className="rounded-2xl ">
                       <p>{color?.name}</p>
@@ -131,9 +136,8 @@ const ProductDetailPage = ({ product }: any) => {
                   <div
                     onClick={() => setActiveSize(size.size_id)}
                     key={i}
-                    className={`${
-                      activeSize == size.size_id && "text-black bg-white"
-                    } flex justify-center border rounded-xl p-2 cursor-pointer `}
+                    className={`${activeSize == size.size_id && "text-black bg-white"
+                      } flex justify-center border rounded-xl p-2 cursor-pointer `}
                   >
                     <p>{size.name}</p>
                   </div>

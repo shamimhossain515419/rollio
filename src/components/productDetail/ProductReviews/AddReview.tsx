@@ -7,7 +7,6 @@ import { useSession } from "next-auth/react";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
-import Cookies from "js-cookie";
 // import { useCreateReviewMutation } from "@/redux/features/review/ReviewApi";
 import toast from "react-hot-toast";
 

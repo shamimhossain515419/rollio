@@ -1,19 +1,19 @@
 "use client";
+import { CartInitialStateInterface } from "@/types/CartInitialStateInterface";
+import { ProductInterface } from "@/types/Productinterface";
 import Image from "next/image";
 import React from "react";
 import { useSelector } from "react-redux";
 
 const ProductListPrice = () => {
-  const { cartItems, totalAmount, totalQuantity }: any = useSelector(
+  const { cartItems, totalAmount, totalQuantity }: CartInitialStateInterface = useSelector(
     (state: any) => state.Cart
   );
-  console.log(cartItems);
-
   return (
     <div className=" border-l px-4">
       {/* products */}
       <div className="grid grid-cols-1 gap-3 border-b pb-4">
-        {cartItems?.map((product: any) => (
+        {cartItems?.map((product: ProductInterface) => (
           <div
             key={product.id}
             className="text-sm flex justify-between items-center"
