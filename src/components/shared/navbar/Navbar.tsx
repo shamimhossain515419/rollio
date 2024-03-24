@@ -40,8 +40,9 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
 
   return (
     <div
-      className={`xl:mx-20 rounded-full px-8 py-2 z-50 sticky top-5 transition-all  ${scrolled ? "bg-white text-black" : "text-white"
-        } `}
+      className={`xl:mx-20 rounded-full px-8 py-2 z-50 sticky top-5 transition-all  ${
+        scrolled ? "bg-white text-black" : "text-white"
+      } `}
     >
       <div className="flex justify-between items-center">
         {/* nav items */}
@@ -83,7 +84,7 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
         <Link href={"/"} className="flex justify-center">
           {/* <Image
             className="max-w-[150px]"
-            src={websiteInfo?.logo}
+            src={`${process.env.BASE_URL}/images/${websiteInfo?.logo}`}
             width={100}
             height={100}
             layout="responsive"
@@ -145,12 +146,14 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
               onFocus={() => setActiveSearchBtn(true)}
               onBlur={() => setActiveSearchBtn(false)}
               placeholder="Search.."
-              className={` ${scrolled ? "placeholder-black" : "placeholder-white"
-                } w-[270px] srarchInput focus:w-[320px] duration-300 ease-in p-3 bg-transparent   border rounded-full  focus:outline-none`}
+              className={` ${
+                scrolled ? "placeholder-black" : "placeholder-white"
+              } w-[270px] srarchInput focus:w-[320px] duration-300 ease-in p-3 bg-transparent   border rounded-full  focus:outline-none`}
             />
             <button
-              className={`${activeSearchBtn ? "opacity-100" : "opacity-0"}  ${scrolled ? "bg-black text-white" : "bg-white text-black"
-                }  p-3 px-8 rounded-full -ml-10 duration-300`}
+              className={`${activeSearchBtn ? "opacity-100" : "opacity-0"}  ${
+                scrolled ? "bg-black text-white" : "bg-white text-black"
+              }  p-3 px-8 rounded-full -ml-10 duration-300`}
             >
               GO
             </button>
@@ -182,8 +185,9 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
           <div
             onMouseMoveCapture={() => setShowdropdown(true)}
             onMouseLeave={() => setShowdropdown(false)}
-            className={` right-7 ${showdropdown ? "opacity-100 " : "opacity-0 "
-              }   top-[110px]  group-hover:translate-y-4 -translate-y-10 duration-300 absolute z-20 bg-white  text-black p-8 rounded-[20px]`}
+            className={` right-7 ${
+              showdropdown ? "opacity-100 " : "opacity-0 "
+            }   top-[110px]  group-hover:translate-y-4 -translate-y-10 duration-300 absolute z-20 bg-white  text-black p-8 rounded-[20px]`}
           >
             <div>
               <button
@@ -204,8 +208,9 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
 
           <div
             onClick={() => dispatch(CartToggle())}
-            className={` ${scrolled ? "bg-black text-white" : "bg-white text-black"
-              }  w-10 h-10 rounded-full flex items-center justify-center`}
+            className={` ${
+              scrolled ? "bg-black text-white" : "bg-white text-black"
+            }  w-10 h-10 rounded-full flex items-center justify-center`}
           >
             {cartItems.length !== 0 ? (
               cartItems.length
