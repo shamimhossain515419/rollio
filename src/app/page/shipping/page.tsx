@@ -2,7 +2,7 @@
 import Stayintouch from "@/components/home/stayintouch/Stayintouch";
 import VideoSlider from "@/components/home/videoSlider/VideoSlider";
 import { countries } from "@/utility/countries";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
 
 const Page = () => {
@@ -12,6 +12,7 @@ const Page = () => {
     { value: "India", label: "India" },
   ];
   const [selectedOption, setSelectedOption] = useState(null);
+  const [VideoFeatured, setVideoFeatured] = useState({});
 
   const handleSelectChange = (e: any) => {
     setSelectedOption(e?.value);
@@ -26,6 +27,20 @@ const Page = () => {
     }),
   };
 
+  useEffect(() => {
+    const getData = async () => {
+      let VideoFeatured = await (
+        await fetch(
+          `${process.env.BASE_URL}/api/featured-video/${process.env.GROUP_ID}`,
+          {
+            next: { revalidate: 300 },
+          }
+        )
+      ).json();
+      setVideoFeatured(VideoFeatured)
+    }
+    getData()
+  }, [setVideoFeatured]);
 
   return (
     <div>
@@ -133,7 +148,7 @@ const Page = () => {
         </div>
       </div>
 
-      <VideoSlider />
+      <VideoSlider VideoFeatured={VideoFeatured} />
       <Stayintouch />
 
     </div>

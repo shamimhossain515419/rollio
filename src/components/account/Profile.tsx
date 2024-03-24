@@ -45,7 +45,7 @@ const Profile = ({ setActive }: any) => {
               </p>
             </div>
           </div>
-          <div className=" flex items-center gap-3 py-5">
+          <div className=" flex items-center gap-3 py-5 cursor-pointer">
             <div className=" bg-[#86777745] p-2 rounded-[4px]">
               <FaUser className=" text-[15px]" />
             </div>
@@ -167,6 +167,14 @@ const Profile = ({ setActive }: any) => {
               <TiArrowRightThick className="  -rotate-45" size={11} />
             </div>
           </Link>
+          <div onClick={() => setActive("change-password")} className=" flex items-center gap-2 py-1 cursor-pointer">
+            <div className="text-[15px] font-medium ">
+              <div >Change password</div>
+            </div>
+            <div className=" bg-[#5555555c]  rounded-[4px] inline-block p-[1px]">
+              <TiArrowRightThick className="  -rotate-45" size={11} />
+            </div>
+          </div>
         </div>
         {/* sign out button  */}
 

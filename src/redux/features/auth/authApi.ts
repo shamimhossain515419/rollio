@@ -5,7 +5,14 @@ export const authApi = apiSlice.injectEndpoints({
     fetchUser: builder.query({
       query: () => "profile",
     }),
+    changePassword: builder.mutation({
+      query: (data) => ({
+        url: "change-password",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useFetchUserQuery } = authApi;
+export const { useChangePasswordMutation, useFetchUserQuery } = authApi;

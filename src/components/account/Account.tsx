@@ -9,6 +9,7 @@ import Profile from "./Profile";
 import { accountToggle } from "@/redux/features/account/AccountSlice";
 import RegisterForm from "./RegisterForm";
 import EditProfile from "./EditProfile/EditProfile";
+import ChangePassword from "./ChangePassword";
 const accountItem = [
   {
     id: 1,
@@ -31,7 +32,7 @@ const Account = () => {
       <div className=" md:py-6 overflow-hidden relative">
         <div className=" flex justify-between items-center gap-2">
           <div className=" group  flex  items-center gap-2 cursor-pointer">
-            <h1 className="text-[17px]  capitalize  md:text-[22px] text-black font-normal">
+            <h1 onClick={() => setActive("profile")} className="text-[17px]  capitalize  md:text-[22px] text-black font-normal">
               {active === "for you" ? "Welcome" : active}
             </h1>
           </div>
@@ -49,18 +50,18 @@ const Account = () => {
           {active === "orders" && <Orders />}
           {active === "profile" && <Profile setActive={setActive} />}
           {active === "register" && <RegisterForm setActive={setActive} />}
-          {active === "edit-profile" && <EditProfile />}
+          {active === "edit-profile" && <EditProfile setActive={setActive} />}
+          {active === "change-password" && <ChangePassword setActive={setActive} />}
         </div>
       </div>
       <div className=" fixed  left-2 bottom-[30px]  max-w-[400px] h-[70px] w-full bg-white  md:w-[400px] rounded-[10px] overflow-hidden">
         <div className="      h-full border-t-[1.5px] border-[#0000005e]  flex items-start justify-between gap-3 text-black  bg-white  overflow-hidden">
           {accountItem?.map((item: any, index: number) => (
             <div
-              className={` ${
-                active == item?.name
-                  ? " border-t-[2px] border-[#3357fa]  z-40 opacity-100 "
-                  : " opacity-70   "
-              } text-center pt-2  w-full`}
+              className={` ${active == item?.name
+                ? " border-t-[2px] border-[#3357fa]  z-40 opacity-100 "
+                : " opacity-70   "
+                } text-center pt-2  w-full`}
               onClick={() => setActive(item?.name)}
               key={index}
             >
