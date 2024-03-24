@@ -89,7 +89,7 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
             layout="responsive"
             alt=""
           /> */}
-          <h1> {websiteInfo?.group_name} </h1>
+          <h1 className="text-[22px] uppercase  font-bold"> {websiteInfo?.group_name} </h1>
         </Link>
         {/* others */}
         <div className="flex justify-evenly items-center gap-4">

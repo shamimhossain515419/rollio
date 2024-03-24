@@ -3,11 +3,11 @@ import { useSession } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import { SiteModalToggle } from "@/redux/features/sitemodal/SiteModalSlice";
 import { accountToggle } from "@/redux/features/account/AccountSlice";
-
+import Cookies from "js-cookie";
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const { data: session, status }: any = useSession();
   const dispatch = useDispatch();
-
+  const data = Cookies.get("access-token");
   if (status == "loading") {
     return (
       <div className=" flex justify-center items-center min-h-[60vh]">
@@ -15,7 +15,7 @@ const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
       </div>
     );
   } else {
-    if (!session?.user) {
+    if (!session?.user || !data) {
       return (
         <div className="max-full w-[500px] mx-auto h-screen flex items-center">
           {!session?.user && (

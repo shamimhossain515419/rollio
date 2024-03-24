@@ -22,12 +22,6 @@ const NavbarModal = ({
     );
     setPrimaryCategory(myCategory);
   }, [primaryCategories, activeModal]);
-  console.log(topCategory);
-  console.log(activeModal);
-
-
-  console.log(primaryCategories);
-
 
   return (
     <div
