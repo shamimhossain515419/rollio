@@ -38,10 +38,6 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
     };
   }, []);
 
-
-
-  console.log(websiteInfo);
-
   return (
     <div
       className={`xl:mx-20 rounded-full px-8 py-2 z-50 sticky top-5 transition-all  ${scrolled ? "bg-white text-black" : "text-white"

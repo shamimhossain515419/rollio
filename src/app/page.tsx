@@ -17,13 +17,13 @@ async function getData() {
   ).json();
   let HandpickedInfo = await (
     await fetch(
-      `${process.env.BASE_URL}/api/featured-product/${process.env.GROUP_ID}/3`,
+      `${process.env.BASE_URL}/api/featured-product/${process.env.GROUP_ID}/4`,
       {
         next: { revalidate: 300 },
       }
     )
   ).json();
-  let res = await fetch(`${process.env.BASE_URL}/api/featured-product/${process.env.GROUP_ID}/2`, {
+  let res = await fetch(`${process.env.BASE_URL}/api/featured-product/${process.env.GROUP_ID}/3`, {
     next: { revalidate: 300 },
   });
   const products = await res.json();
@@ -34,7 +34,7 @@ const page = async () => {
 
   return (
     <div className="">
-      <Banner websiteInfo={websiteInfo?.data} />
+      <Banner websiteInfo={websiteInfo} />
       <BestSellers />
       <CategorySlider />
       <VideoSlider />

@@ -16,6 +16,11 @@ const Card = ({ button, fav, product }: any) => {
 
   const alreadyFav = favItems.find((fav: ProductInterface) => fav?.id === product?.id);
 
+  let photos = [];
+  if (product?.photos) {
+    photos.push(...product.photos.split(","));
+  }
+
   return (
     <div className="relative group max-w-[590px] block  bg-white rounded-3xl overflow-hidden">
       {/* fav icon */}
@@ -34,7 +39,7 @@ const Card = ({ button, fav, product }: any) => {
         <Link href={`/products/${product?.id}`} className=" h-full">
           <Image
             className=" w-full h-full "
-            src={process.env.BASE_URL + "/images/" + product?.photo}
+            src={process.env.BASE_URL + "/images/" + photos?.[0]}
             width={500}
             height={500}
             layout="responsive"
