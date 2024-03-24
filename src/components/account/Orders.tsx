@@ -7,7 +7,7 @@ import { OrderDetailsInterface } from "@/types/OrderDetailsInterface";
 const Orders = () => {
   const { data: sesstion } = useSession();
   const { data } = useGetOrdersQuery("");
-  console.log(data);
+
 
   //
   return (

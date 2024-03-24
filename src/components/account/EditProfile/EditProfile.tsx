@@ -13,7 +13,7 @@ const EditProfile = () => {
       email,
       password,
     };
-    console.log(value);
+   
   };
   return (
     <div>

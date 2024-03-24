@@ -5,7 +5,7 @@ import { SingleOrderInterface } from "@/types/OrderInterface";
 
 const OrderDetail = ({ order_id }: any) => {
   const { data } = useGetOrderDetailQuery(order_id);
-  console.log(data);
+ 
 
   return (
     <div className="max-w-[1000px] mx-auto bg-white bg-opacity-50  my-5 rounded-xl h-screen min-h-full ">
