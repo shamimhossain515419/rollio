@@ -18,10 +18,16 @@ const NavbarModal = ({
   const [primaryCategory, setPrimaryCategory] = useState<PrimaryCategoryInterface[]>([]);
   useEffect(() => {
     const myCategory = primaryCategories?.filter(
-      (category: PrimaryCategoryInterface) => category.top_category_id === activeModal
+      (category: PrimaryCategoryInterface) => category?.top_category_id === activeModal
     );
     setPrimaryCategory(myCategory);
   }, [primaryCategories, activeModal]);
+  console.log(topCategory);
+  console.log(activeModal);
+
+
+  console.log(primaryCategories);
+
 
   return (
     <div

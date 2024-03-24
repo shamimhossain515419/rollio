@@ -20,9 +20,7 @@ const Page = () => {
   const [orderProduct, { data: orderResult, isLoading, isSuccess, error }] =
     useOrderProductMutation();
   const { value: address_id } = useSelector((state: any) => state.addressSlice);
-
   const dispatch = useDispatch();
-
   const OrderHandler = async () => {
     if (!cartItems.length) {
       toast.error("Cart is empty");
@@ -49,8 +47,9 @@ const Page = () => {
     if (isSuccess && orderResult) {
       toast.success(orderResult?.message);
       dispatch(clearCart());
+      router.push("/");
     }
-  }, [orderResult, isSuccess, dispatch]);
+  }, [orderResult, isSuccess, router, dispatch]);
 
   return (
     <div>
