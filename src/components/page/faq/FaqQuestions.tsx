@@ -43,9 +43,6 @@ const FaqQuestions = ({ item }: any) => {
             <div
               dangerouslySetInnerHTML={{ __html: unescapeHtml(item?.details) }}
             />
-            {/* <p className="text-[13px] lg:text-[16px]">
-              {unescapeHtml(item?.details)}
-            </p> */}
           </div>
         </Collapse>
       </div>
