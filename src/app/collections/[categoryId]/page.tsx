@@ -139,7 +139,10 @@ const Page = async ({ params }: any) => {
             <Filter sizeColorData={sizeColorData}></Filter>
           </div>
 
-
+          <div className="  w-full">
+            {/* show Product */}
+            <ShowProductByCategory products={products} />
+          </div>
         </div>
       </div>
     </div>
