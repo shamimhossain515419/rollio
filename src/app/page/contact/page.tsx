@@ -24,10 +24,12 @@ const Page = () => {
 
   useEffect(() => {
     if (result) {
-      toast.success("Message sent successfully")
+      toast.success("Message sent successfully");
+      window.location.reload();
     }
 
-  }, [result])
+  }, [result]);
+
 
 
 
@@ -88,6 +90,7 @@ const Page = () => {
               className="border w-full h-[140px] rounded-3xl p-3 duration-300"
             />
           </div>
+
           <div className="mt-5 flex justify-center">
             <button
               className="bg-[#15151f] hover:bg-[#383849] text-white rounded-full px-8 py-4 duration-300 ease-in"
