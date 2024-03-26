@@ -4,10 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 const FetchData = async (id: string) => {
-  console.log(id);
   const res = await fetch(
     process.env.BASE_URL +
-      `/api/product/get-product-by-category/${process.env.GROUP_ID}/${id}`,
+    `/api/product/get-product-by-category/${process.env.GROUP_ID}/${id}`,
     {
       next: { revalidate: 300 },
     }
@@ -140,10 +139,7 @@ const Page = async ({ params }: any) => {
             <Filter sizeColorData={sizeColorData}></Filter>
           </div>
 
-          <div className="  w-full">
-            {/* show Product */}
-            <ShowProductByCategory products={products} />
-          </div>
+
         </div>
       </div>
     </div>
