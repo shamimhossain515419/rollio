@@ -53,7 +53,8 @@ const ProductDetailPage = ({ product }: any) => {
     setActiveSize("")
     setActiveColor("")
   };
-  //
+  console.log(productInfo);
+
   return (
     <>
       <div className="container mx-auto md:py-48 py-10">
@@ -87,61 +88,47 @@ const ProductDetailPage = ({ product }: any) => {
             </h1>
             <h2 className="text-2xl mb-10">TK {productInfo.sale_price}</h2>
             <p className="text-xl">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
-              maiores vitae aliquam ea quia adipisci ad reprehenderit laborum
-              distinctio. Neque asperiores quaerat distinctio voluptas
-              voluptates ab ullam, vero non voluptate.
+              {productInfo?.meta_description}
             </p>
-            {/* colors */}
+            {/* select color  */}
             <div className="py-10">
-              <h2 className="text-xl mb-4 ">Colors</h2>
-              <div className="flex gap-5 ">
-                {/* {product.colors.map((color, i: number) => (
-                  <div
-                    key={i}
-                    className={`${
-                      activeColor == i && "p-2 border "
-                    } rounded-2xl overflow-hidden w-[100px] h-[100px]`}
-                  >
-                    <Image
-                      onClick={() => setActiveColor(i)}
-                      className="rounded-2xl"
-                      src={color.image}
-                      width={90}
-                      height={90}
-                      alt=""
-                    />
-                  </div>
-                ))} */}
-
-                {colors.map((color: any) => (
-                  <div
-                    key={color?.color_id}
-                    onClick={() => setActiveColor(color?.color_id)}
-                    className={`${activeColor == color?.color_id && "p-2 border "
-                      } rounded-2xl overflow-hidden w-[60px] h-[60px] flex justify-center items-center`}
-                  >
-                    <div className="rounded-2xl ">
-                      <p>{color?.name}</p>
+              <h2 className="text-xl mb-4 ">Colors:</h2>
+              {
+                colors?.length ? <div className="flex gap-5 ">
+                  {colors.map((color: any) => (
+                    <div
+                      key={color?.color_id}
+                      onClick={() => setActiveColor(color?.color_id)}
+                      className={`${activeColor == color?.color_id && "p-2 border "
+                        } rounded-2xl overflow-hidden w-[60px] h-[60px] flex justify-center items-center`}
+                    >
+                      <div className="rounded-2xl ">
+                        <p>{color?.name}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div> : <div> One Color </div>
+              }
+
             </div>
             {/* sizes */}
             <div className="">
-              <h1 className="text-xl pb-4">4 US in stock 3 left</h1>
-              <div className="grid grid-cols-3 gap-4">
-                {product.sizes.map((size: any, i: number) => (
-                  <div
-                    onClick={() => setActiveSize(size.size_id)}
-                    key={i}
-                    className={`${activeSize == size.size_id && "text-black bg-white"
-                      } flex justify-center border rounded-xl p-2 cursor-pointer `}
-                  >
-                    <p>{size.name}</p>
-                  </div>
-                ))}
+              <h1 className="text-xl pb-4">Sizes</h1>
+              <div >
+                {product.sizes?.length ? <div className="grid grid-cols-3 gap-4">
+                  {product.sizes.map((size: any, i: number) => (
+                    <div
+                      onClick={() => setActiveSize(size.size_id)}
+                      key={i}
+                      className={`${activeSize == size.size_id && "text-black bg-white"
+                        } flex justify-center border rounded-xl p-2 cursor-pointer `}
+                    >
+                      <p>{size.name}</p>
+                    </div>
+                  ))}
+                </div> : <div>One size</div>
+                }
+
               </div>
             </div>
             {/* Sizing Guide */}
