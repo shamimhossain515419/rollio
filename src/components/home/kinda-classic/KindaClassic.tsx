@@ -9,7 +9,6 @@ const KindaClassic = ({ productInfo }: any) => {
         const pair = [products[i], products[i + 1]].filter(Boolean);
         newProducts.push(pair);
     }
-
     return (
         <div>
             <div className=" max-w-[1500px] mx-auto  px-4">
