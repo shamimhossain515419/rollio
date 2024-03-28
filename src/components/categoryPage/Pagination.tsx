@@ -6,23 +6,22 @@ import { useRouter } from "next/navigation";
 const itemsPerPage = 10; // Change this according to your requirement
 
 const Pagination = ({ currentPage, total_result }: any) => {
-  const data = Array.from({ length: total_result }, (_, i) => `Item ${i + 1}`);
+  const data = Array.from({ length: 50 }, (_, i) => `${i + 1}`);
 
   const router = useRouter();
-
-  const totalPages = Math.ceil(data.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentItems = data.slice(startIndex, endIndex);
-  console.log(currentPage);
+  const totalPages: any = Math.ceil(data.length / itemsPerPage);
+  let page;
+  if (totalPages > 3) {
+    page = 3;
+  } else {
+    page = totalPages;
+  }
 
   const nextPage = () => {
-    // setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
     router.push(`?page=${currentPage + 1}`);
   };
 
   const prevPage = () => {
-    // setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
     router.push(`?page=${currentPage - 1}`);
   };
 
@@ -37,7 +36,7 @@ const Pagination = ({ currentPage, total_result }: any) => {
       </button>
 
       <p className="flex gap-2">
-        {[...Array(totalPages)].map((_, i) => (
+        {[...Array(page)].map((_, i) => (
           <Link className="" key={i} href={`?page=${i + 1}`}>
             <div
               className={`${
@@ -48,6 +47,36 @@ const Pagination = ({ currentPage, total_result }: any) => {
             </div>
           </Link>
         ))}
+
+        {totalPages > 3 && (
+          <>
+            <Link className="" href={``}>
+              <div className={` bg-white p-2 rounded`}>....</div>
+            </Link>
+            <Link
+              className=""
+              key={totalPages - 1}
+              href={`?page=${totalPages - 1}`}
+            >
+              <div
+                className={`${
+                  currentPage == totalPages - 1 && "text-red-500"
+                } bg-white p-2 rounded`}
+              >
+                {totalPages - 1}
+              </div>
+            </Link>
+            <Link className="" key={totalPages} href={`?page=${totalPages}`}>
+              <div
+                className={`${
+                  currentPage == totalPages && "text-red-500"
+                } bg-white p-2 rounded`}
+              >
+                {totalPages}
+              </div>
+            </Link>
+          </>
+        )}
       </p>
       <button
         className="bg-white p-2 rounded"
