@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 const itemsPerPage = 10; // Change this according to your requirement
 
 const Pagination = ({ currentPage, total_result }: any) => {
-  const data = Array.from({ length: 50 }, (_, i) => `${i + 1}`);
+  const data = Array.from({ length: total_result }, (_, i) => `${i + 1}`);
 
   const router = useRouter();
   const totalPages: any = Math.ceil(data.length / itemsPerPage);
