@@ -1,13 +1,13 @@
+import Pagination from "@/components/categoryPage/Pagination";
 import ShowProductByCategory from "@/components/categoryPage/ShowProductByCategory";
 import Filter from "@/components/filter/Filter";
 import Image from "next/image";
 import Link from "next/link";
 
-const FetchData = async (id: string) => {
-  console.log(id);
+const FetchData = async (id: string, page: number) => {
   const res = await fetch(
     process.env.BASE_URL +
-      `/api/product/get-product-by-category/${process.env.GROUP_ID}/${id}`,
+      `/api/product/get-product-by-category/${process.env.GROUP_ID}/${id}?page=${page}`,
     {
       next: { revalidate: 300 },
     }
@@ -25,8 +25,12 @@ const FetchData = async (id: string) => {
   return { products, sizeColorData };
 };
 
-const Page = async ({ params }: any) => {
-  const { products, sizeColorData } = await FetchData(params.categoryId);
+const Page = async ({ params, searchParams }: any) => {
+  let page = parseInt(searchParams?.page);
+  if (!page) {
+    page = 1;
+  }
+  const { products, sizeColorData } = await FetchData(params.categoryId, page);
 
   return (
     <div className="px-4 max-w-[1700px] mx-auto ">
@@ -146,6 +150,7 @@ const Page = async ({ params }: any) => {
           </div>
         </div>
       </div>
+      <Pagination currentPage={page} total_result={products?.total_result} />
     </div>
   );
 };
