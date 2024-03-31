@@ -2,8 +2,6 @@ import CursorDesign from "@/components/utilityComponent/cursorDesign/CursorDesig
 import Image from "next/image";
 
 const Banner = ({ websiteInfo }: any) => {
-
-
   return (
     <div className="-mt-56 relative  overflow-hidden h-[120vh]">
       <div className=" relative  h-full">
