@@ -39,6 +39,7 @@ const AddReview = ({ product_id }: any) => {
   };
   useEffect(() => {
     if (createReviewResult && isSuccess) {
+      console.log(createReviewResult);
       toast.success(createReviewResult?.message);
     }
   }, [isSuccess, createReviewResult]);
