@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    BASE_URL: "http://127.0.0.1:8000",
+    BASE_URL: "https://getmicrojobs.com",
     GROUP_ID: "4",
   },
   images: {

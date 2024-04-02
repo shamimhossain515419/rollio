@@ -53,9 +53,8 @@ const ProductDetailPage = ({ product }: any) => {
     setActiveSize("")
     setActiveColor("")
   };
-  console.log(productInfo);
 
-  return (
+ return (
     <>
       <div className="container mx-auto md:py-48 py-10">
         <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-20 px-4 ">
