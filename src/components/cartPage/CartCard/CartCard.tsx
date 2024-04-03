@@ -19,7 +19,7 @@ const CartCard = () => {
       {cartItems.map((product: any, index: number) => (
         <div
           key={index}
-          className="relative p-5 grid grid-cols-3 gap-1 md:gap-2 lg:gap-4 xl:gap-5 w-full items-center"
+          className="relative px-5 grid grid-cols-3 gap-1 md:gap-2 lg:gap-4 xl:gap-5 w-full items-center"
         >
           {/* remove icon */}
           <div className=" absolute right-5 top-5">

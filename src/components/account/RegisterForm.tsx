@@ -23,11 +23,15 @@ const RegisterForm = ({ setActive }: any) => {
       });
       const user = await res.json();
 
+      console.log(user);
+      console.log("Mas");
+
       if (user?.status) {
         setActive("for you");
         toast.success(`${user.message}`);
       }
     } else {
+      toast.error(`Register Problem `);
       setError(" Password not match ");
     }
   };
