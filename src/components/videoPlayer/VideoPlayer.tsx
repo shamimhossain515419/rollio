@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const VideoPlayer = ({ videoUrl }: any) => {
   return (
@@ -8,11 +8,9 @@ const VideoPlayer = ({ videoUrl }: any) => {
         height="315"
         src={videoUrl}
         title="YouTube video player"
-        frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-        
+        // referrerpolicy="strict-origin-when-cross-origin"
+        // allowfullscreen
       ></iframe>
 
       {/* <video className=" videoCart w-full  rounded-3xl" autoPlay loop muted>
