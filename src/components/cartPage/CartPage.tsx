@@ -7,14 +7,16 @@ import { FaFirefox } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 const CartPage = () => {
-  const { totalAmount } = useSelector((state: any) => state.Cart);
+  const { totalAmount, totalQuantity } = useSelector(
+    (state: any) => state.Cart
+  );
   return (
     <div className="-mt-64 min-h-[120vh] bg-cover bg-center bg-[url('https://www.rollienation.com/cdn/shop/files/cart-desktop_2000x.jpg?v=1655178665')]">
       <div className="container mx-auto pt-72 pb-10 ">
         <div className=" px-4">
           <div className="text-white">
             <h1 className="text-center md:text-[77px] text-[30px] font-bold ">
-              Your Cart (2)
+              Your Cart Items {totalQuantity}
             </h1>
           </div>
           <div className="grid lg:grid-cols-2 gap-10">
@@ -51,9 +53,7 @@ const CartPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="">
-                <Newfind />
-              </div>
+              <div className="">{/* <Newfind /> */}</div>
             </div>
           </div>
         </div>

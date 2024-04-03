@@ -23,10 +23,11 @@ const Card = ({ button, fav, product }: any) => {
     photos.push(...product.photos.split(","));
   }
 
-  console.log(product?.video_url);
-
   return (
-    <div className="relative group max-w-[590px] block  bg-white rounded-3xl overflow-hidden">
+    <Link
+      href={`/products/${product?.id}`}
+      className="relative group max-w-[590px] block  bg-white rounded-3xl overflow-hidden"
+    >
       {/* fav icon */}
       {fav && (
         <div
@@ -90,7 +91,7 @@ const Card = ({ button, fav, product }: any) => {
         <h2 className="text-[16px] text-[#3d4246]">{product?.name}</h2>
         <p className="text-[rgba(21,21,31,.42)]">TK: {product?.sale_price}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 
