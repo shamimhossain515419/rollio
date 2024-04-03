@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "@/redux/features/cart/CartSlice";
 import { addFavItem } from "@/redux/features/favorite/favoriteSlice";
 import { ProductInterface } from "@/types/Productinterface";
-import VideoPlayer from "@/components/videoPlayer/VideoPlayer";
 import ReactPlayer from "react-player/lazy";
 
 const Card = ({ button, fav, product }: any) => {
