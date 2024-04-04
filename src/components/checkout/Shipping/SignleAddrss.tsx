@@ -13,6 +13,8 @@ export const SingleAddress = ({ address }: { address: AddressInterface }) => {
     useRemoveAddressMutation();
   const { refetch, isLoading } = useFetchAddressQuery("");
   const handleDelete = (id: any) => {
+    console.log(id);
+    return;
     RemoveAddress({
       address_id: id,
     });
@@ -33,8 +35,9 @@ export const SingleAddress = ({ address }: { address: AddressInterface }) => {
       <div>
         <div>
           <div
-            className={` ${value == address?.id && "bg-stone-200"
-              } border border-[#2e2e2eaf] flex justify-between items-center gap-2 p-4 rounded-[5px]`}
+            className={` ${
+              value == address?.id && "bg-stone-200"
+            } border border-[#2e2e2eaf] flex justify-between items-center gap-2 p-4 rounded-[5px]`}
           >
             <div className=" flex  items-center gap-4 md:gap-10 ">
               <div>
@@ -59,9 +62,9 @@ export const SingleAddress = ({ address }: { address: AddressInterface }) => {
             </div>
             <div>
               <div className="  flex gap-3 items-center  md:gap-5">
-                <button className="text-[16px] hover:bg-[#F5F5F5]  rounded-[5px] duration-300 font-semibold primary p-2  outline-0  border-none">
+                {/* <button className="text-[16px] hover:bg-[#F5F5F5]  rounded-[5px] duration-300 font-semibold primary p-2  outline-0  border-none">
                   Edit
-                </button>
+                </button> */}
                 <button
                   onClick={() => handleDelete(address?.id)}
                   className="text-[16px] hover:bg-[#F5F5F5]  rounded-[5px] duration-300 font-semibold primary p-2  outline-0  border-none"
