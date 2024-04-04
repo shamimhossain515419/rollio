@@ -14,7 +14,7 @@ const RegisterForm = ({ setActive }: any) => {
     const email = form?.email.value;
     const password = form?.password.value;
     const confirmpassword = form?.confirmpassword.value;
-    const data = { name, email, password };
+    const data = { name, email, password, group_id: process.env.GROUP_ID };
     if (password === confirmpassword) {
       const res = await fetch(`${process.env.BASE_URL}/api/register`, {
         method: "POST",
@@ -23,15 +23,13 @@ const RegisterForm = ({ setActive }: any) => {
       });
       const user = await res.json();
 
-      console.log(user);
-      console.log("Mas");
-
-      if (user?.status) {
+      if (user?.status == true) {
         setActive("for you");
         toast.success(`${user.message}`);
+      } else {
+        toast.error(`${user.message}`);
       }
     } else {
-      toast.error(`Register Problem `);
       setError(" Password not match ");
     }
   };
