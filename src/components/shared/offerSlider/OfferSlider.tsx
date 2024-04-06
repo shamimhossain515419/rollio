@@ -9,7 +9,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Link from "next/link";
 
-const OfferSlider = () => {
+const OfferSlider = ({ offers }: any) => {
+  console.log(offers);
   const customPrevButton = (
     <div className="custom-swiper-button-prev">
       {/* Your custom arrow or icon for the previous button */}
@@ -40,27 +41,20 @@ const OfferSlider = () => {
         loop={true}
         className="offerSwipper offerSliderItem xl:rounded-full"
       >
-        <SwiperSlide>
-          <Link href={"/campaign/1"} className="lg:text-[16px] text-[12px] ">
-            <div className="flex justify-center py-2  ">
-              Free international express shipping on orders over $140 USD
-            </div>
-          </Link>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Link href={"/campaign/1"} className="lg:text-[16px] text-[12px] ">
-            <div className="flex justify-center py-2  ">
-              Free international express shipping on orders over $140 USD
-            </div>
-          </Link>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Link href={"/campaign/1"} className="lg:text-[16px] text-[12px] ">
-            <div className="flex justify-center py-2  ">
-              Free international express shipping on orders over $140 USD
-            </div>
-          </Link>
-        </SwiperSlide>
+        {offers ? (
+          offers.map((offer: any, i: number) => (
+            <SwiperSlide key={i}>
+              <Link
+                href={`/campaign/${offer?.id}`}
+                className="lg:text-[16px] text-[12px] "
+              >
+                <div className="flex justify-center py-2  ">{offer?.name}</div>
+              </Link>
+            </SwiperSlide>
+          ))
+        ) : (
+          <div className="py-50">hello</div>
+        )}
       </Swiper>
 
       {/* Custom navigation buttons */}

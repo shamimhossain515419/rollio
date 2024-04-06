@@ -51,8 +51,13 @@ async function getData() {
       }
     )
   ).json();
+  let offers = await (
+    await fetch(`${process.env.BASE_URL}/api/offers/${process.env.GROUP_ID}`, {
+      next: { revalidate: 300 },
+    })
+  ).json();
 
-  return { topCategory, PrimaryCategory, websiteInfo };
+  return { topCategory, PrimaryCategory, websiteInfo, offers };
 }
 
 export default async function RootLayout({
@@ -61,7 +66,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   // topCategory
-  const { topCategory, PrimaryCategory, websiteInfo }: any = await getData();
+  const { topCategory, PrimaryCategory, websiteInfo, offers }: any =
+    await getData();
+
   return (
     <html className="scroll-smooth" lang="en">
       <body className={inter.className}>
@@ -69,7 +76,7 @@ export default async function RootLayout({
         <AuthProvider>
           <ReduxProvider>
             <TokenProvider>
-              <OfferSlider />
+              <OfferSlider offers={offers} />
               <Navbar
                 websiteInfo={websiteInfo}
                 topCategory={topCategory.topCategories}
