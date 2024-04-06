@@ -7,6 +7,7 @@ import { FaArrowRight } from "react-icons/fa6";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import Link from "next/link";
 
 const OfferSlider = () => {
   const customPrevButton = (
@@ -35,28 +36,42 @@ const OfferSlider = () => {
           nextEl: ".custom-swiper-button-next",
         }}
         modules={[Navigation]}
+        autoplay={{ delay: 300 }}
+        loop={true}
         className="offerSwipper offerSliderItem xl:rounded-full"
       >
         <SwiperSlide>
-          <div className="flex justify-center py-2  ">
-            <p className="lg:text-[16px] text-[12px]">
+          <Link href={"/campaign/1"} className="lg:text-[16px] text-[12px] ">
+            <div className="flex justify-center py-2  ">
               Free international express shipping on orders over $140 USD
-            </p>
-          </div>
+            </div>
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="flex justify-center py-2  ">
-            <p className="lg:text-[16px] text-[12px]">
+          <Link href={"/campaign/1"} className="lg:text-[16px] text-[12px] ">
+            <div className="flex justify-center py-2  ">
               Free international express shipping on orders over $140 USD
-            </p>
-          </div>
+            </div>
+          </Link>
+        </SwiperSlide>
+        <SwiperSlide>
+          <Link href={"/campaign/1"} className="lg:text-[16px] text-[12px] ">
+            <div className="flex justify-center py-2  ">
+              Free international express shipping on orders over $140 USD
+            </div>
+          </Link>
         </SwiperSlide>
       </Swiper>
 
       {/* Custom navigation buttons */}
-      <div className="md:flex hidden justify-between z-40 absolute top-3 w-full px-5 ">
-        <div className="custom-swiper-button-prev">{customPrevButton}</div>
-        <div className="custom-swiper-button-next">{customNextButton}</div>
+      {/* md:flex hidden justify-between z-40 absolute top-3 w-full px-5  */}
+      <div className="">
+        <div className="absolute left-3 z-40 top-[14px] custom-swiper-button-prev cursor-pointer">
+          {customPrevButton}
+        </div>
+        <div className="absolute right-3 z-40 top-[14px] custom-swiper-button-next cursor-pointer">
+          {customNextButton}
+        </div>
       </div>
     </div>
   );
