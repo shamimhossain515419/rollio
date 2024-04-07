@@ -19,7 +19,9 @@ const page = async ({ params }: any) => {
 
   return (
     <div className="px-4 max-w-[1700px] mx-auto">
-      <h1>{products?.offer?.name}</h1>
+      <h1 className="font-bold text-[30px] text-center">
+        {products?.offer?.name}
+      </h1>
       <Campaign products={products?.products} />
     </div>
   );
