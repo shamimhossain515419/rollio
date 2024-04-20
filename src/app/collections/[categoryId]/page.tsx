@@ -5,24 +5,28 @@ import Image from "next/image";
 import Link from "next/link";
 
 const FetchData = async (id: string, page: number) => {
-  const res = await fetch(
-    process.env.BASE_URL +
-      `/api/product/get-product-by-category/${process.env.GROUP_ID}/${id}?page=${page}`,
-    {
-      next: { revalidate: 300 },
-    }
-  );
-  const products = await res.json();
+  try {
+    const res = await fetch(
+      process.env.BASE_URL +
+        `/api/product/get-product-by-category/${process.env.GROUP_ID}/${id}?page=${page}`,
+      {
+        next: { revalidate: 300 },
+      }
+    );
+    const products = await res.json();
 
-  const sizeColorRes = await fetch(
-    process.env.BASE_URL + `/api/product/get-color-and-sizes`,
-    {
-      next: { revalidate: 300 },
-    }
-  );
-  const sizeColorData = await sizeColorRes.json();
+    const sizeColorRes = await fetch(
+      process.env.BASE_URL + `/api/product/get-color-and-sizes`,
+      {
+        next: { revalidate: 300 },
+      }
+    );
+    const sizeColorData = await sizeColorRes.json();
 
-  return { products, sizeColorData };
+    return { products, sizeColorData };
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 const Page = async ({ params, searchParams }: any) => {
@@ -30,7 +34,7 @@ const Page = async ({ params, searchParams }: any) => {
   if (!page) {
     page = 1;
   }
-  const { products, sizeColorData } = await FetchData(params.categoryId, page);
+  const data: any = await FetchData(params.categoryId, page);
 
   return (
     <div className="px-4 max-w-[1700px] mx-auto ">
@@ -141,16 +145,19 @@ const Page = async ({ params, searchParams }: any) => {
 
           <div className=" py-5  ">
             {/* filter section  */}
-            <Filter sizeColorData={sizeColorData}></Filter>
+            <Filter sizeColorData={data?.sizeColorData}></Filter>
           </div>
 
           <div className="  w-full">
             {/* show Product */}
-            <ShowProductByCategory products={products} />
+            <ShowProductByCategory products={data?.products} />
           </div>
         </div>
       </div>
-      <Pagination currentPage={page} total_result={products?.total_result} />
+      <Pagination
+        currentPage={page}
+        total_result={data?.products?.total_result}
+      />
     </div>
   );
 };

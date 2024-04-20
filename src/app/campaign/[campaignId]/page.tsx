@@ -14,8 +14,6 @@ const FetchData = async (id: string) => {
 
 const page = async ({ params }: any) => {
   const { products }: any = await FetchData(params?.campaignId);
-  console.log(products?.products);
-  console.log(params?.campaignId);
 
   return (
     <div className="px-4 max-w-[1700px] mx-auto">

@@ -5,17 +5,12 @@ import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { FaArrowLeftLong, FaArrowRight } from "react-icons/fa6";
-import Card from "@/components/utilityComponent/card/Card";
-import CategoryCard from "@/components/utilityComponent/CategoryCard/CategoryCard";
+
 import Image from "next/image";
-import { useState } from "react";
+
 import Link from "next/link";
 
 const CategorySlider = ({ PrimaryCategory }: any) => {
-  const [derby, setDerby] = useState(false);
-  const [Sneakers, setSneakers] = useState(false);
-  const [Icons, setIcons] = useState(false);
-
   const customPrevButton = (
     <div className="custom-swiper-button-prev-category s w-12 h-12 rounded-full flex items-center justify-center">
       <span className=" text-white ">
