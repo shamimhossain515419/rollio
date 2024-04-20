@@ -42,23 +42,20 @@ const Page = async ({ params, searchParams }: any) => {
         <div className="">
           <div className=" py-10">
             {/* section title  */}
-            <p className="text-[20px] tracking-[2px] text-white font-medium uppercase text-center">
-              {" "}
-              {params.categoryId}
-            </p>
-            <h1 className="text-[25px]  md:text-[40px]  xl:text-[60px]  2xl:text-[80px] font-bold text-white text-center">
+
+            {/* <h1 className="text-[25px]  md:text-[40px]  xl:text-[60px]  2xl:text-[80px] font-bold text-white text-center">
               Every style, for any day
-            </h1>
+            </h1> */}
 
             {/* QUICK LINKS section  */}
             <div className=" py-7">
               {/* quick link  title */}
               <h1 className="text-[17px] tracking-[2px] text-white font-medium uppercase text-center">
-                Quick Links{" "}
+                Quick Links
               </h1>
 
               {/* {quick link cart } */}
-              <div className="flex  flex-wrap  items-center justify-center gap-5 md:gap-14  py-9">
+              {/* <div className="flex  flex-wrap  items-center justify-center gap-5 md:gap-14  py-9">
                 <Link href={"/collections/derby"}>
                   <div className="border border-white p-2 rounded-full">
                     <Image
@@ -139,7 +136,7 @@ const Page = async ({ params, searchParams }: any) => {
                     Boots
                   </p>
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
 

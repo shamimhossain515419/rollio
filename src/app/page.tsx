@@ -39,7 +39,22 @@ async function getData() {
       }
     );
     const products = await res.json();
-    return { websiteInfo, products, VideoFeatured, HandpickedInfo };
+
+    let PrimaryCategory = await (
+      await fetch(
+        `${process.env.BASE_URL}/api/category/get-all-primary-category/${process.env.GROUP_ID}`,
+        {
+          next: { revalidate: 300 },
+        }
+      )
+    ).json();
+    return {
+      websiteInfo,
+      products,
+      VideoFeatured,
+      HandpickedInfo,
+      PrimaryCategory,
+    };
   } catch (e) {
     console.log(e);
   }
@@ -51,7 +66,7 @@ const page = async () => {
     <div className="">
       <Banner websiteInfo={data?.websiteInfo} />
       <BestSellers />
-      <CategorySlider />
+      <CategorySlider PrimaryCategory={data?.PrimaryCategory} />
       <VideoSlider VideoFeatured={data?.VideoFeatured} />
       <KindaClassic productInfo={data?.products} />
       <Handpicked HandpickedInfo={data?.HandpickedInfo} />

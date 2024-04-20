@@ -11,13 +11,13 @@ async function getData(id: string) {
 
     return { product };
   } catch (error) {
+    console.log(error);
     return [];
   }
 }
 
 const page = async ({ params }: any) => {
   const { product }: any = await getData(params.productId);
-
 
   return (
     <div className="">

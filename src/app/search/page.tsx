@@ -1,19 +1,20 @@
+import SearchByProduct from "@/components/showProduct/SearchByProduct";
+import { Suspense } from "react";
 
-import SearchByProduct from '@/components/showProduct/SearchByProduct';
-import React from 'react';
 const Page = async ({ searchParams }: any) => {
-
-    return (
-        <>
-            <div className='px-4 max-w-[1700px] mx-auto '>
-
-                <div className="  w-full">
-                    {/* show Product */}
-                    <SearchByProduct keywords={searchParams?.product} />
-                </div>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className="px-4 max-w-[1700px] mx-auto ">
+        <div className="  w-full">
+          {/* show Product */}
+          <Suspense fallback={<>Loading</>}>
+            {" "}
+            <SearchByProduct keywords={searchParams?.product} />
+          </Suspense>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Page;

@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "@/redux/features/cart/CartSlice";
 import toast from "react-hot-toast";
 import AddReview from "../ProductReviews/AddReview";
+import ReactPlayer from "react-player";
 
 const ProductDetailPage = ({ product }: any) => {
   const dispatch = useDispatch();
@@ -45,16 +46,16 @@ const ProductDetailPage = ({ product }: any) => {
       size: activeSize,
       extraIngredients: {
         size: activeSize,
-        color: activeColor
+        color: activeColor,
       },
       photos: photos,
     };
     dispatch(addItem(values));
-    setActiveSize("")
-    setActiveColor("")
+    setActiveSize("");
+    setActiveColor("");
   };
 
- return (
+  return (
     <>
       <div className="container mx-auto md:py-48 py-10">
         <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-20 px-4 ">
@@ -65,6 +66,24 @@ const ProductDetailPage = ({ product }: any) => {
           </div>
           <div className="md:block hidden xl:col-span-2 lg:col-span-1">
             <div className="grid grid-cols-2 gap-5">
+              {productInfo?.video_url && (
+                <div className=" rounded-3xl  overflow-hidden">
+                  <ReactPlayer
+                    width={`100%`}
+                    height={`100%`}
+                    muted
+                    playing
+                    loop
+                    url={productInfo?.video_url}
+                    config={{
+                      youtube: {
+                        playerVars: { showinfo: 0 },
+                      },
+                    }}
+                  />
+                </div>
+              )}
+
               {photos.map((photo: any, i: number) => (
                 <div key={i} className=" rounded-3xl  overflow-hidden">
                   <Image
@@ -86,48 +105,51 @@ const ProductDetailPage = ({ product }: any) => {
               {productInfo.name}
             </h1>
             <h2 className="text-2xl mb-10">TK {productInfo.sale_price}</h2>
-            <p className="text-xl">
-              {productInfo?.meta_description}
-            </p>
+            <p className="text-xl">{productInfo?.meta_description}</p>
             {/* select color  */}
             <div className="py-10">
               <h2 className="text-xl mb-4 ">Colors:</h2>
-              {
-                colors?.length ? <div className="flex gap-5 ">
+              {colors?.length ? (
+                <div className="flex gap-5 ">
                   {colors.map((color: any) => (
                     <div
                       key={color?.color_id}
                       onClick={() => setActiveColor(color?.color_id)}
-                      className={`${activeColor == color?.color_id && "p-2 border "
-                        } rounded-2xl overflow-hidden w-[60px] h-[60px] flex justify-center items-center`}
+                      className={`${
+                        activeColor == color?.color_id && "p-2 border "
+                      } rounded-2xl overflow-hidden w-[60px] h-[60px] flex justify-center items-center`}
                     >
                       <div className="rounded-2xl ">
                         <p>{color?.name}</p>
                       </div>
                     </div>
                   ))}
-                </div> : <div> One Color </div>
-              }
-
+                </div>
+              ) : (
+                <div> One Color </div>
+              )}
             </div>
             {/* sizes */}
             <div className="">
               <h1 className="text-xl pb-4">Sizes</h1>
-              <div >
-                {product.sizes?.length ? <div className="grid grid-cols-3 gap-4">
-                  {product.sizes.map((size: any, i: number) => (
-                    <div
-                      onClick={() => setActiveSize(size.size_id)}
-                      key={i}
-                      className={`${activeSize == size.size_id && "text-black bg-white"
+              <div>
+                {product.sizes?.length ? (
+                  <div className="grid grid-cols-3 gap-4">
+                    {product.sizes.map((size: any, i: number) => (
+                      <div
+                        onClick={() => setActiveSize(size.size_id)}
+                        key={i}
+                        className={`${
+                          activeSize == size.size_id && "text-black bg-white"
                         } flex justify-center border rounded-xl p-2 cursor-pointer `}
-                    >
-                      <p>{size.name}</p>
-                    </div>
-                  ))}
-                </div> : <div>One size</div>
-                }
-
+                      >
+                        <p>{size.name}</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div>One size</div>
+                )}
               </div>
             </div>
             {/* Sizing Guide */}
