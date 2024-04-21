@@ -24,6 +24,15 @@ async function getData() {
         }
       )
     ).json();
+    let SocailFeatured = await (
+      await fetch(
+        `${process.env.BASE_URL}/api/social/${process.env.GROUP_ID}`,
+        {
+          next: { revalidate: 300 },
+        }
+      )
+    ).json();
+
     let HandpickedInfo = await (
       await fetch(
         `${process.env.BASE_URL}/api/featured-product/${process.env.GROUP_ID}/4`,
@@ -54,6 +63,7 @@ async function getData() {
       VideoFeatured,
       HandpickedInfo,
       PrimaryCategory,
+      SocailFeatured
     };
   } catch (e) {
     console.log(e);
@@ -70,7 +80,7 @@ const page = async () => {
       <VideoSlider VideoFeatured={data?.VideoFeatured} />
       <KindaClassic productInfo={data?.products} />
       <Handpicked HandpickedInfo={data?.HandpickedInfo} />
-      <Stayintouch></Stayintouch>
+      <Stayintouch stayInfo={data?.SocailFeatured}></Stayintouch>
     </div>
   );
 };

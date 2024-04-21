@@ -4,30 +4,37 @@ import React from "react";
 import { FaFacebookF, FaPinterest, FaTiktok } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 
-const Stayintouch = () => {
+const Stayintouch = ({stayInfo}:any) => {
+    console.log(stayInfo)
+      const facebook=stayInfo?.data?.[0];
+      const instagram=stayInfo?.data?.[1];
+      const tiktok=stayInfo?.data?.[2];
+      const pinterest=stayInfo?.data?.[3];
     return (
         <div className="bg-white   px-4 rounded-3xl w-full overflow-hidden ">
             <div className=" max-w-[1500px] mx-auto  py-3 md:px-10">
                 <div className="  md:p-10 w-full">
                     <div className="  flex justify-between gap-5 pb-5">
                         {/* first  social  media section  */}
+
                         <div className=" flex items-start gap-5">
                             <div className=" pt-5  bouncing-element rounded-[29px] overflow-hidden ">
                                 <Image
                                     className="rounded-2xl"
                                     width={200}
                                     height={200}
-                                    src={
-                                        "https://www.rollienation.com/cdn/shop/files/influencer-1_224x.webp?v=1659490475"
-                                    }
+                                    src={`${process.env.BASE_URL}/images/${facebook?.image}`}
                                     alt="image"
                                 ></Image>
                             </div>
                             <Link
-                                href={"/"}
+                                href={facebook?.url}
+                                target="_blanck"
                                 className="   hidden border lg:inline-block duration-200  cursor-pointer  border-gray-600 p-4 rounded-full hover:text-white hover:bg-[#C2BFDF] "
                             >
-                                <FaFacebookF size={21}></FaFacebookF>
+                               <div dangerouslySetInnerHTML={{__html:facebook?.icone}}>
+                                 
+                               </div>
                             </Link>
                         </div>
                         <div className=" flex items-center gap-5  ">
@@ -36,17 +43,18 @@ const Stayintouch = () => {
                                     className="  bouncing-element  rounded-2xl h-full w-full  object-contain"
                                     width={250}
                                     height={250}
-                                    src={
-                                        "https://www.rollienation.com/cdn/shop/files/influencer-2_200x.webp?v=1659490489"
-                                    }
+                                    src={`${process.env.BASE_URL}/images/${instagram?.image}`}
                                     alt="image"
                                 ></Image>
                             </div>
                             <Link
-                                href={"/"}
+                             href={instagram?.url}
+                             target="_blanck"
                                 className=" border hidden  lg:inline-block duration-200  cursor-pointer  border-gray-600 p-4 rounded-full hover:text-white hover:bg-[#C2BFDF] "
                             >
-                                <FaInstagram size={21}></FaInstagram>
+                                   <div dangerouslySetInnerHTML={{__html:instagram?.icone}}>
+                                 
+                                 </div>
                             </Link>
                         </div>
                     </div>
@@ -81,38 +89,40 @@ const Stayintouch = () => {
                     <div className="  flex justify-between py-3  gap-5 xl:mt-[-82px]">
                         <div className=" flex items-center gap-5">
                             <Link
-                                href={"/"}
+                                href={tiktok?.url}
+                                target="_blanck"
                                 className=" border hidden  lg:inline-block duration-200  cursor-pointer  border-gray-600 p-4 rounded-full hover:text-white hover:bg-[#C2BFDF] "
                             >
-                                <FaTiktok size={21}></FaTiktok>
+                                  <div dangerouslySetInnerHTML={{__html:tiktok?.icone}}>
+                                 
+                                 </div>
                             </Link>
                             <div className=" pt-5 bouncing-element  rounded-[29px]  overflow-hidden">
                                 <Image
                                     className="rounded-2xl"
                                     width={200}
                                     height={200}
-                                    src={
-                                        "https://www.rollienation.com/cdn/shop/files/influencer-3_224x.webp?v=1659490508"
-                                    }
+                                    src={`${process.env.BASE_URL}/images/${tiktok?.image}`}
                                     alt="image"
                                 ></Image>
                             </div>
                         </div>
                         <div className="flex items-center gap-5 ">
                             <Link
-                                href={"/"}
+                             href={pinterest?.url}
+                             target="_blanck"
                                 className=" border hidden  lg:inline-block duration-200  cursor-pointer  border-gray-600 p-4 rounded-full hover:text-white hover:bg-[#C2BFDF] "
                             >
-                                <FaPinterest size={21}></FaPinterest>
+                                  <div dangerouslySetInnerHTML={{__html:pinterest?.icone}}>
+                                 
+                                 </div>
                             </Link>
                             <div className=" rounded-[29px]   ">
                                 <Image
                                     className="rounded-2xl bouncing-element h-full w-full  object-cover"
                                     width={250}
                                     height={250}
-                                    src={
-                                        "https://www.rollienation.com/cdn/shop/files/influencer-4_280x.webp?v=1659490523"
-                                    }
+                                    src={`${process.env.BASE_URL}/images/${pinterest?.image}`}
                                     alt="image"
                                 ></Image>
                             </div>
