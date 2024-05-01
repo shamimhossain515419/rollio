@@ -149,7 +149,7 @@ const Page = () => {
       </div>
 
       <VideoSlider VideoFeatured={VideoFeatured} />
-      <Stayintouch />
+      {/* <Stayintouch /> */}
 
     </div>
   );

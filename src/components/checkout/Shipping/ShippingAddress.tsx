@@ -34,10 +34,8 @@ const ShippingAddress = () => {
     const form: any = e.target;
     const first_name = form?.first_name.value;
     const last_Name = form?.last_Name.value;
-    const company = form?.Company.value;
     const address = form?.Address.value;
-    const apartment = form?.Apartment.value;
-    const city = form?.City.value;
+    const city = form?.city.value;
     const zip_code = form?.Postal_code.value;
     const mobile = form?.Phone.value;
     const country = selectedOption?.value;
@@ -47,7 +45,7 @@ const ShippingAddress = () => {
       country,
       country_code: 3434,
       last_Name,
-      city: "Dhaka",
+      city ,
       address,
       mobile,
       zip_code,
@@ -94,7 +92,7 @@ const ShippingAddress = () => {
       }
 
 
-      {addAddress && (
+      {addAddress || !addressData?.length && (
         <form onSubmit={SaveShippingHandler}>
           {/* country  */}
           <div className="">
@@ -136,21 +134,7 @@ const ShippingAddress = () => {
               placeholder="Last Name"
             />
           </div>
-
-          {/* Company  */}
-          <div className="pt-2">
-            <label className="py-2 block" htmlFor="Company">
-              Company (optional)
-            </label>
-            <input
-              name="Company"
-              className="border-2 p-1 w-full focus:outline-none focus:border-black ease-in duration-300"
-              type="text"
-              id="Company"
-              placeholder="Company"
-            />
-          </div>
-          {/* Address  */}
+ {/* Address  */}
           <div className="pt-2">
             <label className="py-2 block" htmlFor="Address">
               Address
@@ -163,29 +147,14 @@ const ShippingAddress = () => {
               placeholder="Address"
             />
           </div>
-
-          {/* Apartment  */}
-          <div className="pt-2">
-            <label className="py-2 block" htmlFor="Apartment">
-              Apartment, suite, etc. (optional)
-            </label>
-            <input
-              name="Apartment"
-              className="border-2 p-1 w-full focus:outline-none focus:border-black ease-in duration-300"
-              type="text"
-              id="Apartment"
-              placeholder="Apartment"
-            />
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
+ <div className="grid grid-cols-2 gap-4">
             {/* City  */}
             <div className="pt-2">
               <label className="py-2 block" htmlFor="City">
                 City
               </label>
               <input
-                name="City"
+                name="city"
                 className="border-2 p-1 w-full focus:outline-none focus:border-black ease-in duration-300"
                 type="text"
                 id="City"
