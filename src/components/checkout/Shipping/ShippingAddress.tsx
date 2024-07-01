@@ -17,8 +17,8 @@ import { Collapse } from "react-collapse";
 import { IoIosArrowUp } from "react-icons/io";
 const ShippingAddress = () => {
   const router = useRouter();
-  const [allCountry, setAllCountry] = useState([]);
-  const [selectCountry, setSelectCountry] = useState();
+  const [allCountry, setAllCountry] = useState<any>([]);
+  const [selectCountry, setSelectCountry] = useState<any>();
   const [activeCountry, setActiveCountry] = useState(false);
   const { data: addressData, refetch } = useFetchAddressQuery("as");
   const [createAddress, { data: createResult, isLoading, error, isSuccess }] =
@@ -51,9 +51,7 @@ const ShippingAddress = () => {
       zip_code,
       state: state,
     };
-    console.log(data);
     const res = await createAddress(data);
-    console.log(res);
   };
 
   useEffect(() => {
@@ -96,7 +94,7 @@ const ShippingAddress = () => {
   useEffect(() => {
     if (allCountry?.length && !selectCountry) {
       const activeCountry = allCountry?.find(
-        (item) => item?.countryname === "Bangladesh"
+        (item: any) => item?.countryname === "Bangladesh"
       );
       setSelectCountry(activeCountry);
     }
