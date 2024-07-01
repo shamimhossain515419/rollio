@@ -4,7 +4,7 @@ import ProductsSlider from "@/components/shared/ProductsSlider/ProductsSlider";
 //     await fetch(
 //       `${process.env.BASE_URL}product/get-product-by-top-category/1`,
 //       {
-//         next: { revalidate: 300 },
+//         next: { revalidate: 30},
 //       }
 //     )
 //   ).json();

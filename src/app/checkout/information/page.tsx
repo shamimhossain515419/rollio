@@ -1,8 +1,8 @@
-import Image from "next/image";
+
 import { IoIosArrowForward } from "react-icons/io";
-import ceoImage from "@/assets/image/ceo.webp";
 import ShippingAddress from "@/components/checkout/Shipping/ShippingAddress";
 import Link from "next/link";
+import ContactInfo from "@/components/checkout/ContactInfo/ContactInfo";
 
 const page = () => {
   return (
@@ -15,26 +15,8 @@ const page = () => {
         <Link href={"/checkout/payment"}>Payment</Link>
       </div>
       {/* contact */}
-      <div className="my-5">
-        <h2 className="text-lg">Contact</h2>
-        <div className="flex gap-2 mt-2 ">
-          {/* profile Image */}
-          <div className="">
-            <Image
-              className=" rounded-md "
-              src={ceoImage}
-              width={50}
-              height={50}
-              alt=""
-            />
-          </div>
-          {/* email and logout */}
-          <div className="flex flex-col justify-between py-1">
-            <p>mdmasude7@gmail.com</p>
-            <p className="cursor-pointer">Logout</p>
-          </div>
-        </div>
-      </div>
+      <ContactInfo />
+     
       <div className="py-3 flex  gap-2 ">
         <input className="p-1" type="checkbox" name="" id="email" />
         <label className="cursor-pointer" htmlFor="email">

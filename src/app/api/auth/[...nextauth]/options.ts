@@ -17,7 +17,7 @@ const authOptions: any = {
       },
       async authorize(credentials) {
         try {
-          const res = await fetch(`https://getmicrojobs.com/api/login`, {
+          const res = await fetch(`https://dejavu.lifestyle/api/login`, {
             method: "POST",
             body: JSON.stringify(credentials),
             headers: { "Content-Type": "application/json" },

@@ -42,7 +42,7 @@ const CartCard = () => {
               height={100}
               layout="responsive"
               // src={product?.image1}
-              src={`https://getmicrojobs.com/images/${product?.photos[0]?.photo}`}
+              src={`https://dejavu.lifestyle/images/${product?.photos[0]?.photo}`}
               alt="image"
             ></Image>
           </div>

@@ -33,7 +33,7 @@ async function getData() {
       await fetch(
         `${process.env.BASE_URL}/api/category/top-category/${process.env.GROUP_ID}`,
         {
-          next: { revalidate: 300 },
+          next: { revalidate: 30 },
         }
       )
     ).json();
@@ -41,7 +41,7 @@ async function getData() {
       await fetch(
         `${process.env.BASE_URL}/api/category/get-all-primary-category/${process.env.GROUP_ID}`,
         {
-          next: { revalidate: 300 },
+          next: { revalidate: 30 },
         }
       )
     ).json();
@@ -49,7 +49,7 @@ async function getData() {
       await fetch(
         `${process.env.BASE_URL}/api/group-information/${process.env.GROUP_ID}`,
         {
-          next: { revalidate: 300 },
+          next: { revalidate: 30 },
         }
       )
     ).json();
@@ -57,7 +57,7 @@ async function getData() {
       await fetch(
         `${process.env.BASE_URL}/api/offers/${process.env.GROUP_ID}`,
         {
-          next: { revalidate: 300 },
+          next: { revalidate: 30 },
         }
       )
     ).json();
@@ -66,6 +66,20 @@ async function getData() {
   } catch (err) {
     console.log(err);
   }
+}
+
+async function FAQsInfo() {
+  let faqs = await (
+    await fetch(
+      // `${process.env.BASE_URL}/api/get-faqs/${process.env.GROUP_ID}`,
+      `${process.env.BASE_URL}/api/get-faqs/${1}`,
+      {
+        next: { revalidate: 30 },
+      }
+    )
+  ).json();
+
+  return { faqs };
 }
 
 export default async function RootLayout({
@@ -77,6 +91,7 @@ export default async function RootLayout({
   const { topCategory, PrimaryCategory, websiteInfo, offers }: any =
     await getData();
   metadata.title = websiteInfo?.group_name;
+  const { faqs } = await FAQsInfo();
 
   return (
     <html className="scroll-smooth" lang="en">
@@ -95,7 +110,7 @@ export default async function RootLayout({
                 primaryCategories={PrimaryCategory.primaryCategories}
               />
               {children}
-              <Footer websiteInfo={websiteInfo.data} />
+              <Footer faqs={faqs?.faqs} websiteInfo={websiteInfo.data} />
               <ResponsiveMenu></ResponsiveMenu>
               <YourCart></YourCart>
               <SiteModal></SiteModal>

@@ -14,12 +14,13 @@ import { SiteModalToggle } from "@/redux/features/sitemodal/SiteModalSlice";
 import { accountToggle } from "@/redux/features/account/AccountSlice";
 import { useDispatch } from "react-redux";
 
-const Footer = ({ websiteInfo }: any) => {
+const Footer = ({ websiteInfo, faqs }: any) => {
   const [help, setHelp] = useState(false);
   const [contact, setContact] = useState(false);
   const [shop, setShop] = useState(false);
 
   const dispatch = useDispatch();
+
   return (
     <div className="  px-4 md:px-10 pt-10">
       <div className=" py-10">
@@ -112,130 +113,25 @@ const Footer = ({ websiteInfo }: any) => {
                         </span>
                       </div>
                     </li>
-                    <li className="group  relative  duration-500  flex items-center py-1 ">
-                      <Link
-                        href={"/"}
-                        className="   duration-500 flex items-center  font-bold"
-                      >
-                        <div className=" group-hover:w-[20px] w-0 duration-500 overflow-hidden ">
-                          <p className=" duration-500   w-[13px] h-[13px]  border-2  border-white  rounded-full"></p>
-                        </div>
-                        <span className=" text-[18px] lx:text-[22px]">
-                          Educator Offer
-                        </span>
-                      </Link>
-                    </li>
-                    <li className="group  relative  duration-500  flex items-center py-1  ">
-                      <Link
-                        href={"/page/shipping"}
-                        className="   duration-500 flex items-center  font-bold"
-                      >
-                        <div className=" group-hover:w-[20px] w-0 duration-500 overflow-hidden ">
-                          <p className=" duration-500   w-[13px] h-[13px]  border-2  border-white  rounded-full"></p>
-                        </div>
-                        <span className=" text-[18px] lx:text-[22px]">
-                          Shipping
-                        </span>
-                      </Link>
-                    </li>
-                    <li className="group  relative  duration-500  flex items-center py-1  ">
-                      <Link
-                        href={"/page/faq"}
-                        className="   duration-500 flex items-center  font-bold"
-                      >
-                        <div className=" group-hover:w-[20px] w-0 duration-500 overflow-hidden ">
-                          <p className=" duration-500   w-[13px] h-[13px]  border-2  border-white  rounded-full"></p>
-                        </div>
-                        <span className=" text-[18px] lx:text-[22px]">
-                          FAQs
-                        </span>
-                      </Link>
-                    </li>
-                    <li className="group  relative  duration-500  flex items-center py-1 ">
-                      <Link
-                        href={"/"}
-                        className="   duration-500 flex items-center  font-bold"
-                      >
-                        <div className=" group-hover:w-[20px] w-0 duration-500 overflow-hidden ">
-                          <p className=" duration-500   w-[13px] h-[13px]  border-2  border-white  rounded-full"></p>
-                        </div>
-                        <span className=" text-[18px] lx:text-[22px]">
-                          {" "}
-                          Student Offer
-                        </span>
-                      </Link>
-                    </li>
-                    <li className="group  relative  duration-500  flex items-center py-1 ">
-                      <Link
-                        href={"/page/returns"}
-                        className="   duration-500 flex items-center  font-bold"
-                      >
-                        <div className=" group-hover:w-[20px] w-0 duration-500 overflow-hidden ">
-                          <p className=" duration-500   w-[13px] h-[13px]  border-2  border-white  rounded-full"></p>
-                        </div>
-                        <span className=" text-[18px] lx:text-[22px]">
-                          {" "}
-                          Returns
-                        </span>
-                      </Link>
-                    </li>
 
-                    <li className="group  relative  duration-500  flex items-center py-1 ">
-                      <Link
-                        href={"/"}
-                        className="   duration-500 flex items-center  font-bold"
+                    {faqs?.map((faq: any, index: any) => (
+                      <li
+                        key={index}
+                        className="group  relative  duration-500  flex items-center py-1  "
                       >
-                        <div className=" group-hover:w-[20px] w-0 duration-500 overflow-hidden ">
-                          <p className=" duration-500   w-[13px] h-[13px]  border-2  border-white  rounded-full"></p>
-                        </div>
-                        <span className=" text-[18px] lx:text-[22px]">
-                          {" "}
-                          Find a Store
-                        </span>
-                      </Link>
-                    </li>
-                    <li className="group  relative  duration-500  flex items-center py-1 ">
-                      <Link
-                        href={"/page/contact/"}
-                        className="   duration-500 flex items-center  font-bold"
-                      >
-                        <div className=" group-hover:w-[20px] w-0 duration-500 overflow-hidden ">
-                          <p className=" duration-500   w-[13px] h-[13px]  border-2  border-white  rounded-full"></p>
-                        </div>
-                        <span className=" text-[18px] lx:text-[22px]">
-                          {" "}
-                          Contact Us
-                        </span>
-                      </Link>
-                    </li>
-                    <li className="group  relative  duration-500  flex items-center py-1 ">
-                      <Link
-                        href={"/"}
-                        className="   duration-500 flex items-center  font-bold"
-                      >
-                        <div className=" group-hover:w-[20px] w-0 duration-500 overflow-hidden ">
-                          <p className=" duration-500   w-[13px] h-[13px]  border-2  border-white  rounded-full"></p>
-                        </div>
-                        <span className=" text-[18px] lx:text-[22px]">
-                          {" "}
-                          International
-                        </span>
-                      </Link>
-                    </li>
-                    <li className="group  relative  duration-500  flex items-center py-1 ">
-                      <Link
-                        href={"/page/terms"}
-                        className="   duration-500 flex items-center  font-bold"
-                      >
-                        <div className=" group-hover:w-[20px] w-0 duration-500 overflow-hidden ">
-                          <p className=" duration-500   w-[13px] h-[13px]  border-2  border-white  rounded-full"></p>
-                        </div>
-                        <span className=" text-[18px] lx:text-[22px]">
-                          {" "}
-                          Terms & Conditions
-                        </span>
-                      </Link>
-                    </li>
+                        <Link
+                          href={`/pages/${faq?.name}`}
+                          className="   duration-500 flex items-center  font-bold"
+                        >
+                          <div className=" group-hover:w-[20px] w-0 duration-500 overflow-hidden ">
+                            <p className=" duration-500   w-[13px] h-[13px]  border-2  border-white  rounded-full"></p>
+                          </div>
+                          <span className=" text-[18px] lx:text-[22px]">
+                            {faq?.name}
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>

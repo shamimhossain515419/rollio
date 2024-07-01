@@ -16,7 +16,7 @@ const AccountLoginForm = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("https://getmicrojobs.com/api/login", {
+      const response = await fetch("https://dejavu.lifestyle/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // Adjust the content type as

@@ -33,7 +33,7 @@ const Page = () => {
         await fetch(
           `${process.env.BASE_URL}/api/featured-video/${process.env.GROUP_ID}`,
           {
-            next: { revalidate: 300 },
+            next: { revalidate: 30},
           }
         )
       ).json();

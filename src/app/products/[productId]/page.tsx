@@ -5,7 +5,7 @@ async function getData(id: string) {
   try {
     let product = await (
       await fetch(`${process.env.BASE_URL}/api/product/get-product/${id}`, {
-        next: { revalidate: 300 },
+        next: { revalidate: 30},
       })
     ).json();
 

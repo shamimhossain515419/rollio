@@ -4,7 +4,7 @@ const FetchData = async (id: string) => {
   const res = await fetch(
     process.env.BASE_URL + `/api/campaigns/${process.env.GROUP_ID}/${id}`,
     {
-      next: { revalidate: 300 },
+      next: { revalidate: 30},
     }
   );
   const products = await res.json();

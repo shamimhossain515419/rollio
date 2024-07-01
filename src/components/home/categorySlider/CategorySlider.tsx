@@ -80,6 +80,7 @@ const CategorySlider = ({ PrimaryCategory }: any) => {
                       alt=""
                     />
                   </div>
+
                   <div className="absolute bottom-10 left-10 ">
                     <Link
                       href={`/collections/${category?.primary_category_id}`}

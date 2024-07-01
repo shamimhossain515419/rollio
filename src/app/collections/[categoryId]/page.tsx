@@ -10,7 +10,7 @@ const FetchData = async (id: string, page: number) => {
       process.env.BASE_URL +
         `/api/product/get-product-by-category/${process.env.GROUP_ID}/${id}?page=${page}`,
       {
-        next: { revalidate: 300 },
+        next: { revalidate: 30},
       }
     );
     const products = await res.json();
@@ -18,7 +18,7 @@ const FetchData = async (id: string, page: number) => {
     const sizeColorRes = await fetch(
       process.env.BASE_URL + `/api/product/get-color-and-sizes`,
       {
-        next: { revalidate: 300 },
+        next: { revalidate: 30},
       }
     );
     const sizeColorData = await sizeColorRes.json();

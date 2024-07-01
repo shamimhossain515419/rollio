@@ -12,7 +12,7 @@ async function getData() {
       await fetch(
         `${process.env.BASE_URL}/api/group-information/${process.env.GROUP_ID}`,
         {
-          next: { revalidate: 300 },
+          next: { revalidate: 30},
         }
       )
     ).json();
@@ -20,7 +20,7 @@ async function getData() {
       await fetch(
         `${process.env.BASE_URL}/api/featured-video/${process.env.GROUP_ID}`,
         {
-          next: { revalidate: 300 },
+          next: { revalidate: 30},
         }
       )
     ).json();
@@ -28,7 +28,7 @@ async function getData() {
       await fetch(
         `${process.env.BASE_URL}/api/social/${process.env.GROUP_ID}`,
         {
-          next: { revalidate: 300 },
+          next: { revalidate: 30},
         }
       )
     ).json();
@@ -37,14 +37,14 @@ async function getData() {
       await fetch(
         `${process.env.BASE_URL}/api/featured-product/${process.env.GROUP_ID}/4`,
         {
-          next: { revalidate: 300 },
+          next: { revalidate: 30},
         }
       )
     ).json();
     let res = await fetch(
       `${process.env.BASE_URL}/api/featured-product/${process.env.GROUP_ID}/3`,
       {
-        next: { revalidate: 300 },
+        next: { revalidate: 30},
       }
     );
     const products = await res.json();
@@ -53,7 +53,7 @@ async function getData() {
       await fetch(
         `${process.env.BASE_URL}/api/category/get-all-primary-category/${process.env.GROUP_ID}`,
         {
-          next: { revalidate: 300 },
+          next: { revalidate: 30},
         }
       )
     ).json();
