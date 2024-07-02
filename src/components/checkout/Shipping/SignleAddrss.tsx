@@ -4,7 +4,6 @@ import {
 } from "@/redux/features/address/addressApi";
 import { addressToggle } from "@/redux/features/address/addressSlice";
 import { AddressInterface } from "@/types/AddressInterface";
-import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -12,20 +11,15 @@ export const SingleAddress = ({ address }: { address: AddressInterface }) => {
   const [RemoveAddress, { data: removeResult, error }] =
     useRemoveAddressMutation();
   const { refetch, isLoading } = useFetchAddressQuery("");
-  const handleDelete = (id: any) => {
-    console.log(id);
-    return;
-    RemoveAddress({
+  const handleDelete = async (id: any) => {
+    const res = await RemoveAddress({
       address_id: id,
-    });
-  };
-
-  useEffect(() => {
-    if (removeResult?.status === "success") {
-      toast.success(removeResult?.message);
+    }).unwrap();
+    if (res?.status === "success") {
+      toast.success(res?.message);
       refetch();
     }
-  }, [refetch, removeResult]);
+  };
 
   const dispatch = useDispatch();
   const { value } = useSelector((state: any) => state.addressSlice);
