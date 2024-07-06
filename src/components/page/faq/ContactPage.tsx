@@ -12,8 +12,8 @@ const ContactPage = ({ title, button_text, link }: any) => {
               {title}
             </h1>
             <div className=" pt-4 lg:pt-10">
-              <Link href={link}>{button_text}</Link>
-              <Button title={"Contact us"}></Button>
+              <Link href={link}><Button title={"Contact us"}></Button></Link>
+              
             </div>
           </div>
           <div>

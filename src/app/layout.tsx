@@ -110,7 +110,7 @@ export default async function RootLayout({
                 primaryCategories={PrimaryCategory.primaryCategories}
               />
               {children}
-              <Footer faqs={faqs?.faqs} websiteInfo={websiteInfo.data} />
+              <Footer  topCategory={topCategory.topCategories} faqs={faqs?.faqs} websiteInfo={websiteInfo.data} />
               <ResponsiveMenu></ResponsiveMenu>
               <YourCart></YourCart>
               <SiteModal></SiteModal>

@@ -107,9 +107,10 @@ const ProductDetailPage = ({ product }: any) => {
             <h2 className="text-2xl mb-10">TK {productInfo.sale_price}</h2>
             <p className="text-xl">{productInfo?.meta_description}</p>
             {/* select color  */}
-            <div className="py-10">
-              <h2 className="text-xl mb-4 ">Colors:</h2>
-              {colors?.length ? (
+            {colors?.length ? (
+              <div className="py-10">
+                <h2 className="text-xl mb-4 ">Colors:</h2>
+
                 <div className="flex gap-5 ">
                   {colors.map((color: any) => (
                     <div
@@ -125,15 +126,16 @@ const ProductDetailPage = ({ product }: any) => {
                     </div>
                   ))}
                 </div>
-              ) : (
-                <div> One Color </div>
-              )}
-            </div>
-            {/* sizes */}
-            <div className="">
-              <h1 className="text-xl pb-4">Sizes</h1>
-              <div>
-                {product.sizes?.length ? (
+              </div>
+            ) : (
+              <div> One Color </div>
+            )}
+
+            {/*  select sizes */}
+            {product.sizes?.length ? (
+              <div className="">
+                <h1 className="text-xl pb-4">Sizes</h1>
+                <div>
                   <div className="grid grid-cols-3 gap-4">
                     {product.sizes.map((size: any, i: number) => (
                       <div
@@ -147,11 +149,11 @@ const ProductDetailPage = ({ product }: any) => {
                       </div>
                     ))}
                   </div>
-                ) : (
-                  <div>One size</div>
-                )}
+                </div>
               </div>
-            </div>
+            ) : (
+              <div>One size</div>
+            )}
             {/* Sizing Guide */}
             <div className="mt-5 flex items-center justify-center  cursor-pointer">
               <p onClick={() => setSizeGuideModal(true)} className="border-b">

@@ -59,7 +59,7 @@ const Faqs = ({ faqs, feqName }: any) => {
         <ContactPage
           title="Haven’t answered your question?"
           button_text="Contact Us"
-          link="/page/contact"
+          link="/pages/contact"
         />
       </div>
     </div>

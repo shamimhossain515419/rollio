@@ -14,7 +14,7 @@ import { SiteModalToggle } from "@/redux/features/sitemodal/SiteModalSlice";
 import { accountToggle } from "@/redux/features/account/AccountSlice";
 import { useDispatch } from "react-redux";
 
-const Footer = ({ websiteInfo, faqs }: any) => {
+const Footer = ({ websiteInfo, faqs, topCategory }: any) => {
   const [help, setHelp] = useState(false);
   const [contact, setContact] = useState(false);
   const [shop, setShop] = useState(false);
@@ -142,33 +142,22 @@ const Footer = ({ websiteInfo, faqs }: any) => {
                   </h2>
                   <div>
                     <ul>
-                      <li className="group  relative  duration-500  flex items-center  py-1 ">
-                        <Link
-                          href={"/collections/women"}
-                          className="   duration-500 flex items-center  font-bold"
-                        >
-                          <div className=" group-hover:w-[20px] w-0 duration-500 overflow-hidden ">
-                            <p className=" duration-500   w-[13px] h-[13px]  border-2  border-white  rounded-full"></p>
-                          </div>
-                          <span className=" text-[18px] lx:text-[22px]">
-                            {" "}
-                            Womens
-                          </span>
-                        </Link>
-                      </li>
-                      <li className="group  relative  duration-500  flex items-center py-1 ">
-                        <Link
-                          href={"/collections/men"}
-                          className="   duration-500 flex items-center  font-bold"
-                        >
-                          <div className=" group-hover:w-[20px] w-0 duration-500 overflow-hidden ">
-                            <p className=" duration-500   w-[13px] h-[13px]  border-2  border-white  rounded-full"></p>
-                          </div>
-                          <span className=" text-[18px] lx:text-[22px]">
-                            Mens
-                          </span>
-                        </Link>
-                      </li>
+                      {topCategory?.map((item: any) => (
+                        <li key={item?.id} className="group  ">
+                          <Link
+                            href={`/collections/${item.id}`}
+                            className="   duration-500 flex items-center  font-bold"
+                          >
+                            <div className=" group-hover:w-[20px] w-0 duration-500 overflow-hidden ">
+                              <p className=" duration-500   w-[13px] h-[13px]  border-2  border-white  rounded-full"></p>
+                            </div>
+                            <span className=" text-[18px] lx:text-[22px]">
+                              {" "}
+                              {item?.name}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </div>

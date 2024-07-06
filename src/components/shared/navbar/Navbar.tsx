@@ -72,15 +72,7 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
               </li>
             ))}
 
-            {/* <li className="text-xl">
-                  <Link
-                    href={"/collections/sale"}
-                    className="flex items-center gap-1"
-                  >
-                    <CiUnlock />
-                    <span> Access Sale</span>
-                  </Link>
-                </li> */}
+           
           </ul>
         </div>
 
@@ -98,51 +90,7 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
         </Link>
         {/* others */}
         <div className="flex justify-evenly items-center gap-4">
-          {/* curency */}
-          {/* <div
-            onClick={() => setActiveCountryList(!activeCountyList)}
-            className="relative  xl:flex hidden items-center justify-center p-3 gap-2 rounded-2xl border  "
-          >
-            <Image src={country.image} width={20} height={15} alt="" />
-            <span>{country.sumsymbole}</span>
-            <span>{country.name}</span>
-
-            <div className=" xl:flex hidden absolute top-12 -left-10 bg-white rounded-2xl text-black">
-              <Collapse isOpened={activeCountyList}>
-                <ul className=" w-[200px] p-2 ">
-                  <li className="flex items-center w-full gap-2 cursor-pointer">
-                    <Image
-                      src={"https://flagcdn.com/h40/bd.png"}
-                      width={20}
-                      height={20}
-                      alt=""
-                    />
-                    <h2>Bangladesh (BDT)</h2>
-                  </li>
-                  <li className="flex items-center w-full gap-2 cursor-pointer">
-                    <Image
-                      src={"https://flagcdn.com/h40/bd.png"}
-                      width={20}
-                      height={20}
-                      alt=""
-                    />
-                    <h2>Bangladesh (BDT)</h2>
-                  </li>
-                  <li className="flex items-center w-full gap-2 cursor-pointer">
-                    <Image
-                      src={"https://flagcdn.com/h40/bd.png"}
-                      width={20}
-                      height={20}
-                      alt=""
-                    />
-                    <h2>Bangladesh (BDT)</h2>
-                  </li>
-                </ul>
-              </Collapse>
-            </div>
-          </div> */}
-
-          {/* search  */}
+           {/* search  */}
 
           <div className=" xl:flex hidden">
             <input onChange={(e: any) => setSearch(e.target.value)}
