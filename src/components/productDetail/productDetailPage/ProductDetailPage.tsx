@@ -16,6 +16,7 @@ import { addItem } from "@/redux/features/cart/CartSlice";
 import toast from "react-hot-toast";
 import AddReview from "../ProductReviews/AddReview";
 import ReactPlayer from "react-player";
+import SizeGuide from "./SizeGuide";
 
 const ProductDetailPage = ({ product }: any) => {
   const dispatch = useDispatch();
@@ -156,9 +157,10 @@ const ProductDetailPage = ({ product }: any) => {
             )}
             {/* Sizing Guide */}
             <div className="mt-5 flex items-center justify-center  cursor-pointer">
-              <p onClick={() => setSizeGuideModal(true)} className="border-b">
+              {/* <p onClick={() => setSizeGuideModal(true)} className="border-b">
                 Sizing Guide
-              </p>
+              </p> */}
+              <SizeGuide product={product} />
             </div>
             {/* add to Cart */}
             <div
@@ -249,7 +251,8 @@ const ProductDetailPage = ({ product }: any) => {
       <p className="text-[240px] "></p>
 
       {/* size guide modal */}
-      {sizeGuideModal && (
+
+      {/* {sizeGuideModal && (
         <div className="fixed  z-50 w-screen h-screen blurBackground top-0 left-0 flex items-center justify-center">
           <div className="w-[800px] max-w-full p-5 bg-white rounded-2xl relative">
             <div
@@ -305,7 +308,7 @@ const ProductDetailPage = ({ product }: any) => {
             </table>
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 };
