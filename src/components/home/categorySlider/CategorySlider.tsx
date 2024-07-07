@@ -11,7 +11,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 const CategorySlider = ({ PrimaryCategory }: any) => {
-  console.log(PrimaryCategory);
   const customPrevButton = (
     <div className="custom-swiper-button-prev-category s w-12 h-12 rounded-full flex items-center justify-center">
       <span className=" text-white ">

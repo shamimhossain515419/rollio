@@ -5,7 +5,6 @@ import { FaFacebookF, FaPinterest, FaTiktok } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 
 const Stayintouch = ({stayInfo}:any) => {
-    console.log(stayInfo)
       const facebook=stayInfo?.data?.[0];
       const instagram=stayInfo?.data?.[1];
       const tiktok=stayInfo?.data?.[2];

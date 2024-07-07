@@ -15,7 +15,11 @@ const SizeGuide = ({ product }: any) => {
   const [notifyCreate, { isLoading }] = useNotifyCreateMutation();
   const onSubmit = async (data: any) => {
     try {
-      const NewData = { ...data, product_id: product?.product?.id };
+      const NewData = {
+        ...data,
+        product_id: product?.product?.id,
+        group_id: process.env.GROUP_ID,
+      };
       const res = await notifyCreate(NewData).unwrap();
       if (res?.message) {
         toast.success(res.message);
@@ -172,7 +176,7 @@ const SizeGuide = ({ product }: any) => {
                   {...register("size")}
                   className="w-full border p-2 rounded focus:outline-none"
                 >
-                  {product?.sizes?.map((size: any, index:number) => (
+                  {product?.sizes?.map((size: any, index: number) => (
                     <option key={index} className="p-5" value={size?.name}>
                       {size?.name}
                     </option>

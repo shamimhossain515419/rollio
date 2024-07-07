@@ -10,7 +10,6 @@ import "swiper/css/navigation";
 import Link from "next/link";
 
 const OfferSlider = ({ offers }: any) => {
-  console.log(offers);
   const customPrevButton = (
     <div className="custom-swiper-button-prev">
       {/* Your custom arrow or icon for the previous button */}

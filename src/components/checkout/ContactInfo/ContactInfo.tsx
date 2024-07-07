@@ -4,7 +4,6 @@ import Image from "next/image";
 import ceoImage from "@/assets/image/ceo.webp";
 const ContactInfo = () => {
   const { data: session, status }: any = useSession();
-  console.log(session);
   return (
     <div>
       <div className="my-5">
