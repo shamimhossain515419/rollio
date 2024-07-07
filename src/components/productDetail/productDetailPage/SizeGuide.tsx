@@ -198,7 +198,7 @@ const SizeGuide = ({ product }: any) => {
                   />
                   {errors.customer_email_address && (
                     <span className="text-red-600 text-sm">
-                      {errors.customer_email_address.message}
+                      {errors.customer_email_address.message as string}
                     </span>
                   )}
                 </div>
