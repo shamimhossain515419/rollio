@@ -27,7 +27,6 @@ const Contact = () => {
   const onSubmit = async (data: FormData) => {
     try {
       const res = await contactMessage(data).unwrap();
-      console.log(res);
       if (res?.status === "success") {
         toast.success("Message sent successfully");
         reset(); // Reset the form after successful submission
@@ -35,8 +34,7 @@ const Contact = () => {
         toast.error("Failed to send message. Please try again.");
       }
     } catch (error) {
-      console.log(error);
-      toast.error(error?.message);
+      toast.error("Failed to send message. Please try again.");
     }
   };
 
