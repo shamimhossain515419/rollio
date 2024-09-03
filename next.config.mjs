@@ -4,15 +4,17 @@ const nextConfig = {
     BASE_URL: "https://dejavu.lifestyle",
     GROUP_ID: "4",
   },
+  // https://dejavu.lifestyle
   images: {
-    domains: [
-      "cdn.shopify.com",
-      "flagcdn.com",
-      "www.rollienation.com",
-      "cld.accentuate.io",
-      "cdn-images.farfetch-contents.com",
-      "getmicrojobs.com",
-      "dejavu.lifestyle",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+      {
+        protocol: "http",
+        hostname: "**",
+      },
     ],
   },
 };

@@ -2,7 +2,6 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import Select from "react-select";
 import {
   useCreateAddressMutation,
   useFetchAddressQuery,
@@ -102,7 +101,7 @@ const ShippingAddress = () => {
       const value = "";
       CountryData(value);
     }
-  }, [allCountry]);
+  }, [allCountry,selectCountry]);
 
   const NavigateHandler = () => {
     if (!cartItems?.length) {

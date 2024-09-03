@@ -27,7 +27,8 @@ const ShowProductByCategory = ({ products }: any) => {
     } else {
       setFilterProduct(products?.data);
     }
-  }, [colors, sizes, getProductByFilter, products]);
+  }, [colors, sizes, products, data?.data, getProductByFilter, setFilterProduct]);
+
 
   if (isLoading) {
     return <div>Loading........</div>;

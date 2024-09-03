@@ -80,7 +80,7 @@ const page = async () => {
       <VideoSlider VideoFeatured={data?.VideoFeatured} />
       <KindaClassic productInfo={data?.products} />
       <Handpicked HandpickedInfo={data?.HandpickedInfo} />
-      <Stayintouch stayInfo={data?.SocailFeatured}></Stayintouch>
+      <Stayintouch websiteInfo={data?.websiteInfo} stayInfo={data?.SocailFeatured}></Stayintouch>
     </div>
   );
 };
