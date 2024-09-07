@@ -25,12 +25,12 @@ export const SingleAddress = ({ address }: { address: AddressInterface }) => {
   const { value } = useSelector((state: any) => state.addressSlice);
 
   return (
-    <div onClick={() => dispatch(addressToggle(address.id))} className=" py-2">
+    <div onClick={() => dispatch(addressToggle(address))} className=" py-2">
       <div>
         <div>
           <div
             className={` ${
-              value == address?.id && "bg-stone-200"
+              value?.id == address?.id && "bg-stone-200"
             } border border-[#2e2e2eaf] flex justify-between items-center gap-2 p-4 rounded-[5px]`}
           >
             <div className=" flex  items-center gap-4 md:gap-10 ">

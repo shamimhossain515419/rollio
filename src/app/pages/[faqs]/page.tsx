@@ -1,5 +1,11 @@
 import Faqs from "@/components/faq/Faqs";
-
+export async function generateMetadata({ params}:any) {
+  const feqName = decodeURI(params?.faqs);
+  return {
+    title: feqName + " || " + "  ClaraCasa",
+    description: " ",
+  };
+}
 async function getData() {
   let faqs = await (
     await fetch(
@@ -17,7 +23,6 @@ async function getData() {
 const Page = async ({ params }: any) => {
   const { faqs }: any = await getData();
   const feqName = decodeURI(params?.faqs);
-
   return <Faqs feqName={feqName} faqs={faqs?.faqs} />;
 };
 

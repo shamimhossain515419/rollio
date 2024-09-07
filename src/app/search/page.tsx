@@ -1,5 +1,11 @@
 import SearchByProduct from "@/components/showProduct/SearchByProduct";
 import { Suspense } from "react";
+export async function generateMetadata({searchParams}:any) {
+  return {
+    title: searchParams?.product + " || " + "  ClaraCasa",
+    description: " ",
+  };
+}
 
 const Page = async ({ searchParams }: any) => {
   return (

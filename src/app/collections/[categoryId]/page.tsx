@@ -1,6 +1,14 @@
 import Pagination from "@/components/categoryPage/Pagination";
 import ShowProductByCategory from "@/components/categoryPage/ShowProductByCategory";
 import Filter from "@/components/filter/Filter";
+
+export async function generateMetadata({params}:any) {
+  return {
+    title: params?.categoryId + " || " + "  ClaraCasa",
+    description: " ",
+  };
+}
+
 const FetchData = async (id: string, page: number) => {
   try {
     const res = await fetch(

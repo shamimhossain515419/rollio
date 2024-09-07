@@ -1,14 +1,14 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: 0,
+  value: null,
 };
 
 export const addressSlice = createSlice({
   initialState,
   name: "address-toggle",
   reducers: {
-    addressToggle: (state, action: PayloadAction<number>) => {
+    addressToggle: (state, action: PayloadAction<any>) => {
       state.value = action.payload;
     },
   },

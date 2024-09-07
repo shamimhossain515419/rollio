@@ -3,6 +3,12 @@ import { IoIosArrowForward } from "react-icons/io";
 import ShippingAddress from "@/components/checkout/Shipping/ShippingAddress";
 import Link from "next/link";
 import ContactInfo from "@/components/checkout/ContactInfo/ContactInfo";
+export async function generateMetadata() {
+  return {
+    title: "information" + " || " + "  ClaraCasa",
+    description: " ",
+  };
+}
 
 const page = () => {
   return (

@@ -52,7 +52,7 @@ const ShippingAddress = () => {
     };
     const res = await createAddress(data);
   };
-
+  
   useEffect(() => {
     if (createResult && isSuccess) {
       refetch();
@@ -64,7 +64,7 @@ const ShippingAddress = () => {
   const CountryData = async (value: any) => {
     try {
       const response = await fetch(
-        "https://dejavu.lifestyle/api/search-country",
+        `${process.env.BASE_URL}/api/search-country`,
         {
           method: "POST",
           headers: {
@@ -131,8 +131,7 @@ const ShippingAddress = () => {
       {/* address */}
       {!addAddress && <AddressBook data={addressData} />}
 
-      {addAddress ||
-        (!addressData?.length && (
+      {addAddress || !addressData?.length ? (
           <form onSubmit={SaveShippingHandler}>
             {/* country  */}
             <div className=" py-4">
@@ -327,7 +326,7 @@ const ShippingAddress = () => {
 
             {/* button */}
           </form>
-        ))}
+        ): null}
       <div className="flex justify-end mt-4">
         <button
           onClick={() => NavigateHandler()}
