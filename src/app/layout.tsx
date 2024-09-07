@@ -21,10 +21,28 @@ import TokenProvider from "@/components/AuthProvider/TokenProvider";
 import Head from "next/head";
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "",
-  description: "",
-};
+export async function generateMetadata(projectInfo: any) {
+  const keyword = projectInfo?.group_name || projectInfo?.group_name || " ";
+
+  return {
+    title: projectInfo?.group_name || "ClaraCasa",
+    description: projectInfo?.description || projectInfo?.description,
+    keywords: keyword, // Added keywords for SEO
+    icons: {
+      icon: `${process.env.BASE_URL}/images/${projectInfo?.logo}`, // Assuming the favicon is stored like this
+    },
+    openGraph: {
+      images: [
+        {
+          url: `${process.env.BASE_URL}/images/${projectInfo?.logo}`,
+          width: 250,
+          height: 250,
+          alt: "Social Media Share Image",
+        },
+      ],
+    },
+  };
+}
 
 // data fetching
 async function getData() {
@@ -63,9 +81,7 @@ async function getData() {
     ).json();
 
     return { topCategory, PrimaryCategory, websiteInfo, offers };
-  } catch (err) {
-    console.log(err);
-  }
+  } catch (err) {}
 }
 
 async function FAQsInfo() {
@@ -90,14 +106,22 @@ export default async function RootLayout({
   // topCategory
   const { topCategory, PrimaryCategory, websiteInfo, offers }: any =
     await getData();
-  metadata.title = websiteInfo?.group_name;
+  await generateMetadata(websiteInfo);
   const { faqs } = await FAQsInfo();
 
   return (
     <html className="scroll-smooth" lang="en">
-      <Head>
-        <title>{websiteInfo?.group_name}</title>
-      </Head>
+      <head>
+        <link
+          rel="icon"
+          href={
+            websiteInfo?.logo
+              ? `${process.env.BASE_URL}/images/${websiteInfo?.logo}`
+              : "/favicon.ico"
+          }
+          type="image/x-icon"
+        />
+      </head>
       <body className={inter.className}>
         <NextTopLoader />
         <AuthProvider>
@@ -110,7 +134,11 @@ export default async function RootLayout({
                 primaryCategories={PrimaryCategory.primaryCategories}
               />
               {children}
-              <Footer  topCategory={topCategory.topCategories} faqs={faqs?.faqs} websiteInfo={websiteInfo.data} />
+              <Footer
+                topCategory={topCategory.topCategories}
+                faqs={faqs?.faqs}
+                websiteInfo={websiteInfo.data}
+              />
               <ResponsiveMenu></ResponsiveMenu>
               <YourCart></YourCart>
               <SiteModal></SiteModal>

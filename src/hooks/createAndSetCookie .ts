@@ -9,7 +9,7 @@ const createAndSetCookie = async (cookieValue: any) => {
   const data = Cookies.get("access-token");
 
   if (data) {
-    return { massage: "success" };
+    return { status: true };
   }
 };
 

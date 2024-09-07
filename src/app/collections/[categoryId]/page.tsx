@@ -1,9 +1,6 @@
 import Pagination from "@/components/categoryPage/Pagination";
 import ShowProductByCategory from "@/components/categoryPage/ShowProductByCategory";
 import Filter from "@/components/filter/Filter";
-import Image from "next/image";
-import Link from "next/link";
-
 const FetchData = async (id: string, page: number) => {
   try {
     const res = await fetch(

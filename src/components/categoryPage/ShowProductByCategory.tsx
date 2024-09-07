@@ -7,13 +7,10 @@ import { ProductInterface } from "@/types/Productinterface";
 
 const ShowProductByCategory = ({ products }: any) => {
   const [filterProduct, setFilterProduct] = useState([]);
-
   const { colors } = useSelector((state: any) => state.Colors);
   const { sizes } = useSelector((state: any) => state.Sizes);
-
-  const [getProductByFilter, { data, error, isLoading }] =
+  const [getProductByFilter, { data, error }] =
     useGetProductByFilterMutation();
-
   useEffect(() => {
     const value = {
       group_id: process.env.GROUP_ID,
@@ -29,10 +26,6 @@ const ShowProductByCategory = ({ products }: any) => {
     }
   }, [colors, sizes, products, data?.data, getProductByFilter, setFilterProduct]);
 
-
-  if (isLoading) {
-    return <div>Loading........</div>;
-  }
 return (
     <div className=" grid  sm:grid-cols-2  lg:grid-cols-3  gap-4 md:gap-7">
       {filterProduct?.map((product: ProductInterface) => (

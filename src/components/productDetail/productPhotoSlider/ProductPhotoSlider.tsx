@@ -1,6 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
-
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Scrollbar } from "swiper/modules";
 import "swiper/css";
@@ -15,13 +14,13 @@ const ProductPhotoSlider = ({ photos }: any) => {
           hide: true,
         }}
         modules={[Scrollbar]}
-        className=""
+        className=" max-h-[450px]"
       >
         {photos.map((photo: any, i: number) => (
           <SwiperSlide key={i}>
             <Image
-              className="rounded-2xl"
-              src={photo.image}
+              className="rounded-2xl h-full object-cover"
+              src={`${process.env.BASE_URL}/images/${photo?.photo}`}
               width={100}
               height={100}
               layout="responsive"

@@ -1,7 +1,7 @@
 "use client";
 import { productData } from "@/assets/damiData/damiData";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ProductDetailAccordion from "../productDetailAccordion/ProductDetailAccordion";
 import { IoClose } from "react-icons/io5";
@@ -10,24 +10,36 @@ import ProductReviews from "../ProductReviews/ProductReviews";
 import ProductsSlider from "@/components/shared/ProductsSlider/ProductsSlider";
 import ceoImage from "@/assets/image/ceo.webp";
 import Marquee from "react-fast-marquee";
-import Button from "@/components/utilityComponent/button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "@/redux/features/cart/CartSlice";
 import toast from "react-hot-toast";
 import AddReview from "../ProductReviews/AddReview";
 import ReactPlayer from "react-player";
 import SizeGuide from "./SizeGuide";
+import { useGetRecentlyViewProductsQuery } from "@/redux/features/recentlyViewApi/recentlyViewApi";
+import { addRecentlyViewedProduct } from "@/redux/features/recentlyView/recentlyViewSlice";
+import { CartToggle } from "@/redux/features/cart/CartToggleSlice";
+import { ProductInterface } from "@/types/Productinterface";
+import { addFavItem } from "@/redux/features/favorite/favoriteSlice";
+import { GrFavorite } from "react-icons/gr";
+import { MdOutlineFavorite } from "react-icons/md";
 
 const ProductDetailPage = ({ product }: any) => {
   const dispatch = useDispatch();
   const [activeColor, setActiveColor] = useState("");
   const [activeSize, setActiveSize] = useState("");
-  const [sizeGuideModal, setSizeGuideModal] = useState(false);
-
   const { product: productInfo, colors, photos, sizes } = product;
-
   const { cartItems } = useSelector((state: any) => state.Cart);
+  const existingProduct = cartItems?.find((p:any) => p?.id == productInfo?.id);
+  const { favItems } = useSelector((state: any) => state.favItems);
+  const alreadyFav = favItems.find(
+    (fav: ProductInterface) => fav?.id === productInfo?.id
+  );
   const addToCartHandle = (product: any) => {
+    if (existingProduct) {
+      dispatch(CartToggle());
+      return;
+    }
     if (!activeColor && colors.length) {
       toast.error("Select Color");
       return;
@@ -55,16 +67,30 @@ const ProductDetailPage = ({ product }: any) => {
     setActiveSize("");
     setActiveColor("");
   };
+  const { recentlyViewedProducts } = useSelector(
+    (state: any) => state.recentlyViewed
+  );
+  const filteredProductIds = recentlyViewedProducts.filter(
+    (id: any) => id !== productInfo?.id
+  );
+  const { data: recentlyViewProducts, error } =
+    useGetRecentlyViewProductsQuery(filteredProductIds);
 
+  useEffect(() => {
+    if (productInfo?.id && !recentlyViewedProducts?.includes(productInfo?.id)) {
+      dispatch(addRecentlyViewedProduct(parseInt(productInfo?.id)));
+    }
+  }, [dispatch, productInfo, recentlyViewedProducts]);
   return (
     <>
       <div className="container mx-auto md:py-48 py-10">
-        <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-20 px-4 ">
+        <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 md:gap-8 lg:gap-20 px-4 ">
           {/* product Images */}
           {/* product image Slider */}
           <div className="md:hidden block ">
-            {/* <ProductPhotoSlider photos={product.images} /> */}
+            <ProductPhotoSlider photos={photos} />
           </div>
+
           <div className="md:block hidden xl:col-span-2 lg:col-span-1">
             <div className="grid grid-cols-2 gap-5">
               {productInfo?.video_url && (
@@ -102,24 +128,24 @@ const ProductDetailPage = ({ product }: any) => {
           </div>
           {/* product info */}
           <div className="text-white">
-            <h1 className="md:text-[48px] text-xl font-semibold py-10">
+            <h1 className="md:text-[48px] text-xl  capitalize leading-10 font-semibold pb-6">
               {productInfo.name}
             </h1>
-            <h2 className="text-2xl mb-10">TK {productInfo.sale_price}</h2>
+            <h2 className="text-2xl mb-7">TK {productInfo.sale_price}</h2>
             <p className="text-xl">{productInfo?.meta_description}</p>
             {/* select color  */}
             {colors?.length ? (
-              <div className="py-10">
-                <h2 className="text-xl mb-4 ">Colors:</h2>
+              <div className="py-5">
+                <h2 className="text-xl  ">Colors:</h2>
 
-                <div className="flex gap-5 ">
+                <div className="flex gap-5 flex-wrap items-center  justify-start  mt-2">
                   {colors.map((color: any) => (
                     <div
                       key={color?.color_id}
                       onClick={() => setActiveColor(color?.color_id)}
                       className={`${
-                        activeColor == color?.color_id && "p-2 border "
-                      } rounded-2xl overflow-hidden w-[60px] h-[60px] flex justify-center items-center`}
+                        activeColor == color?.color_id && "border "
+                      }  rounded-lg overflow-hidden  px-3 py-2   flex justify-center items-center`}
                     >
                       <div className="rounded-2xl ">
                         <p>{color?.name}</p>
@@ -144,7 +170,7 @@ const ProductDetailPage = ({ product }: any) => {
                         key={i}
                         className={`${
                           activeSize == size.size_id && "text-black bg-white"
-                        } flex justify-center border rounded-xl p-2 cursor-pointer `}
+                        } flex justify-center border rounded-lg px-3 py-2 q cursor-pointer `}
                       >
                         <p>{size.name}</p>
                       </div>
@@ -163,11 +189,28 @@ const ProductDetailPage = ({ product }: any) => {
               <SizeGuide product={product} />
             </div>
             {/* add to Cart */}
-            <div
-              onClick={() => addToCartHandle(productInfo)}
-              className="mt-5 flex items-center justify-center  cursor-pointer w-full"
-            >
-              <Button title={"Add to Cart"} />
+            <div className=" flex items-center justify-start  gap-2 w-full">
+              <div
+                onClick={() => addToCartHandle(productInfo)}
+                className=" flex items-center justify-center  w-[70%] cursor-pointer "
+              >
+                <button className="bg-[#15151f] hover:bg-[#383849] text-white w-full rounded-full px-8 py-4 duration-300 ease-in">
+                  {" "}
+                  {existingProduct ? "View cart" : "Add to Cart"}{" "}
+                </button>
+              </div>
+              <div
+                onClick={() => dispatch(addFavItem({ ...productInfo, photos }))}
+                className={` ${
+                  alreadyFav?.id ? " text-white" : "  "
+                }  w-10 h-10  bg-black   flex items-center justify-center rounded-full cursor-pointer   duration-300 ease-in`}
+              >
+                {alreadyFav?.id ? (
+                  <MdOutlineFavorite className="text-[18px]" />
+                ) : (
+                  <GrFavorite className="text-[18px]" />
+                )}
+              </div>
             </div>
 
             {/* Complete the look*/}
@@ -205,9 +248,12 @@ const ProductDetailPage = ({ product }: any) => {
         <AddReview product_id={product.product.id} />
 
         {/* You Recently Viewed */}
-        <ProductsSlider title="You Recently Viewed" />
+        <ProductsSlider
+          recentlyViewProducts={recentlyViewProducts}
+          title="You Recently Viewed"
+        />
         {/* You might also like */}
-        <ProductsSlider title="You might also like" />
+        {/* <ProductsSlider title="You might also like" /> */}
 
         {/* ceo */}
 

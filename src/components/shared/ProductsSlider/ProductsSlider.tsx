@@ -1,17 +1,14 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import { FaArrowLeftLong, FaArrowRight } from "react-icons/fa6";
-import Card from "@/components/utilityComponent/card/Card";
 import { ProductInterface } from "@/types/Productinterface";
-import { useSession } from "next-auth/react";
+import HomeCart from "@/components/utilityComponent/card/HomeCart";
+const ProductsSlider = ({ title,recentlyViewProducts }: any) => {
 
-const ProductsSlider = ({ title, products }: any) => {
-  const data = useSession();
-
+  console.log(title,recentlyViewProducts )
   const customPrevButton = (
     <div className="custom-swiper-button-prev">
       {/* Your custom arrow or icon for the previous button */}
@@ -64,9 +61,9 @@ const ProductsSlider = ({ title, products }: any) => {
           modules={[Pagination, Navigation]}
           className="bestSeller "
         >
-          {products?.map((product: ProductInterface) => (
+          {recentlyViewProducts?.map((product: ProductInterface) => (
             <SwiperSlide key={product?.id}>
-              <Card product={product} />
+             <HomeCart product={product} />
             </SwiperSlide>
           ))}
         </Swiper>

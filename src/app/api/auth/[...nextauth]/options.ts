@@ -17,7 +17,7 @@ const authOptions: any = {
       },
       async authorize(credentials) {
         try {
-          const res = await fetch(`https://dejavu.lifestyle/api/login`, {
+          const res = await fetch(`${process.env.BASE_URL}/api/login`, {
             method: "POST",
             body: JSON.stringify(credentials),
             headers: { "Content-Type": "application/json" },

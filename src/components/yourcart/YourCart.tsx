@@ -20,15 +20,15 @@ const YourCart = () => {
     <div
       className={` ${
         value
-          ? " block animate-fadeInUp_card_key "
+          ? " block animate-fadeInUp_card_key  "
           : " hidden animate-fadeOutDown_card_key"
       }      fixed top-0 left-0 right-0 blurBackground w-full h-screen  z-50   md:px-10 `}
     >
-      <div className=" flex    justify-center md:justify-end  items-center  md:items-start w-full">
-        <div>
-          <div className=" flex justify-between  flex-col gap-4   h-screen sm:h-[95vh]">
-            <div className=" bg-white h-[100%]  max-w-[500px] md:w-[500px]  py-4 md:py-2    px-4  md:px-6 lg:p-10  shadow-md  rounded-b-[30px] md:rounded-[35px]  md:mt-20">
-              {/* cart title and colse  section  */}
+      <div className=" flex justify-center md:justify-end  items-center  md:items-start w-full">
+        <div className=" w-full md:w-auto">
+          <div className=" flex justify-between  flex-col gap-4  w-full  h-screen sm:h-[95vh]">
+            <div className=" bg-white h-[100%]  md:w-[500px]  py-4 md:py-2    px-4  md:px-6 lg:p-10  shadow-md  rounded-b-[30px] md:rounded-[35px]  md:mt-20">
+              {/* cart title and   section  */}
               <div className=" flex justify-between gap-3 items-center">
                 <div></div>
                 <Link
@@ -36,7 +36,7 @@ const YourCart = () => {
                   href={"/cart"}
                   className="text-[14px] md:text-[20px] text-gray-800 font-semibold py-1"
                 >
-                  Your cart {totalQuantity}
+                  Your cart {cartItems?.length}
                 </Link>
                 <div
                   onClick={() => dispatch(CartToggle())}

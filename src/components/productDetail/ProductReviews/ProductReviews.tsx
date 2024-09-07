@@ -1,7 +1,4 @@
 import { useGetReviewQuery } from "@/redux/features/api/review/ReviewApi";
-import Image from "next/image";
-import { FaStar } from "react-icons/fa";
-import ReviewCard from "./ReviewCard";
 import ShowReviewCard from "./ShowReviewCard";
 
 const ProductReviews = ({ product_id }: any) => {

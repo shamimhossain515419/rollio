@@ -12,7 +12,6 @@ const FavoriteCart = () => {
   const { favItems } = useSelector((state: any) => state.favItems);
 
   const dispatch = useDispatch();
-  const favorite = true;
 
   return (
     <div className="">
@@ -41,7 +40,7 @@ const FavoriteCart = () => {
         <div className=" pt-6  max-h-[90vh] overflow-y-auto cartScroolbar">
           <div></div>
           <div>
-            {favorite && (
+            {favItems?.length > 0 ? (
               <div>
                 <h1 className="text-[22px] font-normal text-gray-800">
                   {" "}
@@ -62,19 +61,17 @@ const FavoriteCart = () => {
                   </div>
                 </div>
               </div>
-            )}
+            ) :    <div className="  h-full flex justify-center items-center flex-col min-h-[70vh]">
+            <h1 className=" text-[18px] md:text-[28px]  text-center font-semibold py-2">
+              {"You don's have any favorites yet"}{" "}
+            </h1>
+            <p className="text-[14px]  md:text-[18px]  text-center text-gray-800">
+              {" "}
+              Top the heart on any product to save it to your favorites
+            </p>
+          </div>}
 
-            {!favorite && (
-              <div className="  h-full flex justify-center items-center flex-col min-h-[70vh]">
-                <h1 className=" text-[18px] md:text-[28px]  text-center font-semibold py-2">
-                  {"You don's have any favorites yet"}{" "}
-                </h1>
-                <p className="text-[14px]  md:text-[18px]  text-center text-gray-800">
-                  {" "}
-                  Top the heart on any product to save it to your favorites
-                </p>
-              </div>
-            )}
+        
           </div>
         </div>
       </div>
