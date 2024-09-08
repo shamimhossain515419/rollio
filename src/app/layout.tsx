@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared/navbar/Navbar";
@@ -18,12 +17,9 @@ import SiteModal from "@/components/siteModal/SiteModal";
 import AuthProvider from "@/components/AuthProvider/AuthProvider";
 import { Toaster } from "react-hot-toast";
 import TokenProvider from "@/components/AuthProvider/TokenProvider";
-import Head from "next/head";
 const inter = Inter({ subsets: ["latin"] });
-
 export async function generateMetadata(projectInfo: any) {
   const keyword = projectInfo?.group_name || projectInfo?.group_name || " ";
-
   return {
     title: projectInfo?.group_name || "ClaraCasa",
     description: projectInfo?.description || projectInfo?.description,
@@ -31,10 +27,13 @@ export async function generateMetadata(projectInfo: any) {
     icons: {
       icon: `${process.env.BASE_URL}/images/${projectInfo?.logo}`, // Assuming the favicon is stored like this
     },
+    metadataBase: new URL(`${process.env.BASE_URL}`),
     openGraph: {
+      url: `${process.env.BASE_URL}`,
+      siteName: "ClaraCasa",
       images: [
         {
-          url: `${process.env.BASE_URL}/images/${projectInfo?.logo}`,
+          url: `/images/${projectInfo?.logo}`,
           width: 250,
           height: 250,
           alt: "Social Media Share Image",
@@ -43,7 +42,6 @@ export async function generateMetadata(projectInfo: any) {
     },
   };
 }
-
 // data fetching
 async function getData() {
   try {
@@ -137,7 +135,7 @@ export default async function RootLayout({
               <Footer
                 topCategory={topCategory.topCategories}
                 faqs={faqs?.faqs}
-                websiteInfo={websiteInfo.data}
+                websiteInfo={websiteInfo}
               />
               <ResponsiveMenu></ResponsiveMenu>
               <YourCart></YourCart>

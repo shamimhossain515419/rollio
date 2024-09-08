@@ -13,6 +13,7 @@ import { Collapse } from "react-collapse";
 import { SiteModalToggle } from "@/redux/features/sitemodal/SiteModalSlice";
 import { accountToggle } from "@/redux/features/account/AccountSlice";
 import { useDispatch } from "react-redux";
+import FooterStayTouch from "./FooterStayTouch";
 
 const Footer = ({ websiteInfo, faqs, topCategory }: any) => {
   const [help, setHelp] = useState(false);
@@ -20,34 +21,14 @@ const Footer = ({ websiteInfo, faqs, topCategory }: any) => {
   const [shop, setShop] = useState(false);
 
   const dispatch = useDispatch();
-
+  console.log(websiteInfo)
   return (
     <div className="  px-4 md:px-10 pt-10">
       <div className=" py-10">
         <div className=" grid md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-14">
           <div className=" col-span-1 xl:col-span-2  ">
-            <div>
-              {/* footer headnig  */}
-              <h1 className=" text-[20px] text-center    md:text-start  text-white  md:text-[55px] text-secondary font-bold  ">
-                Let’s stay in touch.
-              </h1>
-              <div className=" relative  flex items-center max-w-[600px]  py-2">
-                <input
-                  className=" outline-0  relative border border-white md:pr-[200px] xl:pr-[257px] py-2 xl:py-5 bg-transparent text-white placeholder:text-white rounded-[50px] px-5 placeholder: text-[18px] lx:text-[22px] w-full"
-                  type="email"
-                  name=""
-                  id=""
-                  placeholder="Enter Email..."
-                />
-                <div className="  hover:bg-[#ffffffda] duration-300 bg-white flex justify-center items-center   right-0  md:max-w-[200px]   absolute  text-[#020202e1]   text-[14px] cursor-pointer  md:text-[20px]  px-5  py-2 xl:py-5 rounded-[50px]">
-                  Join{" "}
-                  <span className=" hidden md:block pl-1">
-                    {" "}
-                    {websiteInfo?.name}
-                  </span>
-                </div>
-              </div>
-            </div>
+            <FooterStayTouch websiteInfo={websiteInfo}/>
+          
             <div className=" hidden md:block">
               <div className="  max-w-[500px]   -rotate-12 flex  flex-col justify-center items-start py-4">
                 <div className="flex  flex-col justify-center items-star">

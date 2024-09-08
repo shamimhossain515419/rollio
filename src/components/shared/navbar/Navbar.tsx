@@ -45,7 +45,7 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
 
   return (
     <div
-      className={`xl:mx-20 rounded-full px-8 py-2 z-50 sticky top-5 transition-all  ${scrolled ? "bg-white text-black" : "text-white"
+      className={`xl:mx-20 rounded-full px-2 sm:px-2 md:px-8 py-2 z-50 sticky top-5 transition-all  ${scrolled ? "bg-white text-black" : "text-white"
         } `}
     >
       <div className="flex justify-between items-center">
@@ -86,7 +86,7 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
             layout="responsive"
             alt=""
           /> */}
-          <h1 className="text-[22px] uppercase  font-bold"> {websiteInfo?.group_name} </h1>
+          <h1 className="text-[17px] md:text-[22px] uppercase  font-bold"> {websiteInfo?.group_name} </h1>
         </Link>
         {/* others */}
         <div className="flex justify-evenly items-center gap-4">
@@ -115,8 +115,8 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
               onClick={() => {
                 dispatch(SiteModalToggle()), dispatch(FavoriteToggle());
               }}
-              size={25}
-              className="cursor-pointer"
+               
+              className="cursor-pointer  text-[18]  md:text-[28px]"
             />
             <span className="absolute -top-3 -right-2 text-sm">
               {favItems.length}
@@ -129,7 +129,7 @@ const Navbar = ({ topCategory, primaryCategories, websiteInfo }: any) => {
           >
             <CiMenuBurger
               size={25}
-              className="cursor-pointer  xl:flex hidden"
+              className="cursor-pointer   text-[18]  md:text-[28px]  xl:flex hidden"
             />
           </div>
           <div
