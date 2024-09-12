@@ -4,6 +4,7 @@ export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     fetchUser: builder.query({
       query: () => "profile",
+      providesTags:["users"]
     }),
     changePassword: builder.mutation({
       query: (data) => ({
@@ -12,7 +13,15 @@ export const authApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    updateAccountDetails: builder.mutation({
+      query: (data) => ({
+        url: "update-account-details",
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["users"],
+    }),
   }),
 });
 
-export const { useChangePasswordMutation, useFetchUserQuery } = authApi;
+export const { useChangePasswordMutation, useFetchUserQuery, useUpdateAccountDetailsMutation } = authApi;

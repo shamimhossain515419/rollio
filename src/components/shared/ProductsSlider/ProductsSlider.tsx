@@ -7,8 +7,6 @@ import { FaArrowLeftLong, FaArrowRight } from "react-icons/fa6";
 import { ProductInterface } from "@/types/Productinterface";
 import HomeCart from "@/components/utilityComponent/card/HomeCart";
 const ProductsSlider = ({ title,recentlyViewProducts }: any) => {
-
-  console.log(title,recentlyViewProducts )
   const customPrevButton = (
     <div className="custom-swiper-button-prev">
       {/* Your custom arrow or icon for the previous button */}
@@ -43,19 +41,19 @@ const ProductsSlider = ({ title,recentlyViewProducts }: any) => {
           breakpoints={{
             640: {
               slidesPerView: 1,
-              spaceBetween: 20,
+              spaceBetween: 10,
             },
             768: {
               slidesPerView: 2,
-              spaceBetween: 40,
+              spaceBetween: 10,
             },
             1024: {
               slidesPerView: 2,
-              spaceBetween: 50,
+              spaceBetween: 20,
             },
             1440: {
               slidesPerView: 4,
-              spaceBetween: 50,
+              spaceBetween: 20,
             },
           }}
           modules={[Pagination, Navigation]}

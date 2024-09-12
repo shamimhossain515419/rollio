@@ -1,10 +1,8 @@
 "use client";
-import { productData } from "@/assets/damiData/damiData";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import ProductDetailAccordion from "../productDetailAccordion/ProductDetailAccordion";
-import { IoClose } from "react-icons/io5";
 import ProductPhotoSlider from "../productPhotoSlider/ProductPhotoSlider";
 import ProductReviews from "../ProductReviews/ProductReviews";
 import ProductsSlider from "@/components/shared/ProductsSlider/ProductsSlider";
@@ -250,7 +248,7 @@ const ProductDetailPage = ({ product }: any) => {
         {/* You Recently Viewed */}
         <ProductsSlider
           recentlyViewProducts={recentlyViewProducts}
-          title="You Recently Viewed"
+          title="Recently Viewed"
         />
         {/* You might also like */}
         {/* <ProductsSlider title="You might also like" /> */}

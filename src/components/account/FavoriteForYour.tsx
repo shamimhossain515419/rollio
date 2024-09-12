@@ -1,5 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
+
 import React from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import AccountLoginForm from "./accountLoginForm";
@@ -9,7 +8,7 @@ import { useGetRecentlyViewProductsQuery } from "@/redux/features/recentlyViewAp
 import ModalCardWithSlider from "./ModalCardWithSlider";
 
 const FavoriteForYour = () => {
-  const { data: sesstion } = useSession();
+  const { data: session } = useSession();
   const { recentlyViewedProducts } = useSelector(
     (state: any) => state.recentlyViewed
   );
@@ -19,14 +18,13 @@ const FavoriteForYour = () => {
   const { data: recentlyViewProducts, error } = useGetRecentlyViewProductsQuery(
     recentlyViewedProducts
   );
- console.log(favItems)
- console.log(cartItems)
+
   
   return (
     <div>
       <div>
         {/* account login from  */}
-        {!sesstion?.user && <AccountLoginForm></AccountLoginForm>}
+        {!session?.user && <AccountLoginForm></AccountLoginForm>}
 
         {/* recently  viewed product  */}
         <div className=" py-2">

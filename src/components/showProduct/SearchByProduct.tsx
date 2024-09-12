@@ -25,7 +25,7 @@ const SearchByProduct = ({ keywords }: any) => {
     if (colors.length || sizes.length) {
       setFilterProduct(data?.data);
     } else {
-      setFilterProduct([]);
+     
     }
   }, [colors, sizes, getProductByFilter, data?.data]);
 
@@ -66,6 +66,7 @@ const SearchByProduct = ({ keywords }: any) => {
     }
   }, [keywords, setFilterProduct]);
 
+  console.log(filterProduct)
   return (
     <>
       <ShowProduct products={filterProduct} />

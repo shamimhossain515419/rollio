@@ -15,13 +15,11 @@ const HomeCart = ({ button, fav, product }: any) => {
   const dispatch = useDispatch();
 
   const { favItems } = useSelector((state: any) => state.favItems);
-  console.log(product);
-  console.log(parseFloat(product?.discount));
   const alreadyFav = favItems.find(
     (fav: ProductInterface) => fav?.id === product?.id
   );
   return (
-    <div className="relative group max-w-[590px] block  bg-white rounded-3xl overflow-hidden">
+    <div className="relative group max-w-[590px] block h-full  bg-white rounded-3xl overflow-hidden">
       {/* fav icon */}
       {fav && (
         <div
@@ -39,21 +37,21 @@ const HomeCart = ({ button, fav, product }: any) => {
         <Link href={`/products/${product?.id}`} className=" h-full">
           <Image
             className=" w-full h-full "
-            src={process.env.BASE_URL + "/images/" + product?.photo}
+            src={process.env.BASE_URL + "/images/" + product?.photos}
             width={500}
             height={500}
-            layout="responsive"
+           
             loading="lazy"
             alt=""
           />
         </Link>
       </div>
-      <div className=" relative flex justify-between p-8">
-        {/* button absulate */}
+      <div className="relative flex justify-between py-8 px-2 md:px-4">
+        {/* button  absolute */}
         {button && (
           <div
             onClick={() => dispatch(addItem(product))}
-            className=" absolute right-3 bottom-3 hidden group-hover:block dur"
+            className=" absolute right-3 bottom-3 hidden group-hover:block"
           >
             <Button title="Quick Add" />
           </div>
