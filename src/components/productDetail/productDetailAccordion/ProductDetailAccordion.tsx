@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Collapse } from "react-collapse";
 import { BiMinus } from "react-icons/bi";
 import { GoPlus } from "react-icons/go";
+import DeliveryAndReturn from "./DeliveryAndReturn";
 
 const ProductDetailAccordion = () => {
   const [description, setDescription] = useState(false);
@@ -147,11 +148,7 @@ const ProductDetailAccordion = () => {
         {/* detail */}
         <Collapse isOpened={Return}>
           <div className="py-5">
-            <p>
-              Shipping in Australia via Auspost and Startrack Express.
-              International Express shipping via DHL. Dispatch within 1 business
-              day. See all shipping options here
-            </p>
+           <DeliveryAndReturn/>
           </div>
         </Collapse>
         {/* detail */}
