@@ -5,8 +5,7 @@ import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { FaArrowLeftLong, FaArrowRight } from "react-icons/fa6";
-import HomeCart from "@/components/utilityComponent/card/HomeCart";
-
+import HomeCartHandPic from "@/components/utilityComponent/card/HomeCartHandPic";
 const Handpicked = ({ HandpickedInfo }: any) => {
   const { products, title } = HandpickedInfo || {}
   const customPrevButton = (
@@ -25,6 +24,8 @@ const Handpicked = ({ HandpickedInfo }: any) => {
       </span>
     </div>
   );
+
+  console.log(HandpickedInfo)
   return (
     <div className="m-5">
       <div className="container mx-auto">
@@ -65,7 +66,7 @@ const Handpicked = ({ HandpickedInfo }: any) => {
           {
             products?.map((product: any) => (
               <SwiperSlide key={product?.id}>
-                <HomeCart product={product} />
+                <HomeCartHandPic product={product} />
               </SwiperSlide>
             ))
           }
