@@ -4,7 +4,7 @@ import React from "react";
 export async function generateMetadata( {params}:any) {
   try {
     let response = await fetch(
-      `${process.env.BASE_URL}/api/product/get-product/${parseInt(params.productId)}`,
+      `${process.env.BASE_URL}/api/product/get-product/${parseInt(params?.productId)}`,
       {
         next: { revalidate: 30 },
       }
@@ -72,7 +72,7 @@ async function getData(id: string) {
 }
 
 const page = async ({ params }: any) => {
-  const { product }: any = await getData(params.productId);
+  const { product }: any = await getData(params?.productId);
   await generateMetadata(product);
   if (!product) {
     // Handle the case where product is null or undefined

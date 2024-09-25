@@ -66,7 +66,6 @@ const SearchByProduct = ({ keywords }: any) => {
     }
   }, [keywords, setFilterProduct]);
 
-  console.log(filterProduct)
   return (
     <>
       <ShowProduct products={filterProduct} />

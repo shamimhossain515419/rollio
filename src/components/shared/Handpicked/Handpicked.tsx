@@ -25,7 +25,6 @@ const Handpicked = ({ HandpickedInfo }: any) => {
     </div>
   );
 
-  console.log(HandpickedInfo)
   return (
     <div className="m-5">
       <div className="container mx-auto">

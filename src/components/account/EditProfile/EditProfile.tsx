@@ -24,7 +24,6 @@ const EditProfile = ({ setActive }: any) => {
     const value = {
       name: fullName,
     };
-    console.log(fullName);
     const res = await updateAccountDetails(value).unwrap();
     if (res?.status == true) {
       toast.success("Profile updated successfully");

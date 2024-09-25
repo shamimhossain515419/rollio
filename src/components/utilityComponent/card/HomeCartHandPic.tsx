@@ -18,8 +18,6 @@ const HomeCartHandPic = ({ button, fav, product }: any) => {
   const alreadyFav = favItems.find(
     (fav: ProductInterface) => fav?.id === product?.id
   );
-
-  console.log(product)
   return (
     <div className="relative group max-w-[590px] block h-full  bg-white rounded-3xl overflow-hidden">
       {/* fav icon */}

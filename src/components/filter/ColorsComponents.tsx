@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 const ColorsComponents = ({ colorsData }: { colorsData: ColorInterface[] }) => {
     const dispatch = useDispatch();
     const { colors } = useSelector((state: any) => state.Colors);
-  console.log(colorsData)
+
     return (
         <div>
             <div className="flex items-center flex-wrap gap-7 ">

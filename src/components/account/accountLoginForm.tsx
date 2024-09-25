@@ -41,7 +41,7 @@ const AccountLoginForm = () => {
       });
 
       const result = await response.json();
-      console.log(result)
+  
 
       if (result?.token) {
         const success = await createAndSetCookie(result?.token);

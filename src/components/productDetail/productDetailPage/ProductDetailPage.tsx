@@ -127,9 +127,9 @@ const ProductDetailPage = ({ product }: any) => {
           {/* product info */}
           <div className="text-white">
             <h1 className="md:text-[48px] text-xl  capitalize leading-10 font-semibold pb-6">
-              {productInfo.name}
+              {productInfo?.name}
             </h1>
-            <h2 className="text-2xl mb-7">TK {productInfo.sale_price}</h2>
+            <h2 className="text-2xl mb-7">TK {productInfo?.sale_price}</h2>
             <p className="text-xl">{productInfo?.meta_description}</p>
             {/* select color  */}
             {colors?.length ? (
@@ -234,9 +234,9 @@ const ProductDetailPage = ({ product }: any) => {
               </div>
             </div>
 
-            {/* accrdion */}
+            {/* accordion */}
             <div className="">
-              <ProductDetailAccordion />
+              <ProductDetailAccordion product={product} />
             </div>
           </div>
         </div>
