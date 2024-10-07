@@ -42,13 +42,7 @@ const FavoriteCart = () => {
           <div>
             {favItems?.length > 0 ? (
               <div>
-                <h1 className="text-[22px] font-normal text-gray-800">
-                  {" "}
-                  Colleations
-                </h1>
-                <div className=" my-3 border flex items-center justify-center p-8 rounded-md border-[#000000d8]">
-                  <p className=" capitalize">not Collections yet</p>
-                </div>
+              
                 <div>
                   <h1 className="text-[22px] font-normal text-gray-800">
                     All Favorites
@@ -62,11 +56,12 @@ const FavoriteCart = () => {
                 </div>
               </div>
             ) :    <div className="  h-full flex justify-center items-center flex-col min-h-[70vh]">
+              
             <h1 className=" text-[18px] md:text-[28px]  text-center font-semibold py-2">
               {"You don's have any favorites yet"}{" "}
             </h1>
             <p className="text-[14px]  md:text-[18px]  text-center text-gray-800">
-              {" "}
+             
               Top the heart on any product to save it to your favorites
             </p>
           </div>}

@@ -19,7 +19,7 @@ const FavoriteForYour = () => {
     recentlyViewedProducts
   );
 
-  
+   console.log(recentlyViewProducts)
   return (
     <div>
       <div>

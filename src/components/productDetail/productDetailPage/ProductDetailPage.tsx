@@ -21,6 +21,7 @@ import { ProductInterface } from "@/types/Productinterface";
 import { addFavItem } from "@/redux/features/favorite/favoriteSlice";
 import { GrFavorite } from "react-icons/gr";
 import { MdOutlineFavorite } from "react-icons/md";
+import FounderAndCeo from "./FounderAndCeo"
 
 const ProductDetailPage = ({ product }: any) => {
   const dispatch = useDispatch();
@@ -78,7 +79,8 @@ const ProductDetailPage = ({ product }: any) => {
     if (productInfo?.id && !recentlyViewedProducts?.includes(productInfo?.id)) {
       dispatch(addRecentlyViewedProduct(parseInt(productInfo?.id)));
     }
-  }, [dispatch, productInfo, recentlyViewedProducts]);
+  }, [dispatch, productInfo, recentlyViewedProducts]); 
+
   return (
     <>
       <div className="container mx-auto md:py-48 py-10">
@@ -246,53 +248,21 @@ const ProductDetailPage = ({ product }: any) => {
         <AddReview product_id={product.product.id} />
 
         {/* You Recently Viewed */}
-        <ProductsSlider
+        {
+          recentlyViewProducts?.length > 1 && <ProductsSlider
           recentlyViewProducts={recentlyViewProducts}
           title="Recently Viewed"
         />
+        }
+       
         {/* You might also like */}
         {/* <ProductsSlider title="You might also like" /> */}
 
         {/* ceo */}
-
-        <div className="grid md:grid-cols-2 text-white md:gap-12 items-center px-4">
-          <div className="">
-            <h1 className="text-[48px] ">Vince Lebon</h1>
-            <h2 className="text-xl">Founder & CEO</h2>
-            <p className="text-xl py-5">
-              Vince Lebon has been doing shoes for a long time. After a decade
-              of designing for some of the biggest names in Aussie shoe brands,
-              he felt like something was missing and thus, an idea was born. He
-              wanted to create a comfortable, on-the-go shoe that felt just as
-              good as looked. Through trial and error, a decade of learning —
-              and relearning — weve perfected our craft. Our take on comfort is
-              design-conscious. We take the latest technology and marry it with
-              technical design to bring you a wearing experience like no other.
-            </p>
-          </div>
-          <div className="">
-            <Image
-              className="border-[10px] rounded-3xl "
-              src={ceoImage}
-              width={500}
-              height={500}
-              lang="responsive"
-              alt=""
-            />
-          </div>
-        </div>
+        <FounderAndCeo/>
+     
       </div>
-      {/* marquee */}
-      <Marquee>
-        <span className=" xl:text-[240px] md:text-[100px] text-[20px] flex gap-3 text-white">
-          <span className="">Enemies of gravity</span>
-          <span className="">Enemies of gravity</span>
-          <span className="">Enemies of gravity</span>
-          <span className="">Enemies of gravity</span>
-        </span>
-      </Marquee>
 
-      <p className="text-[240px] "></p>
 
       {/* size guide modal */}
 

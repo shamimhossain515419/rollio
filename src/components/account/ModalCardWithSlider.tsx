@@ -5,8 +5,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Link from "next/link";
 import Image from "next/image";
+import { isArray } from "util";
 
 const ModalCardWithSlider = ({ products }: any) => {
+  console.log(products);
   return (
     <div>
       <div className="relative py-10">
@@ -29,9 +31,15 @@ const ModalCardWithSlider = ({ products }: any) => {
                     className="w-[80px] h-[90px] border border-[#8c81810d] overflow-hidden rounded-lg"
                     width={80}
                     height={90}
-                    src={`${process.env.BASE_URL + "/images/"}${
-                      product?.photo || product?.photos?.[0]?.photo
-                    }`}
+                    src={
+                      product?.photos
+                        ? Array.isArray(product.photos)
+                          ? `${process.env.BASE_URL}/images/${
+                              product.photos[0]?.photo || "default.jpg"
+                            }`
+                          : `${process.env.BASE_URL}/images/${product.photos}`
+                        : `${process.env.BASE_URL}/images/default.jpg`
+                    }
                     alt={product?.name || "Product Image"}
                   />
                 </Link>

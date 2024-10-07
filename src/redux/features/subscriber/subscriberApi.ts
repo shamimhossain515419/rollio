@@ -9,8 +9,14 @@ export const subscriberApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-  
+
+    getFounderAndCeo: builder.query({
+      query: () => ({
+        url: "get-claracasa-founder-and-ceo",
+        method: "GET",
+      }),
+    }),
   }),
 });
 
-export const { useCreateSubscriberMutation } = subscriberApi;
+export const { useCreateSubscriberMutation, useGetFounderAndCeoQuery } = subscriberApi;

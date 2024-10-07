@@ -24,7 +24,8 @@ const ProductsSlider = ({ title,recentlyViewProducts }: any) => {
       </span>
     </div>
   );
-  return (
+  return (<> 
+  
     <div className="m-5">
       <div className="container mx-auto">
         <h1 className="xl:text-[77px] text-[20px] text-white">{title}</h1>
@@ -77,6 +78,7 @@ const ProductsSlider = ({ title,recentlyViewProducts }: any) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
