@@ -180,3 +180,17 @@ animate-fadeInUp_accordion {
     transform: translateX(-200px);
   }
 }
+
+
+
+/* sidebarScrollbarThemble  */
+.chattingScrollbar::-webkit-scrollbar {
+  width: 7px;
+}
+.chattingScrollbar::-webkit-scrollbar-track {
+  background: #96929273;
+}
+.chattingScrollbar::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border-radius: 10px;
+}

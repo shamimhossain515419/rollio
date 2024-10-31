@@ -17,6 +17,7 @@ import SiteModal from "@/components/siteModal/SiteModal";
 import AuthProvider from "@/components/AuthProvider/AuthProvider";
 import { Toaster } from "react-hot-toast";
 import TokenProvider from "@/components/AuthProvider/TokenProvider";
+import ChattingBox from "@/components/chattingbox/ChattingBox";
 const inter = Inter({ subsets: ["latin"] });
 export async function generateMetadata(projectInfo: any) {
   const keyword = projectInfo?.group_name || projectInfo?.group_name || " ";
@@ -137,9 +138,10 @@ export default async function RootLayout({
                 faqs={faqs?.faqs}
                 websiteInfo={websiteInfo}
               />
-              <ResponsiveMenu></ResponsiveMenu>
-              <YourCart></YourCart>
-              <SiteModal></SiteModal>
+              <ResponsiveMenu />
+              <YourCart />
+              <SiteModal />
+              <ChattingBox/>
             </TokenProvider>
           </ReduxProvider>
           <Toaster position="top-center" reverseOrder={false} />

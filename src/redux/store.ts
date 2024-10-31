@@ -16,6 +16,7 @@ import storage from "redux-persist/lib/storage"; // defaults to localStorage for
 
 import { persistReducer, persistStore } from "redux-persist";
 import recentlyViewSlice from "./features/recentlyView/recentlyViewSlice";
+import  liveChatSlice  from "./features/liveChatSlice/liveChatSlice";
 const persistConfig: PersistConfig<ReturnType<any>> = {
   key: "root",
   storage,
@@ -36,6 +37,7 @@ const rootReducer = {
   favorite: FavoriteSlice,
   sitemodal: SiteModalSlice,
   account: AccountSlice,
+  liveChat: liveChatSlice,
   [apiSlice.reducerPath]: apiSlice.reducer,
 };
 export const store = configureStore({
